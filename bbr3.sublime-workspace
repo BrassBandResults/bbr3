@@ -8,7 +8,7 @@
 	"buffers":
 	[
 		{
-			"file": "settings.py",
+			"file": "bbr3/settings.py",
 			"settings":
 			{
 				"buffer_size": 3090,
@@ -16,7 +16,7 @@
 			}
 		},
 		{
-			"file": "urls.py",
+			"file": "bbr3/urls.py",
 			"settings":
 			{
 				"buffer_size": 761,
@@ -24,7 +24,7 @@
 			}
 		},
 		{
-			"file": "wsgi.py",
+			"file": "bbr3/wsgi.py",
 			"settings":
 			{
 				"buffer_size": 386,
@@ -106,7 +106,7 @@
 			[
 				{
 					"buffer": 0,
-					"file": "settings.py",
+					"file": "bbr3/settings.py",
 					"semi_transient": false,
 					"settings":
 					{
@@ -136,7 +136,7 @@
 				},
 				{
 					"buffer": 1,
-					"file": "urls.py",
+					"file": "bbr3/urls.py",
 					"semi_transient": false,
 					"settings":
 					{
@@ -164,7 +164,7 @@
 				},
 				{
 					"buffer": 2,
-					"file": "wsgi.py",
+					"file": "bbr3/wsgi.py",
 					"semi_transient": false,
 					"settings":
 					{
