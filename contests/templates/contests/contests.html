@@ -1,0 +1,98 @@
+{% extends "template.html" %}
+{% load i18n %}
+
+{%block title %}Contests{% endblock %}
+
+{%block description%}List of brass band contests{%endblock%}
+
+{%block contests-selected%}class="selected"{%endblock%}
+
+{%block head %}
+<script type="text/javascript">
+  $(document).ready(function(){
+  	$("#contests").tablesorter({widgets: ['zebra'], sortList: [[0,0]]});
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+{% ifequal StartsWith "ALL" %}
+<h1>{% trans "All Contests"%}</h1>
+{% else %}
+<h1>{% trans "Contests starting with"%} {{StartsWith}}</h1>
+{% endifequal %}
+<p>{% trans "Starts with"%}:
+{% ifequal StartsWith "A" %}<span class="selected">A</span>{%else%}<a href="/contests/filter/A/">A</a>{%endifequal%}
+{% ifequal StartsWith "B" %}<span class="selected">B</span>{%else%}<a href="/contests/filter/B/">B</a>{%endifequal%}
+{% ifequal StartsWith "C" %}<span class="selected">C</span>{%else%}<a href="/contests/filter/C/">C</a>{%endifequal%}
+{% ifequal StartsWith "D" %}<span class="selected">D</span>{%else%}<a href="/contests/filter/D/">D</a>{%endifequal%}
+{% ifequal StartsWith "E" %}<span class="selected">E</span>{%else%}<a href="/contests/filter/E/">E</a>{%endifequal%}
+{% ifequal StartsWith "F" %}<span class="selected">F</span>{%else%}<a href="/contests/filter/F/">F</a>{%endifequal%}
+{% ifequal StartsWith "G" %}<span class="selected">G</span>{%else%}<a href="/contests/filter/G/">G</a>{%endifequal%}
+{% ifequal StartsWith "H" %}<span class="selected">H</span>{%else%}<a href="/contests/filter/H/">H</a>{%endifequal%}
+{% ifequal StartsWith "I" %}<span class="selected">I</span>{%else%}<a href="/contests/filter/I/">I</a>{%endifequal%}
+{% ifequal StartsWith "J" %}<span class="selected">J</span>{%else%}<a href="/contests/filter/J/">J</a>{%endifequal%}
+{% ifequal StartsWith "K" %}<span class="selected">K</span>{%else%}<a href="/contests/filter/K/">K</a>{%endifequal%}
+{% ifequal StartsWith "L" %}<span class="selected">L</span>{%else%}<a href="/contests/filter/L/">L</a>{%endifequal%}
+{% ifequal StartsWith "M" %}<span class="selected">M</span>{%else%}<a href="/contests/filter/M/">M</a>{%endifequal%}
+{% ifequal StartsWith "N" %}<span class="selected">N</span>{%else%}<a href="/contests/filter/N/">N</a>{%endifequal%}
+{% ifequal StartsWith "O" %}<span class="selected">O</span>{%else%}<a href="/contests/filter/O/">O</a>{%endifequal%}
+{% ifequal StartsWith "P" %}<span class="selected">P</span>{%else%}<a href="/contests/filter/P/">P</a>{%endifequal%}
+{% ifequal StartsWith "Q" %}<span class="selected">Q</span>{%else%}<a href="/contests/filter/Q/">Q</a>{%endifequal%}
+{% ifequal StartsWith "R" %}<span class="selected">R</span>{%else%}<a href="/contests/filter/R/">R</a>{%endifequal%}
+{% ifequal StartsWith "S" %}<span class="selected">S</span>{%else%}<a href="/contests/filter/S/">S</a>{%endifequal%}
+{% ifequal StartsWith "T" %}<span class="selected">T</span>{%else%}<a href="/contests/filter/T/">T</a>{%endifequal%}
+{% ifequal StartsWith "U" %}<span class="selected">U</span>{%else%}<a href="/contests/filter/U/">U</a>{%endifequal%}
+{% ifequal StartsWith "V" %}<span class="selected">V</span>{%else%}<a href="/contests/filter/V/">V</a>{%endifequal%}
+{% ifequal StartsWith "W" %}<span class="selected">W</span>{%else%}<a href="/contests/filter/W/">W</a>{%endifequal%}
+{% ifequal StartsWith "X" %}<span class="selected">X</span>{%else%}<a href="/contests/filter/X/">X</a>{%endifequal%}
+{% ifequal StartsWith "Y" %}<span class="selected">Y</span>{%else%}<a href="/contests/filter/Y/">Y</a>{%endifequal%}
+{% ifequal StartsWith "Z" %}<span class="selected">Z</span>{%else%}<a href="/contests/filter/Z/">Z</a>{%endifequal%}
+{% ifequal StartsWith "ALL" %}<span class="selected">Show All</span>{%else%}<a href="/contests/filter/ALL/">{% trans "Show All"%}</a>{%endifequal%}
+</p>
+<table id="contests" class="tablesorter">
+	<thead>
+		<tr>
+			<th>{% trans "Name"%}</th>
+			<th>{% trans "Events on Site"%}</th>
+		</tr>
+	</thead>
+	<tbody>
+{% for contest in Contests %}
+  		<tr>
+  			<td class="contest"><a href="/contests/{{contest.actual_slug}}/">{{contest.name}}</a></td>
+			<td>{{contest.count}}</td>
+		</tr>
+{% endfor %}
+	</tbody>
+</table>
+<p>{% trans "Starts with"%}:
+{% ifequal StartsWith "A" %}<span class="selected">A</span>{%else%}<a href="/contests/filter/A/">A</a>{%endifequal%}
+{% ifequal StartsWith "B" %}<span class="selected">B</span>{%else%}<a href="/contests/filter/B/">B</a>{%endifequal%}
+{% ifequal StartsWith "C" %}<span class="selected">C</span>{%else%}<a href="/contests/filter/C/">C</a>{%endifequal%}
+{% ifequal StartsWith "D" %}<span class="selected">D</span>{%else%}<a href="/contests/filter/D/">D</a>{%endifequal%}
+{% ifequal StartsWith "E" %}<span class="selected">E</span>{%else%}<a href="/contests/filter/E/">E</a>{%endifequal%}
+{% ifequal StartsWith "F" %}<span class="selected">F</span>{%else%}<a href="/contests/filter/F/">F</a>{%endifequal%}
+{% ifequal StartsWith "G" %}<span class="selected">G</span>{%else%}<a href="/contests/filter/G/">G</a>{%endifequal%}
+{% ifequal StartsWith "H" %}<span class="selected">H</span>{%else%}<a href="/contests/filter/H/">H</a>{%endifequal%}
+{% ifequal StartsWith "I" %}<span class="selected">I</span>{%else%}<a href="/contests/filter/I/">I</a>{%endifequal%}
+{% ifequal StartsWith "J" %}<span class="selected">J</span>{%else%}<a href="/contests/filter/J/">J</a>{%endifequal%}
+{% ifequal StartsWith "K" %}<span class="selected">K</span>{%else%}<a href="/contests/filter/K/">K</a>{%endifequal%}
+{% ifequal StartsWith "L" %}<span class="selected">L</span>{%else%}<a href="/contests/filter/L/">L</a>{%endifequal%}
+{% ifequal StartsWith "M" %}<span class="selected">M</span>{%else%}<a href="/contests/filter/M/">M</a>{%endifequal%}
+{% ifequal StartsWith "N" %}<span class="selected">N</span>{%else%}<a href="/contests/filter/N/">N</a>{%endifequal%}
+{% ifequal StartsWith "O" %}<span class="selected">O</span>{%else%}<a href="/contests/filter/O/">O</a>{%endifequal%}
+{% ifequal StartsWith "P" %}<span class="selected">P</span>{%else%}<a href="/contests/filter/P/">P</a>{%endifequal%}
+{% ifequal StartsWith "Q" %}<span class="selected">Q</span>{%else%}<a href="/contests/filter/Q/">Q</a>{%endifequal%}
+{% ifequal StartsWith "R" %}<span class="selected">R</span>{%else%}<a href="/contests/filter/R/">R</a>{%endifequal%}
+{% ifequal StartsWith "S" %}<span class="selected">S</span>{%else%}<a href="/contests/filter/S/">S</a>{%endifequal%}
+{% ifequal StartsWith "T" %}<span class="selected">T</span>{%else%}<a href="/contests/filter/T/">T</a>{%endifequal%}
+{% ifequal StartsWith "U" %}<span class="selected">U</span>{%else%}<a href="/contests/filter/U/">U</a>{%endifequal%}
+{% ifequal StartsWith "V" %}<span class="selected">V</span>{%else%}<a href="/contests/filter/V/">V</a>{%endifequal%}
+{% ifequal StartsWith "W" %}<span class="selected">W</span>{%else%}<a href="/contests/filter/W/">W</a>{%endifequal%}
+{% ifequal StartsWith "X" %}<span class="selected">X</span>{%else%}<a href="/contests/filter/X/">X</a>{%endifequal%}
+{% ifequal StartsWith "Y" %}<span class="selected">Y</span>{%else%}<a href="/contests/filter/Y/">Y</a>{%endifequal%}
+{% ifequal StartsWith "Z" %}<span class="selected">Z</span>{%else%}<a href="/contests/filter/Z/">Z</a>{%endifequal%}
+{% ifequal StartsWith "ALL" %}<span class="selected">Show All</span>{%else%}<a href="/contests/filter/ALL/">{% trans "Show All"%}</a>{%endifequal%}
+</p>
+{% endblock %}

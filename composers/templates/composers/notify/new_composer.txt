@@ -1,0 +1,14 @@
+A new composer has been added to the database.
+
+Name: {{ThingNew.name|safe}}
+First Name: {{ThingNew.first_names|safe}}
+Surname: {{ThingNew.surname|safe}}
+Email: {{ThingNew.email}}
+Deceased: {{ThingNew.deceased}}
+
+Notes: {{ThingNew.notes|safe}}
+
+Last Changed By: {{ThingNew.lastChangedBy.username}} on {{ThingNew.last_modified}}
+Owner: {{ThingNew.owner.username}}, created {{ThingNew.created}}
+
+https://brassbandresults.co.uk/composers/{{ThingNew.slug}}/

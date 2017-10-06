@@ -1,0 +1,41 @@
+{% extends "template.html" %}
+
+{%block title %}{{Section.name}} - Section{% endblock %}
+
+{%block keywords %}{{Section.name}} Section{% endblock %}
+
+{%block description %}Details of the {{Section.name}}{% endblock %}
+
+{%block head %}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#bands").tablesorter({widgets: ['zebra']});
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>{{Section.name}} Section</h1>
+<p>
+{% for section in Sections %}
+<a href="/sections/{{section.slug}}/">{{section.name}}</a>
+{% endfor %}
+</p> 
+<h2>Bands</h2>
+<table id="bands" class="tablesorter">
+	<thead>
+		<tr>
+			<th>Band</th>
+			<th>Region</th>
+		</tr>
+	</thead>
+	<tbody>
+{% for band in Section.band_set.all %}
+		<tr>
+			<td><a href="/bands/{{band.slug}}/">{{band.name}}</a></td>
+			<td><a href="/regions/{{band.region.slug}}/">{{band.region.name}}</a></td>
+		</tr>
+{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

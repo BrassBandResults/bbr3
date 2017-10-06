@@ -1,3 +1,5 @@
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
+
 """bbr3 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -19,7 +21,11 @@ from django.contrib import admin
 from home import views as home_views
 
 urlpatterns = [
-    url(r'^$', home_views.homepage),
+    url(r'^$', home_views.home),
+    url(r'^faq/$', home_views.faq),
+    url(r'^aboutus/$', home_views.about),
+    url(r'^privacy/$', home_views.cookies),
+
     url(r'^bands/', include('bands.urls')),
     url(r'^bbradmin/', admin.site.urls),
 ]

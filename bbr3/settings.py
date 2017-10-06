@@ -1,3 +1,5 @@
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
+
 """
 Django settings for bbr3 project.
 
@@ -37,10 +39,43 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
+    'sorl.thumbnail',
+
+    'addresults',
+    'addwhitfriday',
+    'adjudicators',
+    'api',
+    'audit',
+    'badges',
+    'bandmap',
     'bands',
+    'classifieds',
+    'compare',
+    'composers',
+    'conductors',
+    'contest_calendar',
+    'contests',
+    'embed',
+    'feedback',
+    'feeds',
     'home',
+    'usermessages',
+    'leaderboard',
+    'move',
+    'myresults',
+    'payments',
+    'people',
+    'pieces',
     'regions',
+    'search',
+    'sections',
+    'statistics',
+    'tags',
+    'users',
+    'venues',
+    'years',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +164,11 @@ STATIC_URL = '/site_media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "site_media"),
 ]
+
+SUFFIXES = (
+            ('Jnr','Jnr'),
+            ('Snr','Snr'),
+            ('I','I'),
+            ('II','II'),
+            ('III','III'),
+           )

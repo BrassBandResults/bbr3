@@ -1,0 +1,154 @@
+{% extends "template.html" %}
+{% load i18n %}
+
+{%block title %}People{% endblock %}
+
+{%block description%}List of people involved in brass bands as conductors, composers, arrangers or adjudicators{%endblock%}
+
+{%block conductors-selected%}class="selected"{%endblock%}
+
+{%block head %}
+<script src="https://d3js.org/d3.v3.js" charset="utf-8"></script>
+<script>
+
+  $(document).ready(function(){
+    $("#people").tablesorter({widgets: ['zebra']});
+    
+  });
+    
+</script>
+{% endblock %}
+
+{% block content %}
+
+{% if user.profile.pro_member %}
+<div class="venn">
+<p>Blue circle is {{ConductorsCheck}} Conductors </p>
+<p>Red circle is {{AdjudicatorsCheck}} Adjudicators </p>
+<p>Green circle is {{ComposerArrangerCheck}} Composers/Arrangers </p>
+<svg width="720" height="350">
+  <g>
+    <circle cx="80" cy="100" r="80" fill="steelblue" fill-opacity="0.4"></circle>
+    <text x="80" y="100" text-anchor="middle">{{VennConductorOnlyCount}}</text>
+  </g>
+  <g>
+    <circle cx="190" cy="100" r="80" fill="red" fill-opacity="0.4"></circle>
+    <text x="190" y="100" text-anchor="middle">{{VennAdjudicatorOnlyCount}}</text>
+  </g>
+  <g>
+    <circle cx="135" cy="200" r="80" fill="green" fill-opacity="0.4"></circle>
+    <text x="135" y="200" text-anchor="middle">{{VennComposerArrangerOnlyCount}}</text>
+  </g>
+  <text x="133" y="100" text-anchor="middle">{{VennConductorAdjudicatorCount}}</text>
+  <text x="133" y="137" text-anchor="middle">{{VennAllCount}}</text>
+  <text x="100" y="155" text-anchor="middle">{{VennConductorComposerCount}}</text>
+  <text x="164" y="155" text-anchor="middle">{{VennComposerAdjudicatorCount}}</text>
+</svg>
+</div>
+{% endif %}
+
+
+{% ifequal StartsWith "ALL" %}
+<h1>{% trans "All People"%}</h1>
+{% else %}
+<h1>{% trans "People starting with"%} {{StartsWith}}</h1>
+{% endifequal %}
+<p>{% trans "Showing"%} {{PeopleCount}} {% trans "of"%} {{AllPeopleCount}} {% trans "people"%}</p>
+{% if user.profile.enhanced_functionality %}
+<p>[<a href="/people/add/">{% trans "Add New Person"%}</a>]</p>
+{% endif %}
+<p>{% trans "Starts with"%}:
+{% ifequal StartsWith "A" %}<span class="selected">A</span>{%else%}<a href="/people/A/">A</a>{%endifequal%}
+{% ifequal StartsWith "B" %}<span class="selected">B</span>{%else%}<a href="/people/B/">B</a>{%endifequal%}
+{% ifequal StartsWith "C" %}<span class="selected">C</span>{%else%}<a href="/people/C/">C</a>{%endifequal%}
+{% ifequal StartsWith "D" %}<span class="selected">D</span>{%else%}<a href="/people/D/">D</a>{%endifequal%}
+{% ifequal StartsWith "E" %}<span class="selected">E</span>{%else%}<a href="/people/E/">E</a>{%endifequal%}
+{% ifequal StartsWith "F" %}<span class="selected">F</span>{%else%}<a href="/people/F/">F</a>{%endifequal%}
+{% ifequal StartsWith "G" %}<span class="selected">G</span>{%else%}<a href="/people/G/">G</a>{%endifequal%}
+{% ifequal StartsWith "H" %}<span class="selected">H</span>{%else%}<a href="/people/H/">H</a>{%endifequal%}
+{% ifequal StartsWith "I" %}<span class="selected">I</span>{%else%}<a href="/people/I/">I</a>{%endifequal%}
+{% ifequal StartsWith "J" %}<span class="selected">J</span>{%else%}<a href="/people/J/">J</a>{%endifequal%}
+{% ifequal StartsWith "K" %}<span class="selected">K</span>{%else%}<a href="/people/K/">K</a>{%endifequal%}
+{% ifequal StartsWith "L" %}<span class="selected">L</span>{%else%}<a href="/people/L/">L</a>{%endifequal%}
+{% ifequal StartsWith "M" %}<span class="selected">M</span>{%else%}<a href="/people/M/">M</a>{%endifequal%}
+{% ifequal StartsWith "N" %}<span class="selected">N</span>{%else%}<a href="/people/N/">N</a>{%endifequal%}
+{% ifequal StartsWith "O" %}<span class="selected">O</span>{%else%}<a href="/people/O/">O</a>{%endifequal%}
+{% ifequal StartsWith "P" %}<span class="selected">P</span>{%else%}<a href="/people/P/">P</a>{%endifequal%}
+{% ifequal StartsWith "Q" %}<span class="selected">Q</span>{%else%}<a href="/people/Q/">Q</a>{%endifequal%}
+{% ifequal StartsWith "R" %}<span class="selected">R</span>{%else%}<a href="/people/R/">R</a>{%endifequal%}
+{% ifequal StartsWith "S" %}<span class="selected">S</span>{%else%}<a href="/people/S/">S</a>{%endifequal%}
+{% ifequal StartsWith "T" %}<span class="selected">T</span>{%else%}<a href="/people/T/">T</a>{%endifequal%}
+{% ifequal StartsWith "U" %}<span class="selected">U</span>{%else%}<a href="/people/U/">U</a>{%endifequal%}
+{% ifequal StartsWith "V" %}<span class="selected">V</span>{%else%}<a href="/people/V/">V</a>{%endifequal%}
+{% ifequal StartsWith "W" %}<span class="selected">W</span>{%else%}<a href="/people/W/">W</a>{%endifequal%}
+{% ifequal StartsWith "X" %}<span class="selected">X</span>{%else%}<a href="/people/X/">X</a>{%endifequal%}
+{% ifequal StartsWith "Y" %}<span class="selected">Y</span>{%else%}<a href="/people/Y/">Y</a>{%endifequal%}
+{% ifequal StartsWith "Z" %}<span class="selected">Z</span>{%else%}<a href="/people/Z/">Z</a>{%endifequal%}
+{% if request.user.profile.pro_member %}
+{% ifequal StartsWith "ALL" %}<span class="selected">Show All</span>{%else%}<a href="/people/ALL/">{% trans "Show All"%}</a>{%endifequal%}
+{% ifequal StartsWith "NOTHING" %}<span class="selected">Nothing</span>{%else%}<a href="/people/NOTHING/">{% trans "Did Nothing"%}</a>{%endifequal%}
+{% endif %}
+</p>
+<table id="people" class="tablesorter">
+	<thead>
+		<tr>
+			<th>{% trans "Name"%}</th>
+			<th>{% trans "Conducting"%}</th>
+			{% if user.profile.pro_member %}<th>{% trans "Withdrawals"%}</th>{% endif %}
+			<th>{% trans "Adjudications"%}</th>
+			<th>{% trans "Compositions"%}</th>
+			<th>{% trans "Arrangements"%}</th>
+{% if user.is_staff and StartsWith == 'NOTHING' %}
+		    <th></th>
+{% endif %}			
+		</tr>
+	</thead>
+	<tbody>
+{% for person in People %}
+ 		<tr>
+ 			<td class="person"><a href="/people/{{person.slug}}/">{{person.surname}}, {{person.first_names}}</a>{% if person.bandname %} ({{person.bandname}}){%endif%}</td>
+			<td>{% if user.profile.pro_member %}{{person.conducting_count}}{% else %}<a href="/accounts/upgrade/">pro</a>{% endif %}</td>
+			{% if user.profile.pro_member %}<td>{{person.withdrawn_count}}</td>{% endif %}
+			<td>{{person.adjudications_count}}</td>
+			<td>{{person.composition_count}}</td>
+			<td>{{person.arrangement_count}}</td>
+{% if user.is_staff and StartsWith == 'NOTHING' %}
+		    <td>[<a href="/adminsite/people/person/{{person.id}}/delete/">delete</a>]</td>
+{% endif %}						
+		</tr>
+{% endfor %}
+	</tbody>
+</table>
+<p>{% trans "Starts with"%}: 
+{% ifequal StartsWith "A" %}<span class="selected">A</span>{%else%}<a href="/people/A/">A</a>{%endifequal%}
+{% ifequal StartsWith "B" %}<span class="selected">B</span>{%else%}<a href="/people/B/">B</a>{%endifequal%}
+{% ifequal StartsWith "C" %}<span class="selected">C</span>{%else%}<a href="/people/C/">C</a>{%endifequal%}
+{% ifequal StartsWith "D" %}<span class="selected">D</span>{%else%}<a href="/people/D/">D</a>{%endifequal%}
+{% ifequal StartsWith "E" %}<span class="selected">E</span>{%else%}<a href="/people/E/">E</a>{%endifequal%}
+{% ifequal StartsWith "F" %}<span class="selected">F</span>{%else%}<a href="/people/F/">F</a>{%endifequal%}
+{% ifequal StartsWith "G" %}<span class="selected">G</span>{%else%}<a href="/people/G/">G</a>{%endifequal%}
+{% ifequal StartsWith "H" %}<span class="selected">H</span>{%else%}<a href="/people/H/">H</a>{%endifequal%}
+{% ifequal StartsWith "I" %}<span class="selected">I</span>{%else%}<a href="/people/I/">I</a>{%endifequal%}
+{% ifequal StartsWith "J" %}<span class="selected">J</span>{%else%}<a href="/people/J/">J</a>{%endifequal%}
+{% ifequal StartsWith "K" %}<span class="selected">K</span>{%else%}<a href="/people/K/">K</a>{%endifequal%}
+{% ifequal StartsWith "L" %}<span class="selected">L</span>{%else%}<a href="/people/L/">L</a>{%endifequal%}
+{% ifequal StartsWith "M" %}<span class="selected">M</span>{%else%}<a href="/people/M/">M</a>{%endifequal%}
+{% ifequal StartsWith "N" %}<span class="selected">N</span>{%else%}<a href="/people/N/">N</a>{%endifequal%}
+{% ifequal StartsWith "O" %}<span class="selected">O</span>{%else%}<a href="/people/O/">O</a>{%endifequal%}
+{% ifequal StartsWith "P" %}<span class="selected">P</span>{%else%}<a href="/people/P/">P</a>{%endifequal%}
+{% ifequal StartsWith "Q" %}<span class="selected">Q</span>{%else%}<a href="/people/Q/">Q</a>{%endifequal%}
+{% ifequal StartsWith "R" %}<span class="selected">R</span>{%else%}<a href="/people/R/">R</a>{%endifequal%}
+{% ifequal StartsWith "S" %}<span class="selected">S</span>{%else%}<a href="/people/S/">S</a>{%endifequal%}
+{% ifequal StartsWith "T" %}<span class="selected">T</span>{%else%}<a href="/people/T/">T</a>{%endifequal%}
+{% ifequal StartsWith "U" %}<span class="selected">U</span>{%else%}<a href="/people/U/">U</a>{%endifequal%}
+{% ifequal StartsWith "V" %}<span class="selected">V</span>{%else%}<a href="/people/V/">V</a>{%endifequal%}
+{% ifequal StartsWith "W" %}<span class="selected">W</span>{%else%}<a href="/people/W/">W</a>{%endifequal%}
+{% ifequal StartsWith "X" %}<span class="selected">X</span>{%else%}<a href="/people/X/">X</a>{%endifequal%}
+{% ifequal StartsWith "Y" %}<span class="selected">Y</span>{%else%}<a href="/people/Y/">Y</a>{%endifequal%}
+{% ifequal StartsWith "Z" %}<span class="selected">Z</span>{%else%}<a href="/people/Z/">Z</a>{%endifequal%}
+{% if request.user.profile.pro_member %}
+{% ifequal StartsWith "ALL" %}<span class="selected">Show All</span>{%else%}<a href="/people/ALL/">{% trans "Show All"%}</a>{%endifequal%}
+{% ifequal StartsWith "NOTHING" %}<span class="selected">Nothing</span>{%else%}<a href="/people/NOTHING/">{% trans "Did Nothing"%}</a>{%endifequal%}
+{% endif %}
+</p>
+{% endblock %}

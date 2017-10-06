@@ -1,0 +1,34 @@
+{% extends "template.html" %}
+{% load humanize %}
+{% load bbrize %}
+{% load i18n %}
+
+{% block title %}{% trans "Tags"%}{% endblock %}
+
+{%block keywords %}Brass Band Contest Tags{% endblock %}
+
+{%block description%}Tags attached to contests and contest groups at brass band results{%endblock%}
+
+{%block contest-tags-selected%}class="selected"{%endblock%}
+
+{%block head %}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#tags_list").tablesorter({widgets: ['zebra']});
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>Tags</h1>
+<table id="tags_list" class="tablesorter">
+  <thead>
+    <tr><th>Tag</th></tr>
+  </thead>
+  <tbody>
+{% for tag in ContestTags %}
+    <tr><td><a href="/tags/{{tag.slug}}/">{{tag.name}}</a></td></tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

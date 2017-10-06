@@ -1,0 +1,20 @@
+{% extends "template.html" %}
+
+{%block title %}Badges{% endblock %}
+
+{%block description%}List of Badges{%endblock%}
+
+{%block badges-selected%}class="selected"{%endblock%}
+
+{% block content %}
+<h1>Badges</h1>
+<p>Badges are awarded for performing actions around the site.</p>
+<table>
+{% for badge in Badges %}
+  <tr>
+    <td><span class="profileBadge">{{badge.name}}</span>&nbsp;&nbsp;x {{badge.count}}</td>
+    <td>{{badge.description}}</td>
+  </tr>
+{% endfor %}  
+</table>
+{% endblock %}

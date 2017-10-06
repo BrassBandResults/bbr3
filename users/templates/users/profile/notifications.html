@@ -1,0 +1,51 @@
+{% extends "template.html" %}
+{% load gravatar %}
+
+{% block title %}{{User.username}} - User Profile{% endblock %}
+
+{%block description %}User {{User.username}}{% endblock %}
+
+{%block profile-selected%}class="selected"{%endblock%}
+
+{% block adbar %}<br/>{%endblock%}
+{% block adbarBottom %}<br/>{% endblock %}
+
+{% block content %}
+<div id="UserProfile">
+<h1>{{User.username}}
+ [<a href="/users/{{User.username}}/change_password/">change password</a>]
+{% if user.is_superuser %}
+ [<a href="/adminsite/auth/user/{{User.id}}/">admin user</a>]
+ [<a href="/adminsite/users/userprofile/{{User.profile.id}}/">admin profile</a>]
+{%endif%}
+</h1>
+<div id="avatar">
+  {% gravatar User 80 %}<br/>
+  <b>{{Profile.points}}</b><br/>
+  reputation<br/>
+</div>
+<table>
+  <tr><th>Member For:</th><td>{{User.date_joined|timesince}}</td></tr>
+  <tr><th>Last Seen:</th><td>{{User.last_login|timesince}} ago</td></tr>
+</table>
+
+<br/><br/><br/><br/><br/>
+
+<div class="clear"></div>
+<div id="tabs">
+  <ul>
+    <li><a href="/users/{{User.username}}/" title="Feedback sent">Feedback{%if FeedbackCount%} ({{FeedbackCount}}){%endif%}</a></li>
+    <li><a href="/users/{{User.username}}/feedback_sent/" title="Feedback sent">Sent{%if SentFeedbackCount%} ({{SentFeedbackCount}}){%endif%}</a></li>
+    <li><a href="/users/{{User.username}}/results_added/" title="Results Added to Site">Results{% if ContestCount %} ({{ContestCount}}){%endif%}</a></li>
+    <li><a href="/users/{{User.username}}/contest_history/" title="Personal Contest History">Performances{% if PerformanceCount %} ({{PerformanceCount}}){%endif%}</a></li>
+    <li><a href="/users/{{User.username}}/messages/" title="Site Messages">Messages{% if MessageCount%} ({{MessageCount}}){%endif%}</a></li>
+    <li><a href="/users/{{User.username}}/classifieds/" title="Classified Profiles">Classifieds</a></li>
+    <li class="selected">Notifications</li>
+  </ul>
+</div>
+
+<div id="Notifications">
+<p>Here you can configure the notifications you want from the site</p>
+</div>
+</div>
+{%endblock%}

@@ -1,0 +1,17 @@
+{% extends "template.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Please Help Us"%}{% endblock %}
+
+{%block description%}Please Help Us{%endblock%}
+
+{%block help-selected%}class="selected"{%endblock%}
+
+{% block content %}
+<h1>{% trans "We Need Your Help!"%}</h1>
+<p><b>{% trans "We sometimes get feedback that we have to investigate further.  Sometimes we hit a deadend.  This page is where we place questions that we don't know the answer to, in the hope that someone can help us!</p><p>Please fill in the comment box at the bottom of the page if you can help with any of these.  Don't forget to tell us which question you're answering!  Thanks."%}</b></p>
+{% for feedback in HelpRequired %}
+<h2>{% trans "Number"%} {{feedback.id}}</h2>
+<p>{{ feedback.comment|safe|linebreaksbr }}</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "template.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Leaderboard"%}{% endblock %}
+
+{%block description%}User Leaderboard{%endblock%}
+
+{%block leaderboard-selected%}class="selected"{%endblock%}
+
+{%block head %}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#leaderboard").tablesorter({widgets: ['zebra']});
+
+  
+  var lPieData = [
+    { label: "> 70 points", data: {{OnLeaderboardCount}}, color: "#ffc600" },  
+    { label: "< 70 points", data: {{NotOnLeaderboardCount}}, color: "#99ccff" },
+    { label: "No Points", data: {{NoPointsCount}}, color: "#316497" }
+    ];
+  $.plot($("#flot_pie"), lPieData,
+    {
+      series: {
+        pie: {
+          show: true,
+          label: {
+            formatter: function(label, series){
+              return '<div style="font-size:8pt;text-align:center;padding:2px;color:black;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';
+            }
+          }
+        }
+      },
+      legend: {
+          show: false
+      }
+  });
+});
+</script>
+{% endblock head %}
+
+{% block content %}
+<h1>{% trans "Leaderboard"%}</h1>
+<div id="flot_pie" class="leaderboard"></div>
+<p>{% trans "Every time a user adds results or adds a new point to the map, they get points.  This table shows the current leaderboard for users on brassbandresults."%}</p>
+<table class="tablesorter" id="leaderboard">
+    <thead>
+        <tr>
+            <th>{% trans "Position"%}</th>
+            <th>{% trans "User"%}</th>
+            <th>{% trans "Points"%}</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for profile in Profiles %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><a href="/users/{{profile.user.username}}/">{{profile.user.username}}</a></td>
+            <td>{{profile.points}}</td>
+        </tr>
+{% endfor %}
+        
+    </tbody>
+</table>
+{% endblock %}

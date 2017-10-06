@@ -1,0 +1,162 @@
+{% extends "template.html" %}
+{% load humanize %}
+{% load bbrize %}
+{% load i18n %}
+
+{% block title %}{% trans "Home"%}{% endblock %}
+
+{%block head %}
+<meta name="verify-v1" content="OQoFzMtPEKozzl+tFn5gCEROS+i3PvuAUZVzVvU9MIU=" />
+<meta name="msvalidate.01" content="59FC3470326BD725213A7B10A2ABA7B2" />
+{% endblock %}
+
+{%block home-selected%}class="selected"{%endblock%}
+
+{% block content %}
+<header class="container">
+    <p class="lead">{% trans "This site is building a comprehensive set of world-wide brass band contest results.  It provides links between the various bands where they share conductors, test pieces etc., so it can easily be seen when a piece has been used and which band it was played by."%}</p>
+    <p><b>{% trans "We need your help!"%}</b>  {% trans "Do you have contest results that are not in the database?  Then please register and add them!  Make your contribution to this unique project today."%}  {% trans "Got nothing to add?"%}  <a href="/feedback/results/">{% trans "Look here"%}</a>.</p>
+    <p>{% trans "You can add results from any contest in any country, this isn't just restricted to the big contests, and not just to the top bands."%}</p>
+</header>
+
+<div class="row">
+  
+
+
+{% if ThisWeek %}
+<article class="col" id="events-history">
+<h2>{% trans "This Week in History"%}</h2>
+<ul>
+  <li><a href="/bands/{{ThisWeek.band_slug}}/" title="{{ThisWeek.current_band_name}}">{{ThisWeek.band_name}}</a> {% trans "won"%}  <a href="/contests/{{ThisWeek.contest_slug}}/">{{ThisWeek.contest_name}}</a> {% trans "on"%} <a href="/contests/{{ThisWeek.contest_slug}}/{{ThisWeek.date_of_event|date:"Y-m-d"}}">{{ThisWeek.date_of_event|date:"jS F Y"}}</a></li>
+</ul>
+</article>
+{% endif %}
+
+{% if EventsYesterday %}
+<article class="col" id="events-yesterday">
+<h2>{% trans "Yesterday's Events"%}</h2>
+<ul>
+{% for event in EventsYesterday %}
+  <li>
+    <a href="/contests/{{event.contest.slug}}/{{event.date_of_event|date:"Y-m-d"}}/">{{event.contest.name}}</a>
+    {% if event.winners %}<br/> - {% trans "won by"%} {% for result in event.winners %}<a href="/bands/{{result.band.slug}}/">{{result.band_name}}</a>{% if not forloop.last%} {% trans "and"%} {%endif%}{%endfor%}{%endif%}
+  </li>
+{% endfor %}
+</ul>
+{% endif %}
+</article>
+    
+{% if EventsToday %}
+<article class="col" id="events-today">
+<h2>{% trans "Today's Events"%}</h2>
+<ul>
+{% for event in EventsToday %}
+  <li>
+    <a href="/contests/{{event.contest.slug}}/{{event.date_of_event|date:"Y-m-d"}}/">{{event.contest.name}}</a>
+    {% if event.winners %}<br/> - {% trans "won by"%} {% for result in event.winners %}<a href="/bands/{{result.band.slug}}/">{{result.band_name}}</a>{% if not forloop.last%} {% trans "and"%} {%endif%}{%endfor%}{%endif%}
+  </li>
+{% endfor %}
+</ul>
+</article>
+{% endif %}
+      
+      
+{% if EventsTomorrow %}
+<article class="col" id="events-tomorrow">
+<h2>{% trans "Tomorrow's Events"%}</h2>
+<ul>
+{% for event in EventsTomorrow %}
+  <li>
+    <a href="/contests/{{event.contest.slug}}/{{event.date_of_event|date:"Y-m-d"}}/">{{event.contest.name}}</a>
+    {% if event.winners %}<br/> - {% trans "won by"%} {% for result in event.winners %}<a href="/bands/{{result.band.slug}}/">{{result.band_name}}</a>{% if not forloop.last%} {% trans "and"%} {%endif%}{%endfor%}{%endif%}
+  </li>
+{% endfor %}
+</ul>
+</article>
+{% endif %}
+
+<div class="col d-none d-md-block" id="profile-1">
+    <h2><a href="{{RandomProfile.get_absolute_url}}">{{RandomProfile.name}}</a></h2>
+    <p>
+    {% if RandomProfile.picture %}<a href="{{RandomProfile.get_absolute_url}}"><img src="{{RandomProfile.picture.url_70x70}}"/></a>{% endif %}
+      {{RandomProfile.profile|truncatewords_html:"50"|bbrize}} 
+      [<a href="{{RandomProfile.get_absolute_url}}">{% trans "more"%}</a>]
+      </p>
+    <div class="profile_footer"><a href="/people/about_profile/?u={{user.username}}">{% trans "Get your own profile here"%}</a></div>
+  </div>
+    
+  {% if SecondRandomProfile %}
+  <div class="col d-none d-lg-block" id="profile-2">
+    <h2><a href="{{SecondRandomProfile.get_absolute_url}}">{{SecondRandomProfile.name}}</a></h2>
+    <p>
+      {% if SecondRandomProfile.picture %}<a href="{{SecondRandomProfile.get_absolute_url}}"><img src="{{SecondRandomProfile.picture.url_70x70}}"/></a>{% endif %}
+      {{SecondRandomProfile.profile|truncatewords_html:"50"|bbrize}} 
+      [<a href="{{SecondRandomProfile.get_absolute_url}}">{% trans "more"%}</a>]
+      </p>
+    <div class="profile_footer"><a href="/people/about_profile/?u={{user.username}}">{% trans "Get your own profile here"%}</a></div>
+  </div>
+  {% endif %}
+
+</div> <!-- /row -->
+
+<article class="container" id="events-next">
+<h2>{% trans "Next Events"%}</h2>
+<table class="tablesorter" style="width:50%">
+{% for event in FutureEvents %}
+   <tr>
+     <td width="15%"><a href="/contests/{{event.contest_slug}}/">{{event.event_date}}</td>
+     <td width="85%">{{event.contest_name}}</a></td>
+   </tr>
+{% endfor %}
+</table>
+</article>
+
+<article class="container" id="events-recent">
+<h2>{% trans "Recent Contests"%}</h2>
+<table class="tablesorter">
+{% for event in RecentResults %}
+      <tr>
+        <td width="15%"><a href="/contests/{{event.contest.slug}}/{{event.date_of_event|date:"Y-m-d"}}/">{{event.event_date}}</a></td>
+        <td width="50%">{{event.contest.name}}</td>
+        <td>{% for winner in event.winners %}<a href="/bands/{{winner.band.slug}}/">{{winner.band_name}}</a> {%endfor%}</td>
+      </tr>
+{% endfor %}
+</table>
+</article>
+
+<article class="container" id="events-added">
+<h2>{% trans "Recently Added"%}</h2>
+<table class="tablesorter">
+{% for event in RecentlyAdded %}
+   <tr>
+     <td width="15%"><a href="/contests/{{event.contest.slug}}/{{event.date_of_event|date:"Y-m-d"}}/">{{event.event_date}}</a></td>
+     <td width="50%">{{event.contest.name}}</td>
+     <td>{% for winner in event.winners %}<a href="/bands/{{winner.band.slug}}/">{{winner.band_name}}</a> {%endfor%}</td>
+   </tr>
+{% endfor %}
+</table>  
+    </td></tr>
+    </table>
+    </td>
+  </tr>
+</table>
+</article>
+
+
+<div class="container">
+<h2>{% trans "Disclaimer"%}</h2>
+<p>The contents of this site are not affiliated with any other website, and we provide no guarantee of accuracy of any of the information on here.  
+We think most of them are right, but if you find mistakes please fill in the feedback form and we'll get them corrected.</p>
+<p>We use cookies.  For more details click on <a href="/cookies/">Cookies</a> in the menu.</p>
+<p>We do not claim copyright over any of the programme scans - these are purely provided for historical interest and to aid in building up our results collection.  If you own the copyright for a programme and would like us to remove it from the site, please let us know.</p>
+<p>Event information (including concert dates on band profiles) are not guaranteed to be correct.  Please check with the venue or band before travelling a long way.</p>
+</div>
+<div class="container">
+<h2>{% trans "Contact Us"%}</h2><p>{% trans "If you want to contact the site owners, either put your message into the feedback box on any page, or send us an email at"%} <script type="text/javascript"><!--
+              var name='owner';
+              var domain='brassbandresults.co.uk';
+              var addy=name+'@'+domain;
+              document.write('<'+'a href="mailto:'+addy+'">'+addy+'<'+'/a'+'>'); //-->
+              </script>.</p>
+</div>             
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "template.html" %}
+{% load humanize %}
+{% load i18n %}
+
+{%block title %}{{Conductor.name}} - Conductor Aliases{% endblock %}
+
+{%block keywords %}Conductor {{Conductor.name}}{% endblock %}
+
+{%block description%}Details about the brass band conductor {{Conductor.name}}{%endblock%}
+
+{%block conductors-selected%}class="selected"{%endblock%}
+
+
+{% block content %}
+<h1 class="conductor"><a href="/conductors/{{Conductor.slug}}/">{{Conductor.name}}</a> {% trans "Aliases"%}
+</h1>
+<form action="." method="post">{% csrf_token %}
+<table id="aliases" class="tablesorter">
+<thead>
+ <tr>
+  <th>{% trans "Alias Name"%}</th>
+  <th>{% trans "Hidden"%}</th>
+  <th>
+ </tr>
+</thead>
+<tbody>
+{%for alias in Aliases%}
+ <tr>
+  <td>{{alias.name}}</td>
+  <td>{{alias.hidden}}</td>
+  <td>[<a href="/conductors/{{Conductor.slug}}/aliases/{{alias.id}}/delete/">{% trans "delete"%}</a>]
+{% if alias.hidden %}
+  [<a href="/conductors/{{Conductor.slug}}/aliases/{{alias.id}}/show/">{% trans "show"%}</a>]
+{% else %}
+  [<a href="/conductors/{{Conductor.slug}}/aliases/{{alias.id}}/hide/">{% trans "hide"%}</a>]</td>
+{% endif %}  
+    </td>
+ </tr>
+{%endfor%}
+</tbody>
+<tfoot>
+  <tr>
+    <td colspan="3"><input type="text" name="new_alias_name"/> <input type="submit" value="{% trans "Save New Alias"%}"/></td>
+  </tr>
+</tfoot>
+</table>
+</form>
+{% endblock %}
