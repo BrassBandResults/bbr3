@@ -12,20 +12,20 @@
 
 {%block home-selected%}class="selected"{%endblock%}
 
+{% block bodyattrib %}id="home"{% endblock %}
+
 {% block content %}
-<header class="container">
-    <p class="lead">{% trans "This site is building a comprehensive set of world-wide brass band contest results.  It provides links between the various bands where they share conductors, test pieces etc., so it can easily be seen when a piece has been used and which band it was played by."%}</p>
-    <p><b>{% trans "We need your help!"%}</b>  {% trans "Do you have contest results that are not in the database?  Then please register and add them!  Make your contribution to this unique project today."%}  {% trans "Got nothing to add?"%}  <a href="/feedback/results/">{% trans "Look here"%}</a>.</p>
-    <p>{% trans "You can add results from any contest in any country, this isn't just restricted to the big contests, and not just to the top bands."%}</p>
+<header class="container bg-info rounded-bottom">
+    <p class="lead">{% trans "This site is an archive of brass band competition results, covering the entire world.  It provides links between the various bands where they share conductors, test pieces etc., so it can easily be seen when a piece has been used and which band it was played by."%}</p>
+    <p><strong>{% trans "We need your help!"%}</strong>  {% trans "Do you have contest results that are not in the database?  Then please register and add them!  Make <i>your</i> contribution to this unique project today."%}  {% trans "You can add results from any contest in any country, this isn't just restricted to the big contests, and not just to the top bands."%}</p>
 </header>
 
+<div class="container">
 <div class="row">
-  
-
 
 {% if ThisWeek %}
-<article class="col" id="events-history">
-<h2>{% trans "This Week in History"%}</h2>
+<article class="col bg-light rounded pt-1" id="events-history">
+<h3>{% trans "This Week in History"%}</h3>
 <ul>
   <li><a href="/bands/{{ThisWeek.band_slug}}/" title="{{ThisWeek.current_band_name}}">{{ThisWeek.band_name}}</a> {% trans "won"%}  <a href="/contests/{{ThisWeek.contest_slug}}/">{{ThisWeek.contest_name}}</a> {% trans "on"%} <a href="/contests/{{ThisWeek.contest_slug}}/{{ThisWeek.date_of_event|date:"Y-m-d"}}">{{ThisWeek.date_of_event|date:"jS F Y"}}</a></li>
 </ul>
@@ -33,8 +33,8 @@
 {% endif %}
 
 {% if EventsYesterday %}
-<article class="col" id="events-yesterday">
-<h2>{% trans "Yesterday's Events"%}</h2>
+<article class="col bg-light rounded pt-1" id="events-yesterday">
+<h3>{% trans "Yesterday's Events"%}</h3>
 <ul>
 {% for event in EventsYesterday %}
   <li>
@@ -47,8 +47,8 @@
 </article>
     
 {% if EventsToday %}
-<article class="col" id="events-today">
-<h2>{% trans "Today's Events"%}</h2>
+<article class="col bg-light rounded pt-1" id="events-today">
+<h3>{% trans "Today's Events"%}</h3>
 <ul>
 {% for event in EventsToday %}
   <li>
@@ -62,8 +62,8 @@
       
       
 {% if EventsTomorrow %}
-<article class="col" id="events-tomorrow">
-<h2>{% trans "Tomorrow's Events"%}</h2>
+<article class="col bg-light rounded pt-1" id="events-tomorrow">
+<h3>{% trans "Tomorrow's Events"%}</h3>
 <ul>
 {% for event in EventsTomorrow %}
   <li>
@@ -74,62 +74,66 @@
 </ul>
 </article>
 {% endif %}
+</div>
 
-<div class="col d-none d-md-block" id="profile-1">
-    <h2><a href="{{RandomProfile.get_absolute_url}}">{{RandomProfile.name}}</a></h2>
+
+<div class="row">
+
+<div class="col d-none d-md-block border border-light rounded text-light bg-dark pt-1" id="profile-1">
+    <h3><a href="{{RandomProfile.get_absolute_url}}" class="text-info">{{RandomProfile.name}}</a></h3>
     <p>
     {% if RandomProfile.picture %}<a href="{{RandomProfile.get_absolute_url}}"><img src="{{RandomProfile.picture.url_70x70}}"/></a>{% endif %}
       {{RandomProfile.profile|truncatewords_html:"50"|bbrize}} 
       [<a href="{{RandomProfile.get_absolute_url}}">{% trans "more"%}</a>]
       </p>
-    <div class="profile_footer"><a href="/people/about_profile/?u={{user.username}}">{% trans "Get your own profile here"%}</a></div>
   </div>
     
   {% if SecondRandomProfile %}
-  <div class="col d-none d-lg-block" id="profile-2">
-    <h2><a href="{{SecondRandomProfile.get_absolute_url}}">{{SecondRandomProfile.name}}</a></h2>
+  <div class="col d-none d-lg-block border border-light rounded text-light bg-dark pt-1" id="profile-2">
+    <h3><a href="{{SecondRandomProfile.get_absolute_url}}" class="text-info">{{SecondRandomProfile.name}}</a></h3>
     <p>
       {% if SecondRandomProfile.picture %}<a href="{{SecondRandomProfile.get_absolute_url}}"><img src="{{SecondRandomProfile.picture.url_70x70}}"/></a>{% endif %}
       {{SecondRandomProfile.profile|truncatewords_html:"50"|bbrize}} 
       [<a href="{{SecondRandomProfile.get_absolute_url}}">{% trans "more"%}</a>]
       </p>
-    <div class="profile_footer"><a href="/people/about_profile/?u={{user.username}}">{% trans "Get your own profile here"%}</a></div>
   </div>
   {% endif %}
 
 </div> <!-- /row -->
+</div>
 
-<article class="container" id="events-next">
-<h2>{% trans "Next Events"%}</h2>
-<table class="tablesorter" style="width:50%">
+<br/>
+<article class="container bg-light rounded pt-1" id="events-next">
+<h3>{% trans "Next Events"%}</h3>
+<table class="table tablesorter">
 {% for event in FutureEvents %}
    <tr>
-     <td width="15%"><a href="/contests/{{event.contest_slug}}/">{{event.event_date}}</td>
-     <td width="85%">{{event.contest_name}}</a></td>
+     <td width="15%" class="text-nowrap"><a href="/contests/{{event.contest_slug}}/">{{event.event_date}}</td>
+     <td width="50%">{{event.contest_name}}</a></td>
    </tr>
 {% endfor %}
 </table>
 </article>
-
-<article class="container" id="events-recent">
-<h2>{% trans "Recent Contests"%}</h2>
-<table class="tablesorter">
+<br/>
+<article class="container bg-light rounded pt-1" id="events-recent">
+<h3>{% trans "Recent Contests"%}</h3>
+<table class="table tablesorter">
 {% for event in RecentResults %}
       <tr>
-        <td width="15%"><a href="/contests/{{event.contest.slug}}/{{event.date_of_event|date:"Y-m-d"}}/">{{event.event_date}}</a></td>
+        <td width="15%" class="text-nowrap"><a href="/contests/{{event.contest.slug}}/{{event.date_of_event|date:"Y-m-d"}}/">{{event.event_date}}</a></td>
         <td width="50%">{{event.contest.name}}</td>
         <td>{% for winner in event.winners %}<a href="/bands/{{winner.band.slug}}/">{{winner.band_name}}</a> {%endfor%}</td>
       </tr>
 {% endfor %}
 </table>
 </article>
-
-<article class="container" id="events-added">
-<h2>{% trans "Recently Added"%}</h2>
-<table class="tablesorter">
+<br/>
+<article class="container bg-light rounded pt-1" id="events-added">
+<h3>{% trans "Recently Added"%}</h3>
+<table class="table tablesorter">
 {% for event in RecentlyAdded %}
    <tr>
-     <td width="15%"><a href="/contests/{{event.contest.slug}}/{{event.date_of_event|date:"Y-m-d"}}/">{{event.event_date}}</a></td>
+     <td width="15%" class="text-nowrap"><a href="/contests/{{event.contest.slug}}/{{event.date_of_event|date:"Y-m-d"}}/">{{event.event_date}}</a></td>
      <td width="50%">{{event.contest.name}}</td>
      <td>{% for winner in event.winners %}<a href="/bands/{{winner.band.slug}}/">{{winner.band_name}}</a> {%endfor%}</td>
    </tr>
@@ -141,15 +145,15 @@
   </tr>
 </table>
 </article>
-
+<br/>
 
 <div class="container">
 <h2>{% trans "Disclaimer"%}</h2>
 <p>The contents of this site are not affiliated with any other website, and we provide no guarantee of accuracy of any of the information on here.  
 We think most of them are right, but if you find mistakes please fill in the feedback form and we'll get them corrected.</p>
-<p>We use cookies.  For more details click on <a href="/cookies/">Cookies</a> in the menu.</p>
+<p>We use cookies.  For more details see <a href="/cookies/">Cookies</a></p>
 <p>We do not claim copyright over any of the programme scans - these are purely provided for historical interest and to aid in building up our results collection.  If you own the copyright for a programme and would like us to remove it from the site, please let us know.</p>
-<p>Event information (including concert dates on band profiles) are not guaranteed to be correct.  Please check with the venue or band before travelling a long way.</p>
+<p>Event information is not guaranteed to be correct.  Please check with the venue or band before travelling.</p>
 </div>
 <div class="container">
 <h2>{% trans "Contact Us"%}</h2><p>{% trans "If you want to contact the site owners, either put your message into the feedback box on any page, or send us an email at"%} <script type="text/javascript"><!--

@@ -15,22 +15,119 @@
 </head>
 <body {% block bodyattrib %}{% endblock %}>
 
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+<nav class="navbar navbar-expand-xl bg-dark navbar-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bbrnav" aria-controls="bbrnav" aria-expanded="false" aria-label="Toggle Navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="/">Brass Band Results</a>
+  <a class="navbar-brand text-info" href="/">Brass Band Results</a>
   <div class="collapse navbar-collapse" id="bbrnav">
-    <div class="navbar-nav">
+    <div class="navbar-nav mr-auto">
+
       <div class="dropdown">
         <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="bandsDropdown" aria-haspopup="true" aria-expanded="false">Bands</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="/bands/" aria-labelledby="bandsDropdown">List Bands</a>
-          <a class="dropdown-item" href="/regions/" aria-labelledby="bandsDropdown">Regions</a>
+          <a class="dropdown-item" aria-labelledby="bandsDropdown" href="/bands/">List Bands</a>
+          <a class="dropdown-item" aria-labelledby="bandsDropdown" href="/regions/">Regions</a>
+          <a class="dropdown-item" aria-labelledby="bandsDropdown" href="/sections/">Sections</a>
+          <a class="dropdown-item" aria-labelledby="bandsDropdown" href="/map/">Band Map</a>
+          <a class="dropdown-item" aria-labelledby="bandsDropdown" href="/map/search/">Search Map</a>
+          <a class="dropdown-item" aria-labelledby="bandsDropdown" href="/compare/bands/">Compare Bands</a>
         </div>
       </div>
-      <a class="nav-item nav-link" href="/accounts/register/">Create Account</a>
+      
+      <div class="dropdown">
+        <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="contestsDropdown" aria-haspopup="true" aria-expanded="false">Contests</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/contests/">List Contests</a>
+{% if user.profile.superuser %} 
+          <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/contests/groups/">Groups</a></li>
+{% endif %}
+          <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/calendar/">Calendar</a></li>
+          <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/years/">Years</a></li>
+          <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/venues/">Venues</a></li>
+          <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/map/venues/">Venue Map</a></li>
+          <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/contests/programmes/">Programmes</a></li>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/addresults/">Add Results</a></li>
+{% if user.profile.enhanced_functionality %}
+          <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/contests/upload/programme/">Upload Programme</a></li>
+          <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/addwhitfriday/">Add Whit Friday</a></li>
+{% endif %}                         
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="peopleDropdown" aria-haspopup="true" aria-expanded="false">People</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" aria-labelledby="peopleDropdown" href="/people/">List People</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" aria-labelledby="peopleDropdown" href="/compare/conductors/">Compare Conductors</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="piecesDropdown" aria-haspopup="true" aria-expanded="false">Pieces</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" aria-labelledby="piecesDropdown" href="/pieces/">List Pieces</a>
+          <a class="dropdown-item" aria-labelledby="piecesDropdown" href="/pieces/BySection/">By Section</a>
+          <a class="dropdown-item" aria-labelledby="piecesDropdown" href="/pieces/BestOwnChoice/">Successful</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="siteDropdown" aria-haspopup="true" aria-expanded="false">Site</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" aria-labelledby="siteDropdown" href="/tags/">List Tags</a>
+          <a class="dropdown-item" aria-labelledby="siteDropdown" href="/leaderboard/">Leaderboard</a>
+          <a class="dropdown-item" aria-labelledby="siteDropdown" href="/badges/">Badges</a>
+          <div class="dropdown-divider"></div>
+{% if user.profile.superuser %}
+          <a class="dropdown-item" aria-labelledby="siteDropdown" href="/feedback/queue/">Feedback Queue</a>
+{% endif %}
+{% if user.is_superuser %}
+          <a class="dropdown-item" aria-labelledby="siteDropdown" href="/feedback/admin/">Owner Queue</a>
+{% endif %}
+          <a class="dropdown-item" aria-labelledby="siteDropdown" href="/feedback/help/">Help Needed</a>
+          <a class="dropdown-item" aria-labelledby="siteDropdown" href="/feedback/results/">Results To Enter</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" aria-labelledby="siteDropdown" href="/statistics/">Statistics</a>
+          <a class="dropdown-item" aria-labelledby="siteDropdown" href="/faq/">FAQ</a>
+          <a class="dropdown-item" aria-labelledby="siteDropdown" href="/aboutus/">Who We Are</a>
+          <a class="dropdown-item" aria-labelledby="siteDropdown" href="/privacy/">Privacy Policy</a>
+        </div>
+      </div>
+
+{% if user.profile.superuser %}
+      <div class="dropdown">
+        <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="mergesDropdown" aria-haspopup="true" aria-expanded="false">Merges</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" aria-labelledby="mergesDropdown" href="/move/bands/">Bands</a>
+          <a class="dropdown-item" aria-labelledby="mergesDropdown" href="/move/people/">People</a>
+          <a class="dropdown-item" aria-labelledby="mergesDropdown" href="/move/venues/">Venues</a>
+          <a class="dropdown-item" aria-labelledby="mergesDropdown" href="/move/pieces/">Pieces</a>
+        </div>
+      </div>
+{% endif %}   
+
+{% if not user.is_authenticated %}
+      <a class="nav-item nav-link" href="/account/register/">Create Account</a>
+{% ifequal request.path "/accounts/logout/" %}            
+      <a class="nav-item nav-link"  href="/accounts/login/?next=/">Sign In</a>
+{% else %}
+      <a class="nav-item nav-link"  href="/accounts/login/?next={{request.path}}">Sign In</a>
+{% endifequal %}
+{% else %}
+      <a class="nav-item nav-link"  href="/users/{{user.username}}/">Profile</a>
+      <a class="nav-item nav-link"  href="/accounts/logout/">Logout</a>         
+{% endif %}
+
     </div>
+
+    <form class="form-inline">
+      <input type="text" class="form-control" placeholder="Search" name="q">
+      <button type="submit" class="btn btn-default search"><img src="/site_media/search.png"/></button>
+    </form>
+
   </div>
 </nav>
 
