@@ -14,20 +14,17 @@ from django.template.loader import render_to_string
 
 from adjudicators.models import ContestAdjudicator
 from bands.models import Band
-from bbr.decorators import login_required_pro_user
-from bbr.siteutils import render_auth, slugify, \
-    browser_details
+from bbr3.decorators import login_required_pro_user
+from bbr3.siteutils import slugify, browser_details
+from bbr3.render import render_auth
 from contests.models import ContestResult, ContestGroup, Contest, ContestEvent
-from people.forms import EditPersonForm, EditPersonAsSuperuserForm, \
-    EditClassifiedProfileForm
+from people.forms import EditPersonForm, EditPersonAsSuperuserForm, EditClassifiedProfileForm
 from people.models import Person, PersonAlias, ClassifiedPerson, PersonRelation
 from people.tasks import notification
 from pieces.models import TestPiece
 from tags.models import ContestTag
 from users.models import PersonalContestHistory
 import hashlib
-from django.utils.encoding import smart_str, smart_unicode
-
 
 def people_list(request):
     """

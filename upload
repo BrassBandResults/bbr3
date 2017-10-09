@@ -2,7 +2,7 @@
 # (c) 2015 Tim Sawyer, All Rights Reserved
 
 SRC_DIR=~/web/bbr3/
-DEST_DIR=tjs@bbr.default.tsawyer.uk0.bigv.io:web/bbr3
+DEST_DIR=tjs@bbr3.default.tsawyer.uk0.bigv.io:web/bbr3
 EXCLUDES=~/web/bbr3/upload_excludes.txt
 
 RSYNC_OPTS="-avz --exclude-from=$EXCLUDES"

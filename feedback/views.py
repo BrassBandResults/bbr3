@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import Http404, HttpResponseRedirect
 
-from bbr.siteutils import render_auth, browser_details
+from bbr3.siteutils import browser_details
+from bbr3.render import render_auth
 from contests.models import ContestEvent
 from feedback.models import SiteFeedback, ClarificationRequest
 from feedback.tasks import notification

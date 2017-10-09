@@ -10,7 +10,7 @@ from django import forms
 from django.forms import ModelForm
 
 from addresults.finder import find_band, find_conductor
-from bbr.siteutils import browser_details
+from bbr3.siteutils import browser_details
 from contests.models import ContestResult, Contest, UNPLACED_RESULTS_POSITION, DISQUALIFIED_RESULTS_POSITION, WITHDRAWN_RESULTS_POSITION
 from contests.tasks import notification as contest_notification
 
@@ -113,7 +113,7 @@ class ResultsForm(forms.Form):
             # üçéøå
 
             # lRegEx = '\s*(\d+)\.?\s+([\w\(\)&\'\-\. ]+),\s*([\w\.\'\- ]+)\s*[\(,]?\s*(\d+)\)?[\s,]*([\d\.]*)\s*\w*' 
-            lRegEx = ur'\s*([\d\-WwDd]+)\.?\s+([\w\(\)&\'\-\. /]+)\s*,\s*([\w\.\'\- ]+)\s*[\(,]?\s*([\d\-]+)\)?[\s,]*([\d\.]*)\s*\w*'
+            lRegEx = '\s*([\d\-WwDd]+)\.?\s+([\w\(\)&\'\-\. /]+)\s*,\s*([\w\.\'\- ]+)\s*[\(,]?\s*([\d\-]+)\)?[\s,]*([\d\.]*)\s*\w*'
             lMatches = re.compile(lRegEx, re.U).match(line)  #re.match(lRegEx, line)
             if lMatches == None:
                 raise forms.ValidationError("Can't work out '%s', is there a comma missing?  Are there odd characters?" % (line))

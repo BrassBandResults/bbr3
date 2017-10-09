@@ -4,7 +4,7 @@
 
 
 from celery.task import task
-from bbr.notification import notify
+from bbr3.notification import notify
 from datetime import timedelta, date
 from contests.models import ContestEvent
 import tweepy
@@ -14,7 +14,7 @@ from users.models import PersonalContestHistoryDateRange, PointsAward, PersonalC
 from badges.models import Badge
 from badges.tasks import award_badge
 from users.tasks import award_points_and_save
-from bbr.siteutils import shorten_url
+from bbr3.siteutils import shorten_url
 
 @task(ignore_result=True)
 def check_for_contest_history_badges(pContestResult, pUser):
@@ -151,7 +151,7 @@ def _tweet_contest(pContestEvent):
             lMessage += " #%s" % pContestEvent.hashtag
         lApi.update_status(lMessage)
         return lMessage
-    except Exception, inst:
+    except Exception as inst:
         if str(inst) != "[{u'message': u'Status is a duplicate.', u'code': 187}]":
             lErrorMessage = "Problems Tweeting, %s\n\n%s\n\n%s" % (type(inst), str(inst), lMessage)
             send_mail('%s Error Tweeting' % settings.EMAIL_SUBJECT_PREFIX, lErrorMessage, 'twitter@brassbandresults.co.uk', ['errors@brassbandresults.co.uk'], fail_silently=True)

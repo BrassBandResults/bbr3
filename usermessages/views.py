@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import Http404, HttpResponseRedirect
 
-from bbr.siteutils import render_auth, browser_details
+from bbr3.siteutils import browser_details
+from bbr3.render import render_auth
 from usermessages.forms import UserMessageForm
 from usermessages.models import Message
 from usermessages.tasks import notification

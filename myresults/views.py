@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 
 
@@ -7,7 +6,7 @@ from django.contrib.auth.models import User
 from django.http import Http404
 
 from bands.models import Band
-from bbr.siteutils import render_auth
+from bbr3.render import render_auth
 from contests.models import Contest, ContestGroup
 from people.models import Person
 from users.models import PersonalContestHistory

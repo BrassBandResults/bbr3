@@ -6,7 +6,8 @@ from django.db import connection
 from django.http import Http404, HttpResponseRedirect
 
 from bands.models import Band
-from bbr.siteutils import render_auth, slugify, browser_details
+from bbr3.siteutils import slugify, browser_details
+from bbr3.render import render_auth
 from contests.models import Venue, Contest, ContestEvent
 from contests.models import VenueAlias
 from regions.models import Region

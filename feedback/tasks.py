@@ -3,7 +3,7 @@
 
 from celery.task import task
 
-from bbr.notification import notify
+from bbr3.notification import notify
 from users.models import PointsAward 
 from users.tasks import award_points_and_save
 

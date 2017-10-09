@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
-
-
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 from datetime import date
 
@@ -12,7 +9,8 @@ from django.utils.datastructures import MultiValueDictKeyError
 from addwhitfriday.forms import ContestNameForm, ContestDateForm, \
     ResultsForm
 from bands.models import Band, PreviousBandName
-from bbr.siteutils import render_auth, slugify
+from bbr3.siteutils import slugify
+from bbr3.render import render_auth    
 from contests.models import ContestGroup
 from regions.models import Region
 

@@ -10,7 +10,7 @@ from django import forms
 
 from addresults.finder import find_band, find_conductor
 from bands.models import Band, PreviousBandName
-from bbr.siteutils import browser_details
+from bbr3.siteutils import browser_details
 from contests.models import ContestResult, Contest, ContestGroup, \
     ContestEvent, LOWEST_SPECIAL_POSITION
 from contests.tasks import notification as contest_notification

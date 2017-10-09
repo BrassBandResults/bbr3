@@ -12,25 +12,20 @@ from django.core.exceptions import ValidationError
 from django.core.files.base import ContentFile
 from django.db import connection
 from django.db.models import Q 
-from django.http import Http404, HttpResponseRedirect, \
-    HttpResponsePermanentRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.decorators.csrf import csrf_exempt
 
 from adjudicators.models import ContestAdjudicator
 from bands.models import Band
-from bbr.decorators import login_required_pro_user
-from bbr.siteutils import render_auth, browser_details, slugify
-from bbr.talkutils import fetch_recent_talk_changes
+from bbr3.decorators import login_required_pro_user
+from bbr3.siteutils import browser_details, slugify
+from bbr3.render import render_auth
+from bbr3.talkutils import fetch_recent_talk_changes
 from classifieds.models import PlayerPosition
-from contests.forms import ContestResultForm, ContestEventForm, \
-    FutureEventForm, FutureEventFormNoContest, ContestProgrammeCoverForm, \
-    ContestForm, ContestTalkEditForm, GroupTalkEditForm
-from contests.models import Contest, ContestEvent, ContestResult, \
-    ContestGroup, ContestGroupAlias, ContestAlias, ContestProgrammeCover, \
-    ContestTestPiece, ContestProgrammePage, ContestAchievementAward, \
-    ContestEventWeblink, ContestTalkPage, GroupTalkPage, ResultPiecePerformance
+from contests.forms import ContestResultForm, ContestEventForm, FutureEventForm, FutureEventFormNoContest, ContestProgrammeCoverForm, ContestForm, ContestTalkEditForm, GroupTalkEditForm
+from contests.models import Contest, ContestEvent, ContestResult, ContestGroup, ContestGroupAlias, ContestAlias, ContestProgrammeCover, ContestTestPiece, ContestProgrammePage, ContestAchievementAward, ContestEventWeblink, ContestTalkPage, GroupTalkPage, ResultPiecePerformance
 from contests.tasks import notification, check_for_contest_history_badges
 from people.models import Person, PersonAlias
 from pieces.models import TestPiece, TestPieceAlias
@@ -606,9 +601,7 @@ def single_contest_event(request, pContestSlug, pDate):
 def stars(request, pContestSlug, pDate):
     """
     Star rating done for a contest performance
-    """
-    print request.POST
-    
+    """  
     return HttpResponseRedirect("/contests/%s/%s" % (pContestSlug, pDate))
     
 @login_required
@@ -1669,7 +1662,6 @@ def single_contest_edit_extra_pieces(request, pContestSlug, pContestDate):
     lSuffix = None
     if request.POST:
         for i in request.POST:
-            print i
             if i.startswith('piece-'):
                 lResultId = i[len('piece-'):]
             
@@ -1688,7 +1680,6 @@ def single_contest_edit_extra_pieces(request, pContestSlug, pContestDate):
                 lArranger = None
                 lYear = None
                 lType = None
-            print lType
             try:
                 lPiece = TestPiece.objects.filter(name=lPieceName)[0]
                 lPieceFound = True
@@ -1735,8 +1726,6 @@ def single_contest_edit_extra_pieces(request, pContestSlug, pContestDate):
                         lPiece.save()
                         lPieceFound = True
         
-            print "Piece Found ? " 
-            print lPieceFound
             if lPieceFound:
                 lNewResultPiecePerformance = ResultPiecePerformance()
                 lNewResultPiecePerformance.lastChangedBy = request.user
@@ -1750,20 +1739,15 @@ def single_contest_edit_extra_pieces(request, pContestSlug, pContestDate):
         if lPieceFound:
             return HttpResponseRedirect('/contests/%s/%s/entertainments/' % (lContestEvent.contest.slug, lContestEvent.date_of_event))
     
-    print "Fall through to old code"
-    print "Result id is %s" % lResultId
     lResults = ContestResult.objects.filter(contest_event=lContestEvent).select_related('band')
     for result in lResults:
         result.extra_pieces = result.resultpieceperformance_set.all().select_related('piece').order_by('ordering')
         result.max_order = 0
         result.show_new_piece_form = False 
-        print result.id
         if str(result.id) == lResultId:
-            print "Marking up result"
             result.show_new_piece_form = True
             result.Suffix = lSuffix
             result.PieceName = lPieceName
-            print result
         for piece in result.extra_pieces:
             if piece.ordering > result.max_order:
                 result.max_order = piece.ordering

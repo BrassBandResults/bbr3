@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
-
-
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 import datetime
 from random import randint
@@ -11,8 +8,8 @@ from django.db import connection
 
 from people.models import Person
 from bands.models import Band
-from bbr.decorators import login_required_pro_user
-from bbr.siteutils import render_auth
+from bbr3.decorators import login_required_pro_user
+from bbr3.render import render_auth
 from contests.models import Contest, ContestResult, ContestEvent, Venue
 from pieces.models import TestPiece
 
@@ -95,7 +92,6 @@ def home(request):
     
     lBands = Band.objects.exclude(rehearsal_night_1=None)
     lBandsWithRehearsalNightsCount = lBands.count()
-    print lBandsWithRehearsalNightsCount
     lMondayBandCount = _fetch_band_rehearsal_count(lBands, '1')
     lTuesdayBandCount = _fetch_band_rehearsal_count(lBands, '2')
     lWednesdayBandCount = _fetch_band_rehearsal_count(lBands, '3')

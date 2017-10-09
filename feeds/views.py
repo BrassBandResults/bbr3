@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
-
-
-from bbr.siteutils import render_auth
+from bbr3.render import render_auth
 from pieces.models import TestPiece
 
 

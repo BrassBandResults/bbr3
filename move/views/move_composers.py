@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 
 
@@ -7,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
-from bbr.siteutils import render_auth, browser_details
+from bbr3.siteutils import browser_details
+from bbr3.render import render_auth
 from move.models import ComposerMergeRequest
 from move.tasks import notification
 from pieces.models import Composer, TestPiece

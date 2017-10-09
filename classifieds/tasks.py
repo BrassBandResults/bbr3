@@ -4,7 +4,7 @@
 
 
 from celery.task import task
-from bbr.notification import notify
+from bbr3.notification import notify
 import difflib
 import textwrap
 

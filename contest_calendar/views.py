@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
-
-
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 from calendar import HTMLCalendar, monthrange, month_name
 from datetime import date, datetime
@@ -11,8 +8,8 @@ from django.http.response import HttpResponseRedirect
 from django.utils.html import conditional_escape as esc
 from django.utils.safestring import mark_safe
 
-from bbr.decorators import login_required_pro_user
-from bbr.siteutils import render_auth
+from bbr3.decorators import login_required_pro_user
+from bbr3.render import render_auth
 from contests.models import ContestEvent, ContestResult
 
 
@@ -88,7 +85,6 @@ def calendar(request, pYear, pMonth):
     lContestEventsToShowAbove = {}
     lContestEventsToShowBelow = {}
     for lEvent in lContestEvents:
-        print lEvent.id
         if lEvent.contest.group:
             lGroup = lEvent.contest.group 
             lGroup.date_of_event = lEvent.date_of_event
@@ -98,7 +94,6 @@ def calendar(request, pYear, pMonth):
             if lEvent.date_resolution == 'D':
                 lContestEventsToShow[lUniqueKey] = lGroup
             elif lEvent.date_resolution == 'M':
-                print lUniqueKey
                 lContestEventsToShowAbove[lUniqueKey] = lGroup
             elif lEvent.date_resolution == 'Y':
                 lContestEventsToShowBelow[lUniqueKey] = lGroup
@@ -107,7 +102,6 @@ def calendar(request, pYear, pMonth):
             if lEvent.date_resolution == 'D':
                 lContestEventsToShow[lEvent.contest.slug] = lEvent
             elif lEvent.date_resolution == 'M':
-                print lEvent.contest.slug
                 lContestEventsToShowAbove[lEvent.contest.slug] = lEvent
             elif lEvent.date_resolution == 'Y':
                 lContestEventsToShowBelow[lEvent.contest.slug] = lEvent

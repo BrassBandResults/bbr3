@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
-
-
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 from django.contrib.contenttypes.models import ContentType
 from django.core import urlresolvers
@@ -11,9 +8,8 @@ from django.http import Http404
 from django.utils.datastructures import MultiValueDictKeyError
 
 from bands.models import Band, PreviousBandName
-from bbr.siteutils import render_auth
-from contests.models import Contest, Venue, ContestGroup, ContestGroupAlias, \
-    ContestAlias
+from bbr3.render import render_auth
+from contests.models import Contest, Venue, ContestGroup, ContestGroupAlias, ContestAlias
 from contests.models import VenueAlias
 from people.models import Person, PersonAlias
 from pieces.models import TestPiece, TestPieceAlias

@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
-
-
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 from datetime import datetime, timedelta
 
@@ -10,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.http import Http404, HttpResponseRedirect
 
-from bbr.siteutils import render_auth, slugify, browser_details
+from bbr3.siteutils import slugify, browser_details
+from bbr3.render import render_auth
 from contests.models import ContestEvent, ContestResult, ResultPiecePerformance
 from people.models import Person
 from pieces.forms import EditPieceForm

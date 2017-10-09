@@ -8,7 +8,8 @@ from datetime import date
 from django.http import Http404
 
 from bands.models import Band
-from bbr.siteutils import render_auth, browser_details
+from bbr3.siteutils import browser_details
+from bbr3.render import render_auth
 from embed.tasks import log_embed_access
 
 

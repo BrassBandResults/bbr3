@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 from datetime import datetime, date
 
@@ -7,8 +6,8 @@ from django.db import connection
 from django.http.response import Http404
 
 from bands.models import Band
-from bbr.decorators import login_required_pro_user
-from bbr.siteutils import render_auth
+from bbr3.decorators import login_required_pro_user
+from bbr3.render import render_auth
 from contests.models import ContestEvent, ContestResult
 from regions.models import Region
 
@@ -138,17 +137,12 @@ def single_year(request, pYear, pRegionSlug=None):
             lEventSerials.append(int(row[0]))
         cursor.close()
         
-        print len(lEventSerials)
-        
         lEvents = ContestEvent.objects.filter(id__in=lEventSerials).order_by('date_of_event', 'contest__slug').select_related('contest')
-        print lEvents.count()
-        
     else:
         # all regions
         lFirstDay = datetime(int(pYear), 1, 1)
         lLastDay = datetime(int(pYear), 12, 31)
         lEvents = ContestEvent.objects.filter(date_of_event__gte=lFirstDay,date_of_event__lte=lLastDay).order_by('date_of_event', 'contest__slug').select_related('contest')
-        print lEvents.count()
     
     lWinners = ContestResult.objects.filter(contest_event__in=lEvents, results_position=1).select_related('band', 'person_conducting', 'band__region')
     for event in lEvents:  

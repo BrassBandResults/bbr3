@@ -10,7 +10,7 @@ from django import forms
 from django.conf import settings
 
 from bands.models import Band, PreviousBandName
-from bbr.siteutils import add_space_after_dot, add_dot_after_initial
+from bbr3.siteutils import add_space_after_dot, add_dot_after_initial
 from people.models import PersonAlias, Person
 
 
@@ -188,11 +188,7 @@ def find_conductor(pConductorName, pBand, pContestEvent):
                 lLastSpace = lConductorName.rfind(' ')
                 lSurname = lConductorName[lLastSpace:].strip()
         lFirstNames = lConductorName[:lLastSpace].strip() 
-        
-        print lFirstNames
-        print lSurname
-        print lConductorSuffix
-    
+           
         # Look for a conductor with the exact name we're looking for, case insensitive
         try:
             lConductors = Person.objects.filter(combined_name__iexact=lConductorName)

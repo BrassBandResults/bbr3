@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
-
-
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 from datetime import date, timedelta
 
@@ -10,13 +7,12 @@ from django.db import connection
 from django.http import Http404, HttpResponseRedirect
 from django.utils.datastructures import MultiValueDictKeyError
 
-from addresults.forms import ContestNameForm, ContestDateForm, ResultsForm, \
-    NotesForm, ContestTypeForm
+from addresults.forms import ContestNameForm, ContestDateForm, ResultsForm, NotesForm, ContestTypeForm
 from adjudicators.models import ContestAdjudicator
 from bands.models import Band, PreviousBandName
 from bands.tasks import notification as band_notification
-from bbr.siteutils import add_space_after_dot, add_dot_after_initial, \
-    render_auth, slugify, browser_details
+from bbr3.siteutils import add_space_after_dot, add_dot_after_initial, slugify, browser_details
+from bbr3.render import render_auth    
 from people.tasks import notification as person_notification
 from contests.models import Contest, ContestEvent, Venue, ContestResult
 from contests.models import VenueAlias

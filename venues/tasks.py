@@ -2,7 +2,7 @@
 # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
 
 from celery.task import task
-from bbr.notification import notify
+from bbr3.notification import notify
 from users.models import PointsAward
 from badges.models import Badge
 from badges.tasks import award_badge

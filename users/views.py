@@ -2,7 +2,6 @@
 # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
 
 from datetime import date, datetime
-import urlparse
 
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login
@@ -18,9 +17,10 @@ from django.template import RequestContext
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
-from bbr.decorators import login_required_pro_user
-from bbr.siteutils import render_auth, browser_details
-from bbr.talkutils import fetch_recent_talk_changes
+from bbr3.decorators import login_required_pro_user
+from bbr3.siteutils import browser_details
+from bbr3.render import render_auth
+from bbr3.talkutils import fetch_recent_talk_changes
 from classifieds.models import PlayerPosition
 from classifieds.tasks import notification as classified_notification
 from contests.models import ContestEvent, ContestResult
@@ -29,11 +29,8 @@ from feedback.tasks import notification as feedback_notification
 from people.forms import EditClassifiedProfileForm
 from people.models import ClassifiedPerson
 from usermessages.models import Message
-from users.forms import DateRangeForm, PasswordResetForm, ResetPasswordForm, \
-    NewEmailForm, UserTalkEditForm
-from users.models import PersonalContestHistory, \
-    PersonalContestHistoryDateRange, UserProfile, PasswordReset, PointsAward, \
-    UserBadge, UserTalk, UserIpAddress
+from users.forms import DateRangeForm, PasswordResetForm, ResetPasswordForm, NewEmailForm, UserTalkEditForm
+from users.models import PersonalContestHistory, PersonalContestHistoryDateRange, UserProfile, PasswordReset, PointsAward, UserBadge, UserTalk, UserIpAddress
 from users.tasks import notification
 
 
@@ -1168,32 +1165,25 @@ def pro_paid(request):
         
         lCurrentUserProfile.stripe_customer = lCustomer.id
         lCurrentUserProfile.save()
-    except stripe.error.CardError, e:
+    except stripe.error.CardError as e:
         # Since it's a decline, stripe.error.CardError will be caught
         body = e.json_body
         err  = body['error']
-
-        print "Status is: %s" % e.http_status
-        print "Type is: %s" % err['type']
-        print "Code is: %s" % err['code']
-        # param is '' in this case
-        print "Param is: %s" % err['param']
-        print "Message is: %s" % err['message']
-    except stripe.error.InvalidRequestError, e:
+    except stripe.error.InvalidRequestError as e:
         # Invalid parameters were supplied to Stripe's API
         pass
-    except stripe.error.AuthenticationError, e:
+    except stripe.error.AuthenticationError as e:
         # Authentication with Stripe's API failed
         # (maybe you changed API keys recently)
         pass
-    except stripe.error.APIConnectionError, e:
+    except stripe.error.APIConnectionError as e:
         # Network communication with Stripe failed
         pass
-    except stripe.error.StripeError, e:
+    except stripe.error.StripeError as e:
         # Display a very generic error to the user, and maybe send
         # yourself an email
         pass
-    except Exception, e:
+    except Exception as e:
         # Something else happened, completely unrelated to Stripe
         pass
     

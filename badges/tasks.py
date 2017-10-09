@@ -6,7 +6,7 @@
 from celery.task import task
 
 from badges.models import Badge
-from bbr.notification import notify
+from bbr3.notification import notify
 from users.models import UserBadge
 
 

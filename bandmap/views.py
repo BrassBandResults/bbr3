@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
-
-
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.gis.geos import Point
@@ -10,7 +7,8 @@ from django.http import Http404, HttpResponseRedirect
 
 from bands.models import Band
 from bands.tasks import notification as bands_notification
-from bbr.siteutils import render_auth, browser_details
+from bbr3.siteutils import browser_details
+from bbr3.render import render_auth
 from contests.models import ContestEvent, Venue
 from bandmap.forms import EditLocationForm
 from regions.models import Region
