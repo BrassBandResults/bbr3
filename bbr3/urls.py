@@ -19,6 +19,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 from home import views as home_views
+from accounts import views as account_views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^$', home_views.home),
@@ -61,14 +63,14 @@ urlpatterns = [
  #   url(r'^sitemap.xml$', home.views.sitemap_index),
  #   url(r'^robots.txt$', home.views.robotstxt),
        
- #   url(r'^accounts/login/$', users.views.login),
- #   url(r'^accounts/logout/$', django.contrib.auth.views.logout,  {'template_name': 'registration/logout.html'}),
+    url(r'^accounts/login/$', auth_views.login,  {'template_name': 'accounts/login.html'}),
+    url(r'^accounts/logout/$', auth_views.logout,  {'template_name': 'accounts/logout.html'}),
  #   url(r'^accounts/forgottenpassword/$', users.views.forgotten_password),
  #   url(r'^accounts/forgottenpassword/sent/$', users.views.forgotten_password_sent),
  #   url(r'^accounts/resetpassword/([A-Za-z0-9]+)/$', users.views.reset_password),
  #   url(r'^accounts/changepassword/$', django.contrib.auth.views.password_change, {'template_name' : 'users/changepassword.html', 'post_change_redirect' : '/'}),
     
- #   url(r'^accounts/loginpro/$', users.views.login, {'template_name' : 'registration/loginpro.html',}),
+    url(r'^accounts/loginpro/$', auth_views.login, {'template_name' : 'accounts/loginpro.html',}),
  #   url(r'^accounts/upgrade/$', users.views.pro_upgrade),
  #   url(r'^accounts/paid/$', users.views.pro_paid),
  #   url(r'^accounts/pro/thanks/$', users.views.pro_thanks),

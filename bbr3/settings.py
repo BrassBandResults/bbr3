@@ -29,6 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+GOOGLE_MAPS_API_KEY = "AIzaSyDRGGo0pfBGKEE5n6iS7IEqhWeSHYiEI2c"
+
 
 # Application definition
 
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
 
     'sorl.thumbnail',
 
+    'accounts',
     'addresults',
     'addwhitfriday',
     'adjudicators',
@@ -164,6 +167,8 @@ STATIC_URL = '/site_media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "site_media"),
 ]
+
+LOGIN_REDIRECT_URL = '/'
 
 SUFFIXES = (
             ('Jnr','Jnr'),

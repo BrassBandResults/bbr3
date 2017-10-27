@@ -6,23 +6,35 @@
 
 {%block description %}List of brass band contest sections{% endblock %}
 
-{%block sections-selected%}class="selected"{%endblock%}
-
-{%block head %}
-<script type="text/javascript">
+{%block scriptfooter %}
+<script>
   $(document).ready(function(){
-    $("#sections").tablesorter({widgets: ['zebra']});
+    $("#uk").tablesorter();
+
+    $('button#resetUk').click(function(){
+      $('#uk').trigger('sortReset');
+      return false;
+    });
+
+    $("#world").tablesorter();
+
+    $('button#resetWorld').click(function(){
+      $('#world').trigger('sortReset');
+      return false;
+    });
   });
 </script>
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Section Counts</h1>
-<p>Competing and non-competing bands included.  Bands listed with a section have competed in the last three years, and they are listed in their most recently competed in section.</p>
+<p>Bands listed with a section have competed in the last three years, and they are listed in the section they have most recently competed in.  Both competing and non-competing bands are included.</p>
 
 
 <h2>United Kingdom</h2>
-<table id="sections" class="tablesorter">
+<button id="resetUk" class="btn btn-outline-primary btn-sm float-right mb-1">Reset Sort</button>
+<table id="sections" class="table table-hover">
 	<thead>
 		<tr>
 			<th>Section</th>
@@ -34,32 +46,16 @@
 {% for section_count in UkSectionCounts %}
     	<tr>
     		<td>{{section_count.sectionName}}</td>
-			<td>{{section_count.regionName}}</td>
+			<td><a href="/regions/{{section_count.regionSlug}}/">{{section_count.regionName}}</a></td>
 			<td>{{section_count.count}}</td>
 		</tr>
 {% endfor %}
 	</tbody>
 </table>
 
-<div class="bannerad">
-<div class="banner_slot">
-{% if not user.profile.pro_member %}
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Brass Band Results Mid Rectangle -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:250px"
-     data-ad-client="ca-pub-5087204743199130"
-     data-ad-slot="9371852405"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-{% endif %}
-</div>
-</div>
-
-
 <h2>Rest of World</h2>
-<table id="sections" class="tablesorter">
+<button id="resetWorld" class="btn btn-outline-primary btn-sm float-right mb-1">Reset Sort</button>
+<table id="sections" class="table table-hover">
     <thead>
         <tr>
             <th>Section</th>
@@ -71,11 +67,11 @@
 {% for section_count in WorldSectionCounts %}
         <tr>
             <td>{{section_count.sectionName}}</td>
-            <td>{{section_count.regionName}}</td>
+            <td><a href="/regions/{{section_count.regionSlug}}/">{{section_count.regionName}}</a></td>
             <td>{{section_count.count}}</td>
         </tr>
 {% endfor %}
     </tbody>
 </table>
-
+</div>
 {% endblock %}

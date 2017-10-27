@@ -18,7 +18,7 @@ urlpatterns = [
   #  url(r'^add/$', views.add_band),
   #  url(r'^options/$', views.band_options),
   #  url(r'^edit/([-\w]+)/$', views.edit_band),
-  #  url(r'^([A-Z0]+)/$', views.bands_list_filter_letter),
+    url(r'^([A-Z0]+)/$', views.bands_list),
   #  url(r'^([\w\-]+)/$', views.single_band),
   #  url(r'^([\w\-]+)/delete/$', views.delete_single_band),
   #  url(r'^([\w\-]+)/aliases/$', views.single_band_aliases),

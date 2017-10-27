@@ -78,7 +78,7 @@ var lCentrePointMarker = {
     html: "<b>{{band.name}}</b><br/>{% if band.rehearsal_night_1 %}Rehearsals {{band.rehearsal_nights}}<br/>{%endif%}<br/>[<a href='/bands/{{band.slug}}/'>Contest&nbsp;Results</a>]",
     section: '{{band.map_icon_name}}',
     region: '{{band.region.name|lower}}',
-    marker: new google.maps.Marker({ position: new google.maps.LatLng({{band.latitude}}, {{band.longitude}}), title: '{{band.name_for_map_title|safe}}', map : lMap, {% if band.map_icon_name = "extinct" and not ShowExtinct %} visible: false, {% endif %} icon: '/site_media/map/{{band.map_icon_name}}.png' }),
+    marker: new google.maps.Marker({ position: new google.maps.LatLng({{band.latitude}}, {{band.longitude}}), title: '{{band.name_for_map_title|safe}}', map : lMap, {% if band.map_icon_name == "extinct" and not ShowExtinct %} visible: false, {% endif %} icon: '/site_media/map/{{band.map_icon_name}}.png' }),
   };
   lBand{{band.id}}.onClick = function(){
       if (lInfoBubble) { lInfoBubble.close(); }

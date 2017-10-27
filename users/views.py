@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved
+# (c) 2009, 2012, 2015, 2017 Tim Sawyer, All Rights Reserved
 
 from datetime import date, datetime
 
@@ -12,7 +11,6 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.core.urlresolvers import reverse
 from django.db import connection
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
@@ -33,71 +31,6 @@ from users.forms import DateRangeForm, PasswordResetForm, ResetPasswordForm, New
 from users.models import PersonalContestHistory, PersonalContestHistoryDateRange, UserProfile, PasswordReset, PointsAward, UserBadge, UserTalk, UserIpAddress
 from users.tasks import notification
 
-
-@csrf_protect
-@never_cache
-def login(request, template_name='registration/login.html',
-          redirect_field_name=REDIRECT_FIELD_NAME,
-          authentication_form=AuthenticationForm,
-          current_app=None, extra_context=None):
-    """
-    Displays the login form and handles the login action.
-    """
-    redirect_to = request.REQUEST.get(redirect_field_name, '')
-
-    if request.method == "POST":
-        form = authentication_form(data=request.POST)
-        if form.is_valid():
-            netloc = urlparse.urlparse(redirect_to)[1]
-
-            # Use default setting if redirect_to is empty
-            if not redirect_to:
-                redirect_to = settings.LOGIN_REDIRECT_URL
-
-            # Security check -- don't allow redirection to a different
-            # host.
-            elif netloc and netloc != request.get_host():
-                redirect_to = settings.LOGIN_REDIRECT_URL
-
-            # Okay, security checks complete. Log the user in.
-            auth_login(request, form.get_user())
-
-            if request.session.test_cookie_worked():
-                request.session.delete_test_cookie()
-                
-            # log ip address and count of login from this address
-            try:
-                lUserIpAddress = UserIpAddress.objects.filter(username=request.user.username, ip_address=request.META['REMOTE_ADDR'])[0]
-            except IndexError:
-                lUserIpAddress = UserIpAddress()
-                lUserIpAddress.username = request.user.username
-                lUserIpAddress.ip_address = request.META['REMOTE_ADDR']
-            lUserIpAddress.save() 
-            
-            # prompt for new email if required
-            if request.user.profile.new_email_required:
-                redirect_to = "/users/%s/new_email_required/" % request.user.username
-
-            return HttpResponseRedirect(redirect_to)
-    else:
-        form = authentication_form(request)
-
-    request.session.set_test_cookie()
-
-    current_site = get_current_site(request)
-
-    context = {
-        'form': form,
-        redirect_field_name: redirect_to,
-        'site': current_site,
-        'site_name': current_site.name,
-        'StripeDataKey' : settings.STRIPE_PUBLIC_DATA_KEY,
-    }
-    context.update(extra_context or {})
-    return render_to_response(template_name, context,
-                              context_instance=RequestContext(request, current_app=current_app))   
-   
-    
 def user_contests_year(request, pUsername, pYear):
     """
     Create a table of results for a given year

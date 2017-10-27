@@ -40,7 +40,7 @@
         <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="contestsDropdown" aria-haspopup="true" aria-expanded="false">Contests</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/contests/">List Contests</a>
-{% if user.profile.superuser %} 
+{% if request.user.profile.superuser %} 
           <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/contests/groups/">Groups</a></li>
 {% endif %}
           <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/calendar/">Calendar</a></li>
@@ -50,7 +50,7 @@
           <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/contests/programmes/">Programmes</a></li>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/addresults/">Add Results</a></li>
-{% if user.profile.enhanced_functionality %}
+{% if request.user.profile.enhanced_functionality %}
           <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/contests/upload/programme/">Upload Programme</a></li>
           <a class="dropdown-item" aria-labelledby="contestsDropdown" href="/addwhitfriday/">Add Whit Friday</a></li>
 {% endif %}                         
@@ -82,10 +82,10 @@
           <a class="dropdown-item" aria-labelledby="siteDropdown" href="/leaderboard/">Leaderboard</a>
           <a class="dropdown-item" aria-labelledby="siteDropdown" href="/badges/">Badges</a>
           <div class="dropdown-divider"></div>
-{% if user.profile.superuser %}
+{% if request.user.profile.superuser %}
           <a class="dropdown-item" aria-labelledby="siteDropdown" href="/feedback/queue/">Feedback Queue</a>
 {% endif %}
-{% if user.is_superuser %}
+{% if request.user.is_superuser %}
           <a class="dropdown-item" aria-labelledby="siteDropdown" href="/feedback/admin/">Owner Queue</a>
 {% endif %}
           <a class="dropdown-item" aria-labelledby="siteDropdown" href="/feedback/help/">Help Needed</a>
@@ -98,7 +98,7 @@
         </div>
       </div>
 
-{% if user.profile.superuser %}
+{% if request.user.profile.superuser %}
       <div class="dropdown">
         <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="mergesDropdown" aria-haspopup="true" aria-expanded="false">Merges</a>
         <div class="dropdown-menu">
@@ -110,7 +110,7 @@
       </div>
 {% endif %}   
 
-{% if not user.is_authenticated %}
+{% if not request.user.is_authenticated %}
       <a class="nav-item nav-link" href="/account/register/">Create Account</a>
 {% ifequal request.path "/accounts/logout/" %}            
       <a class="nav-item nav-link"  href="/accounts/login/?next=/">Sign In</a>
@@ -137,10 +137,12 @@
 <p>You'll be wanting to override block content</p>
 {% endblock %}
 
+<br/><br/>
 <footer class="mainfooter bg-dark" role="contentinfo">
 {% block feedback %}
 <div class="footer-bottom">
  <div id="commentbox" class="container">
+  <br/>
   <h2>{% trans "Comments or Corrections?"%}</h2>
   <p>{% trans "Is something on this page incorrect?  Tell us what's wrong in the box below and click send.  Include your email address if you like.  If you're including contest results please remember to include the date, and as much detail about the contest as you can (conductor, adjudicators, set test piece etc.).  Don't forget you can always register and add missing results yourself!"%}</p>
   <form action="/feedback/" method="post">{% csrf_token %}
