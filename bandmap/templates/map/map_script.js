@@ -72,6 +72,21 @@ var lCentrePointMarker = {
 {% endif %}  
 
     lBandDetails = new Array({{Bands.count}});
+
+{% for band in Bands %}
+lBandDetails.push({
+  'id' : '{{band.id}}',
+  'nn' : '{{band.name}}',
+  'nm' : '{{band.name_for_map_title|safe}}',
+  'sl' : '{{band.slug}}',
+  'rg' : '{{band.region.name|lower}}',
+  'rn' : '{{band.rehearsal_nights}}',
+  'lt' : '{{band.latitude}}',  
+  'lg' : '{{band.longitude}}',
+  'mi' : '{{band.map_icon_name}}'
+});
+{% endfor %}
+
 {% for band in Bands %}{% if band.latitude and band.longitude %}{% ifchanged band.location %}
   {# // {{band.name}}, {{band.location}}, new marker #}
   var lBand{{band.id}} = {

@@ -9,17 +9,13 @@
 {%block bands-mapsearch-selected%}class="selected"{%endblock%}
 
 {%block head %}
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3.1&sensor=true"></script>
-<script type="text/javascript" src="/site_media/infobubble-compiled.js"></script>
-<!-- <script type="text/javascript" src="/site_media/infobubble.js"></script> -->
-{% if Latitude and Longitude %}
-<script type="text/javascript" src="/map/map_script.js?lat={{Latitude}}&lng={{Longitude}}&distance={{Distance}}&type={{Type}}"></script>
-{% endif %}
+<script src="/site_media/map/js/infobubble-compiled.js"></script>
+<script src="/map/search/map_script.js?lat={{Latitude}}&lng={{Longitude}}&distance={{Distance}}&type={{Type}}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{GoogleMapsApiKey}}&callback=initialize&v=3"></script>
 {% endblock %}
 
-{% block bodyattrib %}{% if Latitude %}onload="initialize();"{%endif%}{% endblock %}
-
 {% block content %}
+<div class="container pt-1">
 <h1>Search Brass Band Map</h1>
 <div id="search_form">
   <p>
@@ -41,7 +37,9 @@
 <br/>
 <div id="map_canvas" style="width: 100%; height: 500px"></div>
 
-<table id="bands" class="tablesorter">
+<br/>
+<button class="reset btn btn-outline-primary btn-sm float-right mb-1">Reset Sort</button>
+<table id="bands" class="table table-hover">
   <thead>
   <tr>
     <th>Band</th>
@@ -93,7 +91,7 @@
 {% endblock %}
 
 {%block scriptfooter%}
-<script type="text/javascript">
+<script>
   var gGeocoder = new google.maps.Geocoder();
   $('#search').click(function(){
     var lLocation = $('#location_field').val();
@@ -149,7 +147,13 @@
 {% endif %}    
 
 {% if Bands %}
-  $('#bands').tablesorter({widgets: ['zebra'], headers : { 0 : { sorter: false }, 1 : { sorter: false }, 2 : { sorter: false }, 3 : { sorter: false }, 4 : { sorter: false } }});
+  $('#bands').tablesorter();
+
+  $('button.reset').click(function(){
+      $('#bands').trigger('sortReset');
+      return false;
+  });
 {% endif %}
 </script>
+</div>
 {%endblock%}

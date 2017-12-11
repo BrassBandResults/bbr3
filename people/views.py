@@ -135,14 +135,14 @@ def people_list_filter_letter(request, pLetter):
             
     lAllPeopleCount = Person.objects.all().count()
     
-    lConductorsCheck = len(lConducting.viewkeys())
-    lAdjudicatorsCheck = len(lAdjudications.viewkeys())
-    lComposerArrangerCheck = len(lComposerArranger.viewkeys())
+    lConductorsCheck = len(lConducting.keys())
+    lAdjudicatorsCheck = len(lAdjudications.keys())
+    lComposerArrangerCheck = len(lComposerArranger.keys())
     
-    lVennAllCount = len(lConducting.viewkeys() & lAdjudications.viewkeys() & lComposerArranger.viewkeys())
-    lVennConductorAdjudicatorCount = len(lConducting.viewkeys() & lAdjudications.viewkeys()) - lVennAllCount
-    lVennConductorComposerCount = len(lConducting.viewkeys() & lComposerArranger.viewkeys()) - lVennAllCount 
-    lVennComposerAdjudicatorCount = len(lAdjudications.viewkeys() & lComposerArranger.viewkeys()) - lVennAllCount 
+    lVennAllCount = len(lConducting.keys() & lAdjudications.keys() & lComposerArranger.keys())
+    lVennConductorAdjudicatorCount = len(lConducting.keys() & lAdjudications.keys()) - lVennAllCount
+    lVennConductorComposerCount = len(lConducting.keys() & lComposerArranger.keys()) - lVennAllCount 
+    lVennComposerAdjudicatorCount = len(lAdjudications.keys() & lComposerArranger.keys()) - lVennAllCount 
     lVennConductorOnlyCount = len(lConducting) - lVennConductorAdjudicatorCount - lVennConductorComposerCount - lVennAllCount
     lVennAdjudicatorOnlyCount = len(lAdjudications) - lVennComposerAdjudicatorCount - lVennConductorAdjudicatorCount - lVennAllCount
     lVennComposerArrangerOnlyCount = len(lComposerArranger) - lVennConductorComposerCount - lVennComposerAdjudicatorCount - lVennAllCount

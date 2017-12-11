@@ -6,15 +6,16 @@
 
 {%block description %}Details of the {{Section.name}}{% endblock %}
 
-{%block head %}
-<script type="text/javascript">
+{%block scriptfooter %}
+<script>
   $(document).ready(function(){
-    $("#bands").tablesorter({widgets: ['zebra']});
+    $("#bands").tablesorter();
   });
 </script>
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{{Section.name}} Section</h1>
 <p>
 {% for section in Sections %}
@@ -22,7 +23,7 @@
 {% endfor %}
 </p> 
 <h2>Bands</h2>
-<table id="bands" class="tablesorter">
+<table id="bands" class="table">
 	<thead>
 		<tr>
 			<th>Band</th>
@@ -38,4 +39,5 @@
 {% endfor %}
 	</tbody>
 </table>
+</div>
 {% endblock %}

@@ -9,19 +9,24 @@
 
 {%block description%}Tags attached to contests and contest groups at brass band results{%endblock%}
 
-{%block contest-tags-selected%}class="selected"{%endblock%}
-
-{%block head %}
-<script type="text/javascript">
+{%block scriptfooter %}
+<script>
   $(document).ready(function(){
-    $("#tags_list").tablesorter({widgets: ['zebra']});
+    $("#tags").tablesorter();
+
+    $('button.reset').click(function(){
+      $('#tags').trigger('sortReset');
+      return false;
+    });
   });
 </script>
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Tags</h1>
-<table id="tags_list" class="tablesorter">
+<button class="reset btn btn-outline-primary btn-sm float-right mb-1">Reset Sort</button>
+<table id="tags" class="table table-hover">
   <thead>
     <tr><th>Tag</th></tr>
   </thead>
@@ -31,4 +36,5 @@
 {% endfor %}
   </tbody>
 </table>
+</div>
 {% endblock %}

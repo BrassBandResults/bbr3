@@ -10,23 +10,21 @@
 {%block bands-mapvacancies-selected%}{% if VacanciesOnly %}class="selected"{%endif%}{%endblock%}
 
 {%block head %}
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3.25&key={{GoogleMapsKey}}"></script>
-<script type="text/javascript" src="/site_media/infobubble-compiled.js"></script>
-<!-- <script type="text/javascript" src="/site_media/infobubble.js"></script> -->
-  {% if Band %}
-  <script type="text/javascript" src="/map/band/{{Band.slug}}/map_script.js"></script>
+<script src="/site_media/map/js/infobubble-compiled.js"></script>
+{% if Band %}
+  <script src="/map/band/{{Band.slug}}/map_script.js"></script>
   {% else %}
     {% if Venue %}
-  <script type="text/javascript" src="/map/venue/{{Venue.slug}}/map_script.js"></script>
+  <script src="/map/venue/{{Venue.slug}}/map_script.js"></script>
     {% else %}
-  <script type="text/javascript" src="/map/map_script.js"></script>
+  <script src="/map/map_script.js"></script>
     {% endif %}
   {% endif %}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{GoogleMapsApiKey}}&callback=initialize&v=3"></script>
 {% endblock %}
 
-{% block bodyattrib %}onload="initialize();processCheckboxes();"{% endblock %}
-
 {% block content %}
+<div class="container pt-1">
 <h1>Brass Band Map</h1>
 <p>[<a href="/map/search/">Search The Map</a>]</p>
 <p>This map is intended to give a general indication of where a band rehearses.  Please contact the band directly to obtain full directions.</p>
@@ -53,6 +51,7 @@
 </p> 
 <div id="map_canvas" style="width: 100%; height: 500px"></div>
 <p>[<a href="/map/addband/">My Band isn't on this map</a>] [<a href="/map/coordwrong/">My Band is in the wrong place</a>]</p>
+</div>
 {% endblock %}
 
 {%block scriptfooter%}

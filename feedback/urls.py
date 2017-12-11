@@ -11,9 +11,7 @@ urlpatterns = [
     url(r'^$', views.feedback),
     url(r'^queue/$', views.queue),
     url(r'^admin/$', views.admin_queue),
-    url(r'^help/$', views.help),
     url(r'^thanks/$', views.thanks),
-    url(r'^results/$', views.results_to_enter),
     url(r'^detail/(\d+)/$', views.feedback_detail),
     url(r'^ip/([.\d]+)/$', views.feedback_for_ip),
 ]

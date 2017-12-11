@@ -4,8 +4,6 @@
 
 {%block description%}Venue Merge Requests{%endblock%}
 
-{%block venue-merges-selected%}class="selected"{%endblock%}
-
 {% block head %}
 <script type="text/javascript">
   function reject_merge(pMergeRequestSerial)
@@ -33,9 +31,10 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Venue Requests</h1>
 <p>Source fields not set in destination are copied across at merge time.</p>
-<table>
+<table class="table table-hover">
 {% for mergeRequest in MergeRequests %}
   <tr id="mergeRequestRow-{{mergeRequest.id}}">
     <td>
@@ -58,4 +57,5 @@
   <tr><td>None Outstanding</td></tr>
 {% endfor %}
 </table>
+</div>
 {% endblock %}

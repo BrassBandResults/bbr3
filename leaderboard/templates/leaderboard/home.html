@@ -5,13 +5,16 @@
 
 {%block description%}User Leaderboard{%endblock%}
 
-{%block leaderboard-selected%}class="selected"{%endblock%}
-
-{%block head %}
-<script type="text/javascript">
+{%block scriptfooter %}
+<script>
   $(document).ready(function(){
-    $("#leaderboard").tablesorter({widgets: ['zebra']});
+    $("#leaderboard").tablesorter();
 
+    $('button.reset').click(function(){
+      $('#leaderboard').trigger('sortReset');
+      return false;
+    });
+  });
   
   var lPieData = [
     { label: "> 70 points", data: {{OnLeaderboardCount}}, color: "#ffc600" },  
@@ -36,13 +39,14 @@
   });
 });
 </script>
-{% endblock head %}
+{% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{% trans "Leaderboard"%}</h1>
 <div id="flot_pie" class="leaderboard"></div>
-<p>{% trans "Every time a user adds results or adds a new point to the map, they get points.  This table shows the current leaderboard for users on brassbandresults."%}</p>
-<table class="tablesorter" id="leaderboard">
+<p>{% trans "Every time a user adds results or adds a new point to the map, they get points.  This table shows the current leaderboard."%}</p>
+<table id="leaderboard" class="table table-hover">
     <thead>
         <tr>
             <th>{% trans "Position"%}</th>
@@ -61,4 +65,5 @@
         
     </tbody>
 </table>
+</div>
 {% endblock %}

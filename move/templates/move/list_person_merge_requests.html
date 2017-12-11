@@ -4,8 +4,6 @@
 
 {%block description%}Person Merge Requests{%endblock%}
 
-{%block person-merges-selected%}class="selected"{%endblock%}
-
 {% block head %}
 <script type="text/javascript">
   function reject_merge(pMergeRequestSerial)
@@ -33,8 +31,9 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Person Merge Requests</h1>
-<table>
+<table class="table table-hover">
 {% for mergeRequest in MergeRequests %}
   <tr id="mergeRequestRow-{{mergeRequest.id}}">
     <td>
@@ -63,4 +62,5 @@
   <tr><td>None Outstanding</td></tr>
 {% endfor %}
 </table>
+</div>
 {% endblock %}

@@ -83,7 +83,7 @@ def faq(request):
     Show FAQ
     """
     lSections = FaqSection.objects.all()
-    return render_auth(request, 'faq.html', {'Sections' : lSections})
+    return render_auth(request, 'home/faq.html', {'Sections' : lSections})
 
 def robotstxt(request):
     """
@@ -95,13 +95,13 @@ def about(request):
     """
     Show about us page
     """
-    return render_auth(request, 'aboutus.html')
+    return render_auth(request, 'home/aboutus.html')
 
 def cookies(request):
     """
     Show page with cookie details
     """
-    return render_auth(request, 'cookies.html')
+    return render_auth(request, 'home/cookies.html')
 
 def sitemap_index(request):
     """

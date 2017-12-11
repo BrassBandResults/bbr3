@@ -12,13 +12,14 @@
 {%block statistics-selected%}class="selected"{%endblock%}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Statistics</h1>
 <h2>Site</h2>
 <ul>
-  <li>{{BandCount|intcomma}} <a href="/bands/">{% trans "bands"%}</a>, {% trans "latest is"%} <a href="/bands/{{LatestBand.slug}}/">{{LatestBand.name}}</a>.
+  <li>{{BandCount|intcomma}} <a href="/bands/">{% trans "bands"%}</a>, {% trans "latest is"%} <a href="/bands/{{LatestBand.slug}}/">{{LatestBand.name}}</a>.</li>
   <ul>
     <li>{{CompetedLastYear|intcomma}} {% trans "bands competed last year."%}</li>
-      <li>{{WithWebsiteCount|intcomma}} {% trans "have a website listed, including"%} <a href="{{WebsiteUrl}}" target="_blank">{{WebsiteName}}</a>.</li>
+    <li>{{WithWebsiteCount|intcomma}} {% trans "have a website listed, including"%} <a href="{{WebsiteUrl}}" target="_blank">{{WebsiteName}}</a>.</li>
     <li>{{BandsMapped|intcomma}} ({% trans "of which"%} {{ExtinctBandsMapped|intcomma}} {% trans "are extinct"%}) {% trans "appear"%} <a href="/map/">{% trans "on the map"%}</a>.</li>
   </ul>
   <li>{{PeopleCount|intcomma}} <a href="/people/">{% trans "people"%}</a>, {% trans "latest is"%} <a href="/people/{{LatestPerson.slug}}/">{{LatestPerson.name}}</a>.</li>
@@ -38,4 +39,5 @@
   <li>{{SaturdayBandCount}} bands ({{SaturdayBandPercent|floatformat}}%) rehearse on a Saturday</li>
   <li>{{SundayBandCount}} bands ({{SundayBandPercent|floatformat}}%) rehearse on a Sunday</li>
 </ul>  
+</div>
 {% endblock %}

@@ -6,10 +6,15 @@
 
 {%block admin-feedback-selected%}class="selected"{%endblock%}
 
-{%block head %}
+{%block scriptfooter %}
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#feedback").tablesorter({headers:{0: {sorter: 'dayMonthYear'} }, widgets: ['zebra']});
+    $("#feedback").tablesorter();
+
+    $('button.reset').click(function(){
+      $('#feedback').trigger('sortReset');
+      return false;
+    });
   });
   
   function claim(pFeedbackSerial)
@@ -45,8 +50,10 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Site Owner Feedback Queue</h1>
-<table id="feedback" class="tablesorter">
+<button class="reset btn btn-outline-primary btn-sm float-right mb-1">Reset Sort</button>
+<table id="feedback" class="table table-hover">
   <thead>
     <tr>
       <th>Date</th>
@@ -68,6 +75,7 @@
 {% endfor %}
   </tbody>
 </table>
+</div>
 {% endblock %}
 
 {%block feedback %}{% endblock %}

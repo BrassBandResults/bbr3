@@ -19,13 +19,13 @@ def home(request):
     """
     Show google map of bands
     """
-    return render_auth(request, 'map/map.html', {'GoogleMapsKey': settings.GOOGLE_MAPS_KEY})
+    return render_auth(request, 'map/map.html', {'GoogleMapsApiKey': settings.GOOGLE_MAPS_API_KEY})
 
 def home_venues(request):
     """
     Show map of venues
     """
-    return render_auth(request, 'map/venues_map.html', {'GoogleMapsKey': settings.GOOGLE_MAPS_KEY})
+    return render_auth(request, 'map/venues_map.html', {'GoogleMapsApiKey': settings.GOOGLE_MAPS_API_KEY})
 
 
 def _get_map_search_parameters(request):
@@ -60,6 +60,15 @@ def map_script(request):
     Return the javascript to add markers for all the bands with a latitude and longitude
     Or if lat/lng passed as parameters, find bands within given distance miles of a point.  Return a map_script.js centered on that point, showing bands within 10 miles
     """
+    lBands = Band.objects.exclude(latitude="").exclude(latitude__isnull=True).exclude(longitude="").exclude(longitude__isnull=True).order_by('latitude', 'longitude')
+    return render_auth(request, 'map/map_script.js', {
+                                                      "Bands" : lBands,
+                                                     })    
+
+def map_script_search(request):
+    """
+    Return the javascript to add markers for bands within given distance miles of a point.  Return a map_script.js centered on that point, showing bands within 10 miles
+    """
     lLatitude, lLongitude, lDistance, lType = _get_map_search_parameters(request)
     lVenues = None
     
@@ -68,15 +77,14 @@ def map_script(request):
         lSearchPoint = Point(lLongitude, lLatitude)
         lBands = Band.objects.distance(lSearchPoint).select_related('region').order_by('distance')
         if lType == 'km':
-            lBands = lBands.filter(point__distance_lte=(lSearchPoint, D(km=lDistance)))
+            lBands = lBands.filter(point__distance_lte=(lSearchPoint, D(km=lDistance))).exclude(status=0)
         else:
-            lBands = lBands.filter(point__distance_lte=(lSearchPoint, D(mi=lDistance)))
+            lBands = lBands.filter(point__distance_lte=(lSearchPoint, D(mi=lDistance))).exclude(status=0)
             lType = 'mi'
     else:
         # showing full map
-        lBands = Band.objects.exclude(latitude="").order_by('latitude', 'longitude')
-        if lType == 'venues':
-            lVenues = Venue.objects.exclude(latitude="").order_by('latitude', 'longitude')
+        lBands = []
+        lVenues = []
     return render_auth(request, 'map/map_script.js', {
                                                       "Bands" : lBands,
                                                       "Venues" : lVenues,
@@ -131,6 +139,7 @@ def search_map(request):
                                                         "Type" : lType,
                                                         "TypeDisplay" : lTypeDisplay,
                                                         "From" : lFrom,
+                                                        "GoogleMapsApiKey" : settings.GOOGLE_MAPS_API_KEY
                                                        })    
 
 @login_required

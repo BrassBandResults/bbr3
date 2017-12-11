@@ -90,14 +90,6 @@ def feedback(request):
         raise Http404()
     
 
-def help(request):
-    """
-    A request for clarification on some feedback
-    """
-    lClarificationRequired = ClarificationRequest.objects.filter(hidden=False)
-    return render_auth(request, 'feedback_help.html', {'HelpRequired' : lClarificationRequired})
-    
-    
 def thanks(request):
     """
     thanks screen for providing feedback
@@ -134,15 +126,6 @@ def admin_queue(request):
     lFeedback = SiteFeedback.objects.filter(status='Admin')
     
     return render_auth(request, 'feedback_queue_admin.html', {'Feedback' : lFeedback})
-
-
-def results_to_enter(request):
-    """
-    Show contest programmes with data that needs entering
-    """
-    lContestEvents = ContestEvent.objects.filter(requires_input=True).select_related('contest')
-    
-    return render_auth(request, 'feedback/requires_input.html', {'Events' : lContestEvents})
 
 
 @login_required

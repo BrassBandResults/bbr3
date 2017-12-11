@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^map_script.js$', views.map_script),
     url(r'^addband/$', views.add_band),
     url(r'^search/$', views.search_map),
+    url(r'^search/map_script.js$', views.map_script_search),
     url(r'^coordwrong/$', views.move_band),
     url(r'^coordwrong/([0-9a-z\-]+)/$', views.move_specific_band),
     url(r'^coordwrong/([0-9a-z\-]+)/saved/$', views.move_specific_band_done),

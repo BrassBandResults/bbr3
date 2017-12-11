@@ -172,7 +172,7 @@ class Band(models.Model):
         Return rehearsal nights as a string
         """
         lReturn = ""
-        if len(self.rehearsal_night_1) > 0:
+        if self.rehearsal_night_1 and len(self.rehearsal_night_1) > 0:
             lReturn = Band.DAY_CHOICES[int(self.rehearsal_night_1)][1]
             if self.rehearsal_night_2:
                 if len(self.rehearsal_night_2) > 0:
