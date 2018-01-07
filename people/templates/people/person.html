@@ -55,6 +55,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1 class="person">{{Person.name}}
 {% if ShowEdit %} [<a href="/people/edit/{{Person.slug}}/" title="Edit this person's details">{% trans "edit"%}</a>]{%endif%}
 {% if user.profile.superuser %} [<a href="/people/{{Person.slug}}/aliases/" title="Edit person aliases">{% trans "aliases"%}</a>]{% endif %}
@@ -178,7 +179,7 @@
 {% if Filter %}
 <p class="filter_notify">{% trans "This view of the results is filtered to"%} <b>{{FilteredTo.name}}</b>.  [<a href="/people/{{Person.slug}}/">{% trans "Remove Filter"%}</a>].</p>
 {% endif %}
-<table id="contests" class="tablesorter">
+<table id="contests" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Date"%}</th>
@@ -227,7 +228,7 @@
 {% if WhitFridayResults %}
 {% if not ShowTabs %}<h2>Whit Friday Results{%if user.profile.pro_member%} ({{WhitFridayResultsCount}}){%endif%}</h2>{%endif%}
 <div id="whitfriday-tab">
-<table id="whitfriday" class="tablesorter">
+<table id="whitfriday" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Date"%}</th>
@@ -263,7 +264,7 @@
 {% if UserAdjudications %}
 <h3>Your Adjudications ({{UserAdjudicationsCount}})</h3>
 <p></p>
-<table id="yourcontests" class="tablesorter">
+<table id="yourcontests" class="table table-hover">
   <thead>
     <tr>
       <th>Date</th>
@@ -287,7 +288,7 @@
 {% endif %}
 
 
-<table id="adjudications" class="tablesorter">
+<table id="adjudications" class="table table-hover">
 	<thead>
 		<tr>
 			<th>Date</th>
@@ -315,7 +316,7 @@
 {% if ComposedPieces %}
 {% if not ShowTabs %}<h2>Compositions{%if user.profile.pro_member%} ({{ComposedPiecesCount}}){%endif%}</h2>{%endif%}
 <div id=composer-tab>
-<table id="compositions" class="tablesorter">
+<table id="compositions" class="table table-hover">
 	<thead>
 		<tr>
 		 <th>{% trans "Name"%}</th>
@@ -350,7 +351,7 @@
 {% if ArrangedPieces %}
 {% if not ShowTabs %}<h2>Arrangements{%if user.profile.pro_member%} ({{ArrangedPiecesCount}}){%endif%}</h2>{%endif%}
 <div id=arranger-tab>
-<table id="arrangements" class="tablesorter">
+<table id="arrangements" class="table table-hover">
 	<thead>
 		<tr>
 		 <th>{% trans "Name"%}</th>
@@ -397,6 +398,7 @@
 <p><input type="checkbox" id="move_person"/> {% trans "Request merge with"%} <span id="person_to_move_to">{% trans "another person"%}.</span></p>
 </form>
 {% endif %}
+</div>
 {% endblock %}
 
 {% block scriptfooter %}

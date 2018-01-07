@@ -11,15 +11,8 @@
 
 {%block contests-selected%}class="selected"{%endblock%}
 
-{%block head %}
-<script type="text/javascript">
-    $(document).ready(function(){
-      $("#results").tablesorter({widgets: ['zebra'], headers: {1: {sorter:'flagAlpha'} }});
-  });
-</script>
-{% endblock %}
-
 {% block content %}
+<div class="container pt-1">
 <h1 class="contest-event"><a href="/contests/{{ContestEvent.contest.slug}}/">{{ContestEvent.name}}</a></h1>
 <span class="screenonly"> 
 {% if ShowEdit %}
@@ -320,25 +313,18 @@
 <a href="{{link.website_url}}">{{link.name}}</a><br/>
 {% endfor %} 
 </div>
+</div>
 {% endif %}
 
 {% endblock %}
 
 {% block scriptfooter %}
-<script type="text/javascript">
-	$(document).on('click', '.hide_highlights', function(){
-		$('.tablesorter tr.result-1').addClass('result-off-1').removeClass('result-1');
-		$('.tablesorter tr.result-2').addClass('result-off-2').removeClass('result-2');
-		$('.tablesorter tr.result-3').addClass('result-off-3').removeClass('result-3');
-		$('.hide_highlights').removeClass('hide_highlights').addClass('show_highlights').html('Show Gold/Silver/Bronze Highlight');
-	});
-	$(document).on('click', '.show_highlights', function(){
-		$('.tablesorter tr.result-off-1').addClass('result-1').removeClass('result-off-1');
-		$('.tablesorter tr.result-off-2').addClass('result-2').removeClass('result-off-2');
-		$('.tablesorter tr.result-off-3').addClass('result-3').removeClass('result-off-3');
-		$('.show_highlights').removeClass('show_highlights').addClass('hide_highlights').html('Hide Gold/Silver/Bronze Highlight');
-	});
-	
+<script>
+
+     $(document).ready(function(){
+      $("#results").tablesorter({widgets: ['zebra'], headers: {1: {sorter:'flagAlpha'} }});
+    });
+
 	function confirm_take_ownership() {
 	  var lConfirmed = confirm("{% trans "Are you sure?  This will route all feedback on this contest event to you."%}");
 	  if (lConfirmed)

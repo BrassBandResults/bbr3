@@ -5,9 +5,8 @@
 
 {%block description%}Details about the brass band contest {{Contest.name}}{%endblock%}
 
-{%block contests-selected%}class="selected"{%endblock%}
-
 {% block content %}
+<div class="container pt-1">
 <h1 class="contest">
 {% if Contest.group %}
 <a href="/contests/{{Contest.group.slug|upper}}/">{{Contest.name_name_only}}</a> {{Contest.name_section_only}}
@@ -83,7 +82,7 @@
 {% else %}
 <p><font color="red">Do you know more results for this contest?  If so, please <a href="/addresults/{{Contest.slug}}/">add them to the site</a> today!</font></p>
 {% endif %}
-<table id="contests" class="tablesorter">
+<table id="contests" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Date"%}</th>
@@ -101,7 +100,7 @@
             <td nowrap="nowrap">{{event.event_date}}</td>
             <td colspan="3"><strong>{% trans "No Contest."%}</strong>  {{event.notes}}</td>
 {% else %}
-{% if event.link_type = 'LINK' %}
+{% if event.link_type == 'LINK' %}
 			<td nowrap="nowrap"><a href="/contests/{{event.contest_slug}}/{{event.date_of_event|date:"Y-m-d"}}/">{{event.event_date}}</a></td>
             <td>         
 			  {% for winner in event.winners %}
@@ -155,7 +154,7 @@
 {% if not user.profile.pro_member %}
 <p><a href="/accounts/upgrade/">Upgrade to a pro member account</a> and see which own choice pieces have been used at this contest.</p>
 {% else %}
-<table id="pieces" class="tablesorter">
+<table id="pieces" class="table table-hover">
 <thead>
   <tr>
     <th>{% trans "Date"%}</th>
@@ -180,7 +179,7 @@
 
 {% if WinRuns %}
 <div id="winruns-tab">
-<table class="tablesorter" id="hatricks">
+<table class="table table-hover" id="hatricks">
  <thead>
   <tr>
     <th>{% trans "Years"%}</th>
@@ -245,7 +244,7 @@
 <h2>{% trans "Contest Group Notes"%}</h2>
 <p>{{Contest.group.notes|safe|linebreaksbr}}</p>
 {% endif %}	
-
+</div>
 {% endblock %}
 
 {% block scriptfooter %}

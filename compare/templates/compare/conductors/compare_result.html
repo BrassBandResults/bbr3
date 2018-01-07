@@ -9,8 +9,8 @@
 
 {%block conductors-compare-selected%}class="selected"{%endblock%}
 
-{%block head%}
-<script type="text/javascript">
+{%block scriptfooter%}
+<script>
   $(document).ready(function(){
     $("#results-compare").tablesorter({headers:{1: {sorter: 'dayMonthYear'} }, widgets: ['zebra']});
   });
@@ -18,16 +18,17 @@
 {%endblock%}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{% trans "Compare"%} <a href="/people/{{ConductorOne.slug}}/">{{ConductorOne.name}}</a> {% trans "with"%} <a href="/people/{{ConductorTwo.slug}}/">{{ConductorTwo.name}}</a></h1>
 {% if Filter %}
-<p class="filter_notify">This page is filtered to show only results from <a href="/contests/{{ContestSlug}}/">{{ContestName}}</a>.  [<a href="/compare/conductors/{{ConductorOne.slug}}/{{ConductorTwo.slug}}/">Remove Filter</a>].
+<p class="filter_notify">This page is filtered to show only results from <a href="/contests/{{ContestSlug}}/">{{ContestName}}</a>.  [<a href="/compare/conductors/{{ConductorOne.slug}}/{{ConductorTwo.slug}}/">Remove Filter</a>].</p>
 {% endif %}
 {% if CompareResults %}
 <p>{% trans "This table lists results from contests where the two conductors have competed against each other."%}  {{ConductorOne.name}} {% trans "has been better"%} {{ConductorOneWins}} {% trans "times"%}, {{ConductorTwo.name}} {% trans "has been better"%} {{ConductorTwoWins}} {% trans "times"%}.</p>
 <table width="100%">
 	<tr>
-		<td class="BandOneBar" width="{{ConductorOnePercent}}%">{{ConductorOneWins}}&nbsp;({{ConductorOnePercent}}%)</td>
-		<td class="BandTwoBar" width="{{ConductorTwoPercent}}%">{{ConductorTwoWins}}&nbsp;({{ConductorTwoPercent}}%)</td>
+		<td class="BandOneBar border border-dark" width="{{ConductorOnePercent}}%">{{ConductorOneWins}}&nbsp;({{ConductorOnePercent}}%)</td>
+		<td class="BandTwoBar border border-dark" width="{{ConductorTwoPercent}}%">{{ConductorTwoWins}}&nbsp;({{ConductorTwoPercent}}%)</td>
 	</tr>
 </table>
 <table id="results-compare" class="tablesorter">
@@ -65,4 +66,5 @@
 {% else %}
 <p>{% trans "These two conductors have not competed against each other."%}</p>
 {% endif %}
+</div>
 {% endblock %}

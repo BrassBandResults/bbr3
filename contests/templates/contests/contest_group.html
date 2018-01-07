@@ -5,14 +5,12 @@
 
 {%block description%}Details about the brass band contest {{ContestGroup.name}}{%endblock%}
 
-{%block contests-selected%}class="selected"{%endblock%}
-
-{%block head %}
-<script type="text/javascript">
+{%block scriptfooter %}
+<script>
   $(document).ready(function(){
-  	$("#contests").tablesorter({widgets: ['zebra']});
-    $("#extinctcontests").tablesorter({widgets: ['zebra']});
-    $("#years-table").tablesorter({widgets: ['zebra'], sortList: [[0,1]]});
+  	$("#contests").tablesorter();
+    $("#extinctcontests").tablesorter();
+    $("#years-table").tablesorter();
     
     $('#tabs').tabs();
   });
@@ -20,6 +18,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{{ContestGroup.name}} 
   {% if user.profile.superuser %}
   [<a href="/contests/{{ContestGroup.actual_slug}}/talk/" title="{% trans "Contest Group Talk Page"%}">{% trans "talk"%}</a>]
@@ -40,7 +39,7 @@
   
 <div id="contests-tab">
 {% if Contests %}
-<table id="contests" class="tablesorter">
+<table id="contests" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Name"%}</th>
@@ -59,7 +58,7 @@
 {% endif %}
 {% if ExtinctContests %}
 <h2>{% trans "Old Contest Sections"%}</h2>
-<table id="extinctcontests" class="tablesorter">
+<table id="extinctcontests" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Name"%}</th>
@@ -80,7 +79,7 @@
 
 <div id="years-tab">
 <p>{% trans "We have events for this contest in these years."%}</p>
-<table class="tablesorter" id="years-table">
+<table class="table table-hover" id="years-table">
   <thead>
     <tr>
       <th>{% trans "Year"%}</th>
@@ -137,4 +136,5 @@
 <h2>{% trans "Notes"%}</h2>
 <p>{{ContestGroup.notes|safe|linebreaksbr}}</p>
 {% endif %}
+</div>
 {% endblock %}

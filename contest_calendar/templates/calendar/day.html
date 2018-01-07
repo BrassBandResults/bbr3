@@ -18,6 +18,7 @@
 {% endblock %}
 
 {% block content %} 
+<div class="container pt-1">
 <h1>{% trans "Contests on"%} {{EventDate|date:"D jS M Y"}}</h1>
 <p>[<a href="/calendar/date/{{Year}}/{{Month}}/">Show contests in {{MonthText}} {{Year}}</a>]</p>
 <table id="events" class="tablesorter">
@@ -56,4 +57,5 @@
 {% endfor %}
 	</tbody>
 </table>	
+</div>
 {% endblock %}

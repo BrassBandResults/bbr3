@@ -143,11 +143,7 @@ class ContestGroup(models.Model):
         return lCount
     
     def tag_list(self):
-        lReturn = []
-        for tag in self.tags.all():
-            lReturn.append(tag)
-        lReturn.sort()
-        return lReturn
+        return self.tags.order_by('name').all()
     
     @property
     def actual_slug(self):
@@ -318,8 +314,12 @@ class Contest(models.Model):
         if self.group:
             for tag in self.group.tag_list():
                 lUniqueTags[tag.slug] = tag
-        lReturn = lUniqueTags.values()
-        lReturn.sort()
+        lUniqueTagsKeys = sorted(lUniqueTags.keys())
+
+        lReturn = []
+        for lEachTagKey in lUniqueTagsKeys:
+            lReturn.append(lUniqueTags[lEachTagKey])
+
         return lReturn
         
     

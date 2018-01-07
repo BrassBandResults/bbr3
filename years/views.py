@@ -89,7 +89,7 @@ def year_list_region(request, pRegionSlug):
     cursor.close() 
     
     lYearNumbers = lYearObjects.items()
-    lYearNumbers.sort()
+    lYearNumbers = sorted(lYearNumbers)
     lYearNumbers.reverse()
     lYearsForPage = [value for key, value in lYearNumbers]
             

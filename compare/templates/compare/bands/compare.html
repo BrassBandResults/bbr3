@@ -10,6 +10,7 @@
 {%block bands-compare-selected%}class="selected"{%endblock%}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{% trans "Compare Bands" %}</h1>
 <p>{% trans "Select the two bands to compare below"%}:</p>
 <form action="." method="post">{% csrf_token %}
@@ -38,4 +39,5 @@
 <br/>
 <input type="submit" value="{% trans "Compare"%}"></input>
 </form>
+</div>
 {% endblock %}

@@ -10,53 +10,8 @@
 
 {%block description%}Details about the brass band {{Band.name}}{%endblock%}
 
-{%block bands-selected%}class="selected"{%endblock%}
-
-{%block head %}
-<script type="text/javascript">
-  $(document).ready(function(){
-      $("#contests").tablesorter({headers:{0: {sorter: 'dayMonthYear'}, 2: {sorter: 'digit'}, 3: {sorter: 'digit'}, 4: {sorter: 'digit'} }, widgets: ['zebra']});
-{% if WhitFridayOwner %}    
-    $("#whitfriday").tablesorter({headers:{1: {sorter: 'dayMonthYear'} }, widgets: ['zebra']});
-{% else %}
-    $("#whitfriday").tablesorter({headers:{0: {sorter: 'dayMonthYear'} }, widgets: ['zebra']});
-{% endif %}
-  	$("#previousnames").tablesorter({widgets: ['zebra']});
-  	$("#regradings").tablesorter({widgets: ['zebra']});
-  	$("#runs").tablesorter({widgets: ['zebra']});
-    
-{% if user.profile.pro_member %}    
-{% if ResultsWithPosition > 0 %}
-{% if Wins > 0 or TopSixNotWin > 0 %}
-     var lPieData = [
-    { label: "Wins", data: {{Wins}}, color: "#ffc600" },  
-    { label: "Top Six", data: {{TopSixNotWin}}, color: "#99ccff" },
-    { label: "Unplaced", data: {{Unplaced}}, color: "#316497" }
-    ];
-	$.plot($("#flot_pie"), lPieData,
-    {
-      series: {
-        pie: {
-          show: true,
-          label: {
-            formatter: function(label, series){
-              return '<div style="font-size:8pt;text-align:center;padding:2px;color:black;">'+label+'<br/>'+series.data[0][1]+" (" +Math.round(series.percent)+'%)</div>';
-            }
-          }
-        }
-      },
-      legend: {
-          show: false
-      }
-	});
-{% endif %}       
-{% endif %}   
-{% endif %}
-  });
-</script>
-{% endblock %}
-
 {% block content %}
+<div class="container pt-1">
 <h1 class="band">{{Band.name}}
 {% if user.profile.enhanced_functionality %}
 {%if ShowEdit %} 
@@ -88,7 +43,7 @@
 {% endif %}
 
 {% if Filter %}
-<p class="filter_notify">{% trans "This view of the band's results is filtered to"%} <b>{{FilteredTo.name}}</b>.  [<a href="/bands/{{Band.slug}}/">{% trans "Remove Filter"%}</a>].</p>
+<p class="alert alert-warning">{% trans "This view of the band's results is filtered to"%} <b>{{FilteredTo.name}}</b>.  [<a href="/bands/{{Band.slug}}/">{% trans "Remove Filter"%}</a>].</p>
 {% endif %}
 <div id="top-block">
   <div id="left-top-block">
@@ -153,9 +108,9 @@
 {% endif %}  
     </div>
   </div>
-  <div id="right-top-block">
+  <div id="right-top-block" class="pt-2">
   	{% if user.profile.pro_member %}
-  	  <div id="flot_pie"></div>
+  	  <div id="pie-chart"></div>
   	{% else %}
   	  <a href="/accounts/upgrade/"><img src="/site_media/pie_chart_if_upgrade.jpg"/></a>
   	{% endif%}
@@ -188,24 +143,10 @@
 </div>
 </div>
 
-{% if DownloadAlbums %}
-<h2>Recordings</h2>
-<div id="recordings">
-<ul>
-{% for album in DownloadAlbums %}
-<li>
-  <a href="{{album.link|safe}}"><img src="{{album.thumbnail.url_100x100}}" title="{% if album.type == 'download'%}Download: {%endif%}{% if album.type == 'cd'%}CD: {%endif%}{{album.title}} - {{album.band_name}}"/></a>
-  <span class="recording-icon"><img src="/site_media/icons/recording-{{album.type}}.png"/></span>
-</li>
-{% endfor %}
-</ul>
-</div>
-{% endif %}
-
 <h2>Contest Results</h2>
 {% if ResultsWithPosition > 1 %}
 {% if Filter %}
-<p class="filter_notify">{% trans "This view of the band's results is filtered to"%} <b>{{FilteredTo.name}}</b>.  [<a href="/bands/{{Band.slug}}/">{% trans "Remove Filter"%}</a>].</p>
+<p class="alert alert-warning">{% trans "This view of the band's results is filtered to"%} <b>{{FilteredTo.name}}</b>.  [<a href="/bands/{{Band.slug}}/">{% trans "Remove Filter"%}</a>].</p>
 {% endif %}
 <br/>
 {% if user.profile.pro_member %}
@@ -221,13 +162,13 @@
 {% endifnotequal %}
 {% endif %}
 {% if Filter %}
-<p class="filter_notify">{% trans "This view of the band's results is filtered to"%} <b>{{FilteredTo.name}}</b>.  [<a href="/bands/{{Band.slug}}/">{% trans "Remove Filter"%}</a>].</p>
+<p class="alert alert-warning">{% trans "This view of the band's results is filtered to"%} <b>{{FilteredTo.name}}</b>.  [<a href="/bands/{{Band.slug}}/">{% trans "Remove Filter"%}</a>].</p>
 {% endif %}
 {% if ContestResults %}
 <p><strong>{% trans "Date Range (use slider to change)"%}:</strong> <span id="slider-amount"></span></p>
 <div id="slider-range"></div>
-<p class="screenonly">[<a class="hide_highlights">{% trans "Hide Gold/Silver/Bronze Highlight"%}</a>]</p>
 {% endif %}
+<br/>
 {% if ShowTabs %}
 <div id="tabs">
     <ul class="screenonly">
@@ -243,7 +184,9 @@
 
 {% if ContestResults %}
 <div id="contests-tab">
-<table id="contests" class="tablesorter">
+<button id="reset-contests" class="reset btn btn-outline-primary btn-sm float-right mb-1">Reset Sort</button>
+<button class="hide-highlight reset btn btn-outline-primary btn-sm float-right mb-1">Hide Highlight</button>
+<table id="contests" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Date"%}</th>
@@ -305,7 +248,7 @@
 {% if WhitFridayOwner %}
 <form action="/bands/{{Band.slug}}/WhitFridayConductors/" method="post">{%csrf_token%}
 {% endif %}     
-<table id="whitfriday" class="tablesorter">
+<table id="whitfriday" class="table table-hover">
 	<thead>
 		<tr>
 {% if WhitFridayOwner %}
@@ -326,7 +269,7 @@
       <tr class="result-{{result.results_position_display}} year-{{result.contest_event.date_of_event|date:"Y"}}">
 {% if WhitFridayOwner %}
       <td>
-        {% if request.user = result.owner or user.profile.superuser %}<input type="checkbox" name="select-{{result.id}}"/>{%endif%}
+        {% if request.user == result.owner or user.profile.superuser %}<input type="checkbox" name="select-{{result.id}}"/>{%endif%}
       </td>
 {% endif %} 
         <td class="contest-event"><a href="/contests/{{result.contest_event.contest.slug}}/{{ result.contest_event.date_of_event|date:"Y-m-d" }}/">{{ result.contest_event.event_date }}</a></td>
@@ -368,7 +311,7 @@
 
 {% if Runs %}
 <div id="runs-tab">
-<table class="tablesorter" id="runs">
+<table class="table table-hover" id="runs">
  <thead>
   <tr>
     <th>{% trans "Years"%}</th>
@@ -406,20 +349,29 @@
 <h2>{% trans "Notes"%}</h2>
 <p>{{Band.notes|linebreaksbr|bbrize}}</p>
 {% endif %}
+</div>
 {% endblock %}
 
 {% block scriptfooter %}
-<script type="text/javascript">
+<script>
+  $(document).ready(function(){
+    $("#contests").tablesorter();
+    $("#whitfriday").tablesorter();
+    $("#previousnames").tablesorter();
+    $("#regradings").tablesorter();
+    $("#runs").tablesorter();
+  });
+
 	$(document).on('click', '.hide_highlights', function(){
-		$('.tablesorter tr.result-1').addClass('result-off-1').removeClass('result-1');
-		$('.tablesorter tr.result-2').addClass('result-off-2').removeClass('result-2');
-		$('.tablesorter tr.result-3').addClass('result-off-3').removeClass('result-3');
+		$('tr.result-1').addClass('result-off-1').removeClass('result-1');
+		$('tr.result-2').addClass('result-off-2').removeClass('result-2');
+		$('tr.result-3').addClass('result-off-3').removeClass('result-3');
 		$('.hide_highlights').removeClass('hide_highlights').addClass('show_highlights').html('{% trans "Show Gold/Silver/Bronze Highlight"%}');
 	});
 	$(document).on('click', '.show_highlights', function(){
-		$('.tablesorter tr.result-off-1').addClass('result-1').removeClass('result-off-1');
-		$('.tablesorter tr.result-off-2').addClass('result-2').removeClass('result-off-2');
-		$('.tablesorter tr.result-off-3').addClass('result-3').removeClass('result-off-3');
+		$('tr.result-off-1').addClass('result-1').removeClass('result-off-1');
+		$('tr.result-off-2').addClass('result-2').removeClass('result-off-2');
+		$('tr.result-off-3').addClass('result-3').removeClass('result-off-3');
 		$('.show_highlights').removeClass('show_highlights').addClass('hide_highlights').html('{% trans "Hide Gold/Silver/Bronze Highlight"%}');
 	});
 	
@@ -583,7 +535,6 @@ $("#flot_chart").bind("plothover", function (event, pos, item) {
     $("#flot_chart_tooltip").remove();
   }
 });
-
 {% endif %}
 </script>
 {% endblock %}

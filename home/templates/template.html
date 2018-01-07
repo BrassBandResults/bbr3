@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/site_media/css2017/bbr3.css"/>
   <link rel="stylesheet" href="/site_media/css2017/bbr3-print.css" media="print"/>
   <link rel="stylesheet" href="/site_media/js/tablesorter/theme.bootstrap_4.css">
+  <link rel="stylesheet" href="/site_media/jqueryui/jquery-ui.min.css">
   {% block head %}{% endblock %}
 </head>
 <body {% block bodyattrib %}{% endblock %}>
@@ -136,7 +137,7 @@
 {% endblock %}
 
 <br/><br/>
-<footer class="mainfooter bg-dark" role="contentinfo">
+<footer class="bg-dark text-white pt-2 pb-2" role="contentinfo">
 {% block feedback %}
 <div class="footer-bottom">
  <div id="commentbox" class="container">
@@ -180,10 +181,15 @@
   ga('send', 'pageview');
 
 </script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <script src="/site_media/js/tablesorter/jquery.tablesorter.min.js"></script>
+<script src="/site_media/jqueryui/jquery-ui.min.js"></script>
+<script src="/site_media/js/flot/jquery.flot.min.js"></script>
+<script src="/site_media/js/flot/jquery.flot.time.min.js"></script>
+<script src="/site_media/js/flot/jquery.flot.resize.min.js"></script>
+<script src="/site_media/js/flot/jquery.flot.pie.min.js"></script>
 {%block scriptfooter%}{%endblock%}
 </body>
 </html>

@@ -5,8 +5,8 @@
 
 {%block description %}List of years with contest results{% endblock %}
 
-{%block head %}
-<script type="text/javascript">
+{%block scriptfooter %}
+<script>
   $(document).ready(function(){
     $("#events").tablesorter({widgets: ['zebra']});
   
@@ -72,6 +72,7 @@ function showTooltip(x, y, contents) {
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{% trans "Year List"%}</h1>
 <p>The <b>Bands Competing</b> figure is the number of bands from {{Region.name}} that have posted one or more results in that year.</p>
 <p>The <b>Contests Competed In</b> figure is the count of contests bands from {{Region.name}} competed in</p>
@@ -81,7 +82,7 @@ function showTooltip(x, y, contents) {
 {% if user.profile.pro_member %}
 <div id="barchart" style="width:100%;height:200px;"></div>
 {% endif %}
-<table id="events" class="tablesorter">
+<table id="events" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Year"%}</th>
@@ -102,4 +103,5 @@ function showTooltip(x, y, contents) {
 {% endfor %}
 	</tbody>
 </table>
+</div>
 {% endblock %}

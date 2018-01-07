@@ -9,17 +9,8 @@
 
 {%block description%}Details about the brass band contest {{ContestEvent.name}} on {{ContestEvent.event_date}}{%endblock%}
 
-{%block contests-selected%}class="selected"{%endblock%}
-
-{%block head %}
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("#results").tablesorter({widgets: ['zebra'], headers: {1: {sorter:'flagAlpha'} }});
-  });
-</script>
-{% endblock %}
-
 {% block content %}
+<div class="container pt-1">
 <h1 class="contest-event"><a href="/contests/{{ContestEvent.contest.slug}}/">{{ContestEvent.name}}</a></h1>
 <span class="screenonly"> 
 {% if ShowEdit %}
@@ -127,7 +118,7 @@
 		<td align="right">{% if ContestEventNext %} <a href="/contests/{{ContestEventNext.contest.slug}}/{{ContestEventNext.date_of_event|date:"Y-m-d"}}/">{% trans "Next Event"%}</a> <img src="/site_media/icons/arrow_right.png" border="0"/>{%endif%}</td>
 	</tr>
 </table>
-<table id="results" class="tablesorter">
+<table id="results" class="table table-hover">
 	<thead>
 		<tr>
 {% if not ContestEvent.moreThanThreeMonthsInFuture %}			
@@ -341,11 +332,15 @@
 {% endfor %} 
 </div>
 {% endif %}
-
+</div>
 {% endblock %}
 
 {% block scriptfooter %}
-<script type="text/javascript">
+<script>
+  $(document).ready(function(){
+    $("#results").tablesorter();
+  });
+
 	$(document).on('click', '.hide_highlights', function(){
 		$('.tablesorter tr.result-1').addClass('result-off-1').removeClass('result-1');
 		$('.tablesorter tr.result-2').addClass('result-off-2').removeClass('result-2');

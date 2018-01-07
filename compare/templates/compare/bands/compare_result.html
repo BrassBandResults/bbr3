@@ -9,28 +9,29 @@
 
 {%block bands-compare-selected%}class="selected"{%endblock%}
 
-{%block head%}
-<script type="text/javascript">
+{%block scriptfooter%}
+<script">
   $(document).ready(function(){
-    $("#results-compare").tablesorter({headers:{1: {sorter: 'dayMonthYear'} }, widgets: ['zebra']});
+    $("#results-compare").tablesorter();
   });
 </script>
 {%endblock%}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{% trans "Compare"%} <a href="/bands/{{BandOne.slug}}/">{{BandOne.name}}</a> {% trans "with"%} <a href="/bands/{{BandTwo.slug}}/">{{BandTwo.name}}</a></h1>
 {% if Filter %}
-<p class="filter_notify">This page is filtered to show only results from <a href="/contests/{{ContestSlug}}/">{{ContestName}}</a>.  [<a href="/compare/bands/{{BandOne.slug}}/{{BandTwo.slug}}/">Remove Filter</a>].
+<p class="filter_notify">This page is filtered to show only results from <a href="/contests/{{ContestSlug}}/">{{ContestName}}</a>.  [<a href="/compare/bands/{{BandOne.slug}}/{{BandTwo.slug}}/">Remove Filter</a>].</p>
 {% endif %}
 {% if CompareResults %}
 <p>{% trans "This table lists results from contests where the two bands have competed against each other."%}  {{BandOne.name}} {% trans "have been better"%} {{BandOneWins}} {% trans "times"%}, {{BandTwo.name}} {% trans "have been better"%} {{BandTwoWins}} {% trans "times"%}.</p>
 <table width="100%">
 	<tr>
-		<td class="BandOneBar" width="{{BandOnePercent}}%">{{BandOneWins}}&nbsp;({{BandOnePercent}}%)</td>
-		<td class="BandTwoBar" width="{{BandTwoPercent}}%">{{BandTwoWins}}&nbsp;({{BandTwoPercent}}%)</td>
+		<td class="BandOneBar border border-dark" width="{{BandOnePercent}}%">{{BandOneWins}}&nbsp;({{BandOnePercent}}%)</td>
+		<td class="BandTwoBar border border-dark" width="{{BandTwoPercent}}%">{{BandTwoWins}}&nbsp;({{BandTwoPercent}}%)</td>
 	</tr>
 </table>
-<table id="results-compare" class="tablesorter">
+<table id="results-compare" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{{BandOne.name}}</th>
@@ -69,4 +70,5 @@
 </ul>
 {% endif %}
 {% endif %}
+</div>
 {% endblock %}
