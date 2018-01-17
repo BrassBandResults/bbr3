@@ -9,8 +9,6 @@
 
 {%block description%}Details about the brass band contest {{ContestEvent.name}} on {{ContestEvent.event_date}}{%endblock%}
 
-{%block contests-selected%}class="selected"{%endblock%}
-
 {% block content %}
 <div class="container pt-1">
 <h1 class="contest-event"><a href="/contests/{{ContestEvent.contest.slug}}/">{{ContestEvent.name}}</a></h1>

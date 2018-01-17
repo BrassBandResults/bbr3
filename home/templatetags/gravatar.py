@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
-# (c) 2012 Tim Sawyer, All Rights Reserved
+# (c) 2012,2018 Tim Sawyer, All Rights Reserved
 
 from django import template
+from django.utils.safestring import mark_safe
 from django.utils.html import escape
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -21,20 +21,16 @@ def get_user(user):
 def gravatar_for_email(email, size=80):
     url = "%savatar/%s/?" % (GRAVATAR_URL_PREFIX, hashlib.md5(email.lower().encode('utf-8')).hexdigest())
     url += urllib.parse.urlencode({"s": str(size), "default": GRAVATAR_DEFAULT_IMAGE})
-    return escape(url)
+    return url
 
 def gravatar_for_user(user, size=80):
     user = get_user(user)
     return gravatar_for_email(user.email, size)
 
-def gravatar_img_for_email(email, size=80):
-    url = gravatar_for_email(email, size)
-    return """<img src="%s" height="%s" width="%s" border="0"/>""" % (escape(url), size, size)
-
 def gravatar_img_for_user(user, size=80):
     user = get_user(user)
     url = gravatar_for_user(user)
-    return """<img src="%s" alt="Avatar for %s" height="%s" width="%s" border="0"/>""" % (escape(url), user.username, size, size)
+    return mark_safe("""<img src="%s" alt="Avatar for %s" height="%s" width="%s" border="0"/>""" % (escape(url), user.username, size, size))
 
 def gravatar(user, size=80):
     # backward compatibility
@@ -44,4 +40,3 @@ register.simple_tag(gravatar)
 register.simple_tag(gravatar_for_user)
 register.simple_tag(gravatar_for_email)
 register.simple_tag(gravatar_img_for_user)
-register.simple_tag(gravatar_img_for_email)

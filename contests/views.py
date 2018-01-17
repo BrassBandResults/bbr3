@@ -624,6 +624,8 @@ def autodraw(request, pContestSlug, pDate, pBandSlug, pDrawNumber):
     
     return HttpResponseRedirect('/contests/%s/%s' % (pContestSlug, pDate))
     
+    
+@login_required_pro_user
 def single_contest_event_form_guide(request, pContestSlug, pDate):
     """
     Show a single contest event form guide

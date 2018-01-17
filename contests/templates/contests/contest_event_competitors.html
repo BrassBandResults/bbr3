@@ -9,9 +9,8 @@
 
 {%block description%}Competitors at the brass band contest {{ContestEvent.name}} on {{ContestEvent.event_date}}{%endblock%}
 
-{%block contests-selected%}class="selected"{%endblock%}
-
 {% block content %}
+<div class="container pt-1">
 <h1 class="contest-event"><a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/">{{ContestEvent.name}}</a> Competitors</h1>
 <h2>{{ContestEvent.event_date_with_day}}</h2>
 <p><a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/">&lt;&lt;Back to results</a></p>
@@ -29,5 +28,5 @@
 <p>Private User</p>
 {% endif %}
 {% endfor %}
-
+</div>
 {% endblock %}

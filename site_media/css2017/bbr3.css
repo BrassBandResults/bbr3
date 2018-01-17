@@ -125,3 +125,17 @@
     background: none repeat scroll 0 0 #000000;
     color: #fff;
 }
+
+
+/* Gold/Silver/Bronze results highlight */
+tbody tr.result-1 td, td.result-1 {
+    background-color: gold !important;  
+}
+
+tbody tr.result-2 td, td.result-2 {
+    background-color: silver !important;
+}
+
+tbody tr.result-3 td, td.result-3 {
+    background-color: #ac9a77 !important;
+}

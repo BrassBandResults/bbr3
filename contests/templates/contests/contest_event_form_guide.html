@@ -9,9 +9,8 @@
 
 {%block description%}Details about the brass band contest {{ContestEvent.name}} on {{ContestEvent.event_date}}{%endblock%}
 
-{%block contests-selected%}class="selected"{%endblock%}
-
 {% block content %}
+<div class="container pt-1">
 <h1 class="contest-event"><a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/">{{ContestEvent.name}}</a> Form Guide</h1>
 <h2>{{ContestEvent.event_date_with_day}}</h2>
 <p><a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/">&lt;&lt;Back to results</a></p>
@@ -80,7 +79,7 @@ Competed at this contest <a href="/bands/{{band.slug}}/{{ContestEvent.contest.sl
 </div> <!-- end each band details -->
 {% endfor %}
 </div> <!-- end form guide -->
-
+</div>
 {% endblock %}
 
 {% block scriptfooter %}

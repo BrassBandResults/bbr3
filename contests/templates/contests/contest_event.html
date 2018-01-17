@@ -45,7 +45,7 @@
 	  <th>{% trans "Test Piece"%}:</th>
 	  <td class="test-piece">
 	    <a href="/pieces/{{ContestEvent.test_piece.slug}}/">{{ContestEvent.test_piece.name}}</a>
-	    {% if ContestEvent.contest_type.own_choice %} & Own Choice{% endif %}
+	    {% if ContestEvent.contest_type.own_choice %} &amp; Own Choice{% endif %}
 	    <br/> 
 	    - {% if ContestEvent.test_piece.composer %}<a href="/people/{{ContestEvent.test_piece.composer.slug}}/">{{ContestEvent.test_piece.composer.name}}</a>{%endif%} {% if ContestEvent.test_piece.arranger %} arr. <a href="/people/{{ContestEvent.test_piece.arranger.slug}}/">{{ContestEvent.test_piece.arranger.name}}</a>{%endif%}
 	  </td>
@@ -56,7 +56,7 @@
 	  <td>{{extraTestPiece.and_or}}</td>
 	  <td class="test-piece">
 	    <a href="/pieces/{{extraTestPiece.test_piece.slug}}/">{{extraTestPiece.test_piece.name}}</a><br/> - {% if extraTestPiece.test_piece.composer %}<a href="/people/{{extraTestPiece.test_piece.composer.slug}}/">{{extraTestPiece.test_piece.composer.name}}</a>{%endif%} {% if extraTestPiece.test_piece.arranger %} arr. <a href="/people/{{extraTestPiece.test_piece.arranger.slug}}/">{{extraTestPiece.test_piece.arranger.name}}</a>{%endif%}
-	  </td>
+	  </td> 
 	</tr>
 {% endfor %}
 {% endif %}
@@ -108,6 +108,8 @@
 </tr>
 </table>
 <br/>
+<button class="screenonly reset btn btn-outline-primary btn-sm float-right mb-1">{% trans "Reset Sort"%}</button>
+<button class="screenonly hide_highlights btn btn-outline-primary btn-sm float-right mb-1 mr-1">{% trans "Hide Highlight"%}</button>
 <table class="next-previous screenonly" width="100%">
 	<tr>
 		<td align="left">{% if PreviousSectionEvent %}<a href="/contests/{{PreviousSectionEvent.contest.slug}}/{{PreviousSectionEvent.date_of_event|date:"Y-m-d"}}/"><img src="/site_media/icons/arrow_up.png" border="0"/> {{PreviousSectionEvent.contest.name}} {{PreviousSectionEvent.date_of_event|date:"Y"}}</a>{%endif%}</td>
@@ -118,7 +120,7 @@
 		<td align="right">{% if ContestEventNext %} <a href="/contests/{{ContestEventNext.contest.slug}}/{{ContestEventNext.date_of_event|date:"Y-m-d"}}/">{% trans "Next Event"%}</a> <img src="/site_media/icons/arrow_right.png" border="0"/>{%endif%}</td>
 	</tr>
 </table>
-<table id="results" class="table table-hover">
+<table id="results" class="table table-hover table-sm">
 	<thead>
 		<tr>
 {% if not ContestEvent.moreThanThreeMonthsInFuture %}			
@@ -237,15 +239,16 @@
 {% endfor %}
 	</tbody>
 </table>
-<table class="next-previous screenonly" width="90%">
+<table class="next-previous screenonly" width="100%">
 	<tr>
 		<td align="left">{% if ContestEventPrevious %}<img src="/site_media/icons/arrow_left.png" border="0"/> <a href="/contests/{{ContestEventPrevious.contest.slug}}/{{ContestEventPrevious.date_of_event|date:"Y-m-d"}}/">Previous Event</a> {%endif%}</td>
 		<td align="right">{% if ContestEventNext %} <a href="/contests/{{ContestEventNext.contest.slug}}/{{ContestEventNext.date_of_event|date:"Y-m-d"}}/">Next Event</a> <img src="/site_media/icons/arrow_right.png" border="0"/>{%endif%}</td>
 	</tr>
 </table>
-<p class="screenonly">[<a class="hide_highlights">{% trans "Hide Gold/Silver/Bronze Highlight"%}</a>]</p>
-{% if Statistics %}
-<p>Correlation coefficients of adjudicator rankings; 1 = perfect correlation, 0 = no correlation, -1 = backwards correlation.</p>
+
+{% if Statistics and user.profile.pro_member %}
+<div class="border border-info rounded p-3">
+<p>Correlation coefficients of multiple adjudicator rankings; 1 = perfect correlation, 0 = no correlation, -1 = backwards correlation.</p>
 <table>
   <tr>
     <th></th>
@@ -272,7 +275,10 @@
 {% endif %}    
   </tr>
 </table>
+</div>
+<br/>
 {% endif %}
+
 <p>{{ContestEvent.notes|safe|linebreaksbr}}</p>
 <table width="100%"><tr>
 <td width="75%">
@@ -341,17 +347,22 @@
     $("#results").tablesorter();
   });
 
+   $('button.reset').click(function(){
+      $('#results').trigger('sortReset');
+      return false;
+    });
+
 	$(document).on('click', '.hide_highlights', function(){
 		$('.tablesorter tr.result-1').addClass('result-off-1').removeClass('result-1');
 		$('.tablesorter tr.result-2').addClass('result-off-2').removeClass('result-2');
 		$('.tablesorter tr.result-3').addClass('result-off-3').removeClass('result-3');
-		$('.hide_highlights').removeClass('hide_highlights').addClass('show_highlights').html('Show Gold/Silver/Bronze Highlight');
+		$('.hide_highlights').removeClass('hide_highlights').addClass('show_highlights').html('Show Highlight');
 	});
 	$(document).on('click','.show_highlights', function(){
 		$('.tablesorter tr.result-off-1').addClass('result-1').removeClass('result-off-1');
 		$('.tablesorter tr.result-off-2').addClass('result-2').removeClass('result-off-2');
 		$('.tablesorter tr.result-off-3').addClass('result-3').removeClass('result-off-3');
-		$('.show_highlights').removeClass('show_highlights').addClass('hide_highlights').html('Hide Gold/Silver/Bronze Highlight');
+		$('.show_highlights').removeClass('show_highlights').addClass('hide_highlights').html('Hide Highlight');
 	});
 	
 	function confirm_take_ownership() {
