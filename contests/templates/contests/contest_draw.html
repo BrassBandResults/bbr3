@@ -12,8 +12,9 @@
 {%block contests-selected%}class="selected"{%endblock%}
 
 {% block content %}
+<div class="container pt-1">
 <h1 class="contest"><a href="/contests/{{Contest.slug}}/">{{Contest.name}}</a> Draw Number {{DrawNumber}}</h1>
-<table id="results" class="tablesorter">
+<table id="results" class="table table-hover">
 	<thead>
 		<tr>
 		  <th>{% trans "Date"%}</th>
@@ -54,6 +55,7 @@
 	</tbody>
 </table>
 <p class="screenonly">[<a class="hide_highlights">{% trans "Hide Gold/Silver/Bronze Highlight"%}</a>]</p>
+</div>
 {% endblock %}
 
 {% block scriptfooter %}

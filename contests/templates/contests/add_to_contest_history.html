@@ -6,8 +6,9 @@
 {%block title %}{{ContestEvent.name}} - Add To Contest History{% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{% trans "Select Band"%}</h1>
-<p>{% trans "You can select the contests you took part in and build up your own contest history on the site.  This will be available from your user profile, although you can elect to hide the history from other users if you want to."%}</p>
+<p>{% trans "You can select the contests you took part in and build up your own contest history on the site.  This will be available from your" %} <a href="/users/{{user.username}}/">{% trans "user profile"%}</a>{% trans ", although you can elect to hide the history from other users if you want to."%}</p>
 <h2>{{ContestEvent.name}} {{ContestEvent.event_date}}</h2>  
 <p>{% trans "Please select the band you played with at this contest."%}</p>
 
@@ -25,8 +26,9 @@
 {% endfor %}
 </ul>
 {% if ContestEvent.not_complete %}
-<p>{% trans "Is the result you're looking for missing?"%}  <a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/5/">{% trans "Add More Results"%}</a>.
+<p>{% trans "Is the result you're looking for missing?"%}  <a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/5/">{% trans "Add More Results"%}</a>.</p>
 {% endif %}
+</div>
 {% endblock %}
 
 {% block feedback %}{% endblock %}

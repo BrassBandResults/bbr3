@@ -308,7 +308,7 @@
 
 {% if ContestResults %}
 <div id="contests-tab">
-<table id="contests" class="tablesorter">
+<table id="contests" class="table table-hover">
 	<thead>
 		<tr>
 			<th>Date</th>
@@ -367,7 +367,7 @@
 {% if WhitFridayOwner %}
 <form action="/bands/{{Band.slug}}/WhitFridayConductors/" method="post">{%csrf_token%}
 {% endif %}     
-<table id="whitfriday" class="tablesorter">
+<table id="whitfriday" class="table table-hover">
 	<thead>
 		<tr>
 {% if WhitFridayOwner %}
@@ -429,7 +429,7 @@
 
 {% if Runs %}
 <div id="runs-tab">
-<table class="tablesorter" id="runs">
+<table class="table table-hover" id="runs">
  <thead>
   <tr>
     <th>Years</th>

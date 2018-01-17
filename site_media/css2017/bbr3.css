@@ -59,21 +59,6 @@
     font-size: 10px;
 }
 
-/* Link Buttons */
-
-#link_buttons a {
-    background: none repeat scroll 0 0 #DDDDDD;
-    border-radius: 4px;
-    font-weight: bold;
-    padding: 4px;
-    text-decoration: none;
-}
-
-#link_buttons a:hover {
-    background: none repeat scroll 0 0 #000000;
-    color: #fff;
-}
-
 /* flot charts */
 #flot_chart {
   width: 100%;
@@ -138,4 +123,32 @@ tbody tr.result-2 td, td.result-2 {
 
 tbody tr.result-3 td, td.result-3 {
     background-color: #ac9a77 !important;
+}
+
+/* User profile tabs */
+
+#UserProfile #tabs {
+ border-bottom: 1px solid black;
+}
+
+#UserProfile #tabs ul {
+ margin-bottom: 2px;
+ padding-left: 5px;
+}
+
+#UserProfile #tabs li {
+  list-style-type: none;
+  display: inline;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-weight: bold;
+}
+
+#UserProfile #tabs li.selected {
+  border-bottom: 1px solid white;
 }

@@ -11,15 +11,20 @@
 {% block adbarBottom %}<br/>{% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <div id="UserProfile">
-<h1>{{User.username}}
+<h1>{{User.username}}</h1>
+<span class="screenonly">
  [<a href="/users/{{User.username}}/change_password/">change password</a>]
+{% if user.is_authenticated and user.profile.superuser %}
+ [<a href="/users/{{User.username}}/talk/">talk</a>]
+{% endif %} 
 {% if user.is_superuser %}
  [<a href="/adminsite/auth/user/{{User.id}}/">admin user</a>]
  [<a href="/adminsite/users/userprofile/{{User.profile.id}}/">admin profile</a>]
 {%endif%}
-</h1>
-<div id="avatar">
+</span>
+<div id="avatar" class="float-right">
   {% gravatar User 80 %}<br/>
   <b>{{Profile.points}}</b><br/>
   reputation<br/>
@@ -40,16 +45,13 @@
     <li><a href="/users/{{User.username}}/contest_history/" title="Personal Contest History">Performances{% if PerformanceCount %} ({{PerformanceCount}}){%endif%}</a></li>
     <li><a href="/users/{{User.username}}/messages/" title="Site Messages">Messages{% if MessageCount%} ({{MessageCount}}){%endif%}</a></li>
     <li class="selected">Classifieds</a></li>
-{% if User.is_superuser %}    
-    <li><a href="/users/{{User.username}}/notifications/" title="Change Email Options">Notifications</a></li>
-{% endif %}    
   </ul>
 </div>
 
 <div id="Classifieds">
 
 <h2>People</h2>
-<table class="tablesorter">
+<table class="table table-hover">
 <tr>
   <th>Name</th>
   <th>Status</th>
@@ -63,6 +65,7 @@
 </tr>
 {% endfor %}
 </table>
+</div>
 </div>
 </div>
 {%endblock%}

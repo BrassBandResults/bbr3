@@ -11,13 +11,14 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Date Ranges</h1>
 <p>&lt;&lt;&lt;<a href="/users/{{user.username}}/contest_history/">back to your profile</a></p>
 <p>Use this page to specify a band and a date range for when you started and left.</p>
 <h2>Your Band History</h2>
 {% if DateRanges %}
 <p>Use the import link to look for contests in the specific date range.</p>
-<table class="tablesorter">
+<table class="table table-hover">
 	<thead>
 		<tr>
 			<th>Band</th>
@@ -51,6 +52,7 @@
     <tr><td></td><td><input type="submit" value="Add Date Range"></td></tr>
 </table>
 </form>
+</div>
 {% endblock %}
 
 {%block scriptfooter%}

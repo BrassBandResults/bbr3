@@ -15,6 +15,7 @@
 {%block feedback %}{% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Account Activated</h1>
 {% if account %}
 <p>Your account for user <b>{{account.username}}</b> has been activated.</p>
@@ -22,4 +23,5 @@
 {% else %}
 <p>Your account could not be activated. Please contact us for more details.</p>
 {% endif %}
+</div>
 {% endblock %}

@@ -10,93 +10,21 @@
 {% block adbar %}<br/>{%endblock%}
 {% block adbarBottom %}<br/>{% endblock %}
 
-{%block head %}
-<script type="text/javascript">
-  $(document).ready(function(){
-    
-$("#contest-history").tablesorter({headers:{0: {sorter: false}, 1: {sorter: 'dayMonthYear'}, 6: {sorter: 'digit'}}, widgets: ['zebra']});    
-    
-{% if ResultsWithPosition > 0 %}
-{% if Wins > 0 or TopSixNotWin > 0 %}
-  var lPieData = [
-    { label: "Wins", data: {{Wins}}, color: "#ffc600" },  
-    { label: "Top Six", data: {{TopSixNotWin}}, color: "#99ccff" },
-    { label: "Unplaced", data: {{Unplaced}}, color: "#316497" }
-    ];
-  $.plot($("#flot_pie"), lPieData,
-  {
-      series: {
-        pie: {
-          show: true,
-          label: {
-            formatter: function(label, series){
-              return '<div style="font-size:8pt;text-align:center;padding:2px;color:black;">'+label+'<br/>'+series.data[0][1]+" (" +Math.round(series.percent)+'%)</div>';
-            }
-          }
-        }
-      },
-      legend: {
-          show: false
-      }
-  });
-{% endif %}       
-{% endif %}   
-  });
-  
-function removeChecked(){
-	$('#contest-history tbody tr').each(function(){
-		$this = $(this);
-		var lCheckbox = $this.find("input.performanceCheckbox");
-		var lResultId = lCheckbox.prop('id').substring(1);
-		var lChecked = lCheckbox.prop('checked');
-		if (lChecked) {
-	      $this.css("background-color","#FF3700");
-	      $this.fadeOut(400, function(){
-	            $this.remove();
-	            $.get('/users/{{user.username}}/contesthistory/'+lResultId+'/remove_contest/');
-	        });
-		}
-	});
-}
-
-function setFirstPositionAndRecurse(pList){
-	var lFirstOne = pList.first();
-	var lRestOfList = pList.slice(1);
-	
-	var lPlayerPositionSerial = $('#positionDropList').val();
-	var lPlayerPositionName = $("#positionDropList option:selected").text();
-	
-	var lCheckbox = lFirstOne.find("input.performanceCheckbox");
-	
-	var lResultId = lCheckbox.prop('id').substring(1);
-	var lChecked = lCheckbox.prop('checked');
-	if (lChecked) {
-      $.get('/users/{{user.username}}/contesthistory/'+lResultId+'/set_position/' + lPlayerPositionSerial + '/', function(){
-    	  lFirstOne.find('#position-' + lResultId).html(lPlayerPositionName);
-    	  setFirstPositionAndRecurse(lRestOfList);
-      });
-	} else {
-	  setFirstPositionAndRecurse(lRestOfList);
-	}
-}
-
-function setPosition(){
-	setFirstPositionAndRecurse($('#contest-history tbody tr'));
-}
-
-</script>
-{% endblock %}
-
 {% block content %}
+<div class="container pt-1">
 <div id="UserProfile">
-<h1>{{User.username}}
+<h1>{{User.username}}</h1>
+<span class="screenonly">
  [<a href="/users/{{User.username}}/change_password/">change password</a>]
+{% if user.is_authenticated and user.profile.superuser %}
+ [<a href="/users/{{User.username}}/talk/">talk</a>]
+{% endif %} 
 {% if user.is_superuser %}
  [<a href="/adminsite/auth/user/{{User.id}}/">admin user</a>]
  [<a href="/adminsite/users/userprofile/{{User.profile.id}}/">admin profile</a>]
 {%endif%}
-</h1>
-<div id="avatar">
+</span>
+<div id="avatar" class="float-right">
   {% gravatar User 80 %}<br/>
   <b>{{Profile.points}}</b><br/>
   reputation<br/>
@@ -116,10 +44,7 @@ function setPosition(){
     <li><a href="/users/{{User.username}}/results_added/" title="Results Added to Site">Results{% if ContestCount %} ({{ContestCount}}){%endif%}</a></li>
     <li class="selected">Performances{% if PerformanceCount %} ({{PerformanceCount}}){%endif%}</li>
     <li><a href="/users/{{User.username}}/messages/" title="Site Messages">Messages{% if MessageCount%} ({{MessageCount}}){%endif%}</a></li>
-    <li><a href="/users/{{User.username}}/classifieds/" title="Classified Profiles">Classifieds</a></li>
-{% if User.is_superuser %}    
-    <li><a href="/users/{{User.username}}/notifications/" title="Change Email Options">Notifications</a></li>
-{% endif %}   
+    <li><a href="/users/{{User.username}}/classifieds/" title="Classified Profiles">Classifieds</a></li> 
   </ul>
 </div>
 
@@ -136,7 +61,7 @@ function setPosition(){
 </form>
 <h2>Date Ranges</h2>
 {% if DateRanges %}
-<table class="tablesorter">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Band</th>
@@ -187,7 +112,7 @@ function setPosition(){
 {% endif %}
    [<a href="javascript:removeChecked()">remove ticked</a>] 
 </p>
-<table id="contest-history" class="tablesorter">
+<table id="contest-history" class="table table-hover">
   <thead>
     <tr>
       <th><input type="checkbox" id="toggleall"/></th>
@@ -241,15 +166,91 @@ function setPosition(){
 
 </div>
 </div>
+</div>
 {%endblock%}
 
 {% block feedback %}{% endblock %}
 
 {% block scriptfooter %}
-<script type="text/javascript">
-$('#toggleall').click(function(){
-	var lToggleAll = $('#toggleall').prop('checked');
-	$('.performanceCheckbox').prop('checked',lToggleAll);
-});
+<script>
+
+  $(document).ready(function(){
+
+  
+    $("#contest-history").tablesorter({headers:{0: {sorter: false}, 1: {sorter: 'dayMonthYear'}, 6: {sorter: 'digit'}}, widgets: ['zebra']});    
+        
+    {% if ResultsWithPosition > 0 %}
+    {% if Wins > 0 or TopSixNotWin > 0 %}
+      var lPieData = [
+        { label: "Wins", data: {{Wins}}, color: "#ffc600" },  
+        { label: "Top Six", data: {{TopSixNotWin}}, color: "#99ccff" },
+        { label: "Unplaced", data: {{Unplaced}}, color: "#316497" }
+        ];
+      $.plot($("#flot_pie"), lPieData,
+      {
+          series: {
+            pie: {
+              show: true,
+              label: {
+                formatter: function(label, series){
+                  return '<div style="font-size:8pt;text-align:center;padding:2px;color:black;">'+label+'<br/>'+series.data[0][1]+" (" +Math.round(series.percent)+'%)</div>';
+                }
+              }
+            }
+          },
+          legend: {
+              show: false
+          }
+      });
+    {% endif %}       
+    {% endif %}   
+
+    $('#toggleall').on('change', function(){
+      var lToggleAll = $('#toggleall').prop('checked');
+      $('.performanceCheckbox').prop('checked',lToggleAll);
+    });
+
+  });
+  
+function removeChecked(){
+  $('#contest-history tbody tr').each(function(){
+    $this = $(this);
+    var lCheckbox = $this.find("input.performanceCheckbox");
+    var lResultId = lCheckbox.prop('id').substring(1);
+    var lChecked = lCheckbox.prop('checked');
+    if (lChecked) {
+        $this.css("background-color","#FF3700");
+        $this.fadeOut(400, function(){
+              $this.remove();
+              $.get('/users/{{user.username}}/contesthistory/'+lResultId+'/remove_contest/');
+          });
+    }
+  });
+}
+
+function setFirstPositionAndRecurse(pList){
+  var lFirstOne = pList.first();
+  var lRestOfList = pList.slice(1);
+  
+  var lPlayerPositionSerial = $('#positionDropList').val();
+  var lPlayerPositionName = $("#positionDropList option:selected").text();
+  
+  var lCheckbox = lFirstOne.find("input.performanceCheckbox");
+  
+  var lResultId = lCheckbox.prop('id').substring(1);
+  var lChecked = lCheckbox.prop('checked');
+  if (lChecked) {
+      $.get('/users/{{user.username}}/contesthistory/'+lResultId+'/set_position/' + lPlayerPositionSerial + '/', function(){
+        lFirstOne.find('#position-' + lResultId).html(lPlayerPositionName);
+        setFirstPositionAndRecurse(lRestOfList);
+      });
+  } else {
+    setFirstPositionAndRecurse(lRestOfList);
+  }
+}
+
+function setPosition(){
+  setFirstPositionAndRecurse($('#contest-history tbody tr'));
+}
 </script>
 {% endblock %}

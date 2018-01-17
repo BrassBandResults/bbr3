@@ -11,6 +11,7 @@
 {%block contests-selected%}class="selected"{%endblock%}
 
 {% block content %}
+<div class="container pt-1">
 <h1 class="contest-event"><a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/">{{ContestEvent.name}}</a> 
     {% if user.is_staff and perms.contests.change_contestevent %}[<a href="/adminsite/contests/contestevent/{{ContestEvent.id}}/">admin</a>]{% endif %}
 </h1>
@@ -22,4 +23,5 @@
   {% endfor %}
 </div>
 <p>&lt;&lt;&lt; <a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/">{% trans "Back to Results"%}</a></p>
+</div>
 {% endblock %}

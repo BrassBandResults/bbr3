@@ -16,6 +16,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1><a href="/contests/{{ContestGroup.actual_slug}}/">{{ContestGroup.name}}</a> {{Year}} 
   {% if user.is_staff and perms.contests.change_contestgroup %}[<a href="/adminsite/contests/contestgroup/{{ContestGroup.id}}/">admin</a>]{%endif%}
 </h1>
@@ -33,7 +34,7 @@
     </td>
   </tr>
 </table>
-<table id="contests" class="tablesorter">
+<table id="contests" class="table table-hover">
 	<thead>
 		<tr>
       <th>{% trans "Date"%}</th>
@@ -69,4 +70,5 @@
 {% endfor %}
 	</tbody>
 </table>
+</div>
 {% endblock %}

@@ -1,9 +1,0 @@
-Conductor Alias Shown
-
-Alias: {{ThingNew.name|safe}}
-Conductor: {{ThingNew.conductor.name|safe}}
-
-Last Changed By: {{ThingNew.lastChangedBy.username}} on {{ThingNew.last_modified}}
-Owner: {{ThingNew.owner.username}}, created {{ThingNew.created}}
-
-https://brassbandresults.co.uk/conductors/{{ThingNew.conductor.slug}}/

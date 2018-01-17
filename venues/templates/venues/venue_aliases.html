@@ -15,7 +15,7 @@
 <h1 class="band">{{Venue.name}} {% trans "Aliases"%}</h1>
 <p>&lt;&lt;&lt; {% trans "Back to"%} <a href="/venues/{{Venue.slug}}/">{{Venue.name}}</a></p>
 <form action="." method="post">{% csrf_token %}
-<table id="aliases" class="tablesorter">
+<table id="aliases" class="table table-hover">
 <thead>
  <tr>
   <th>{% trans "Alias Name"%}</th>

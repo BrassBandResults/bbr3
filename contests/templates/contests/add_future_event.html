@@ -19,6 +19,7 @@
 {%endblock%}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{% trans "Add Future Event for"%} {{Contest.name}}</h1>
 <form action="." method="post">{% csrf_token %}
 <table>
@@ -26,4 +27,5 @@
 	<tr><th></th><td><input type="submit" value="{% trans "Save Future Event"%}"/></td></tr>
 </table>
 </form>
+</div>
 {% endblock %}

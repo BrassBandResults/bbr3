@@ -1,1 +1,0 @@
-Edit Composer: {{ThingNew.name|safe}}

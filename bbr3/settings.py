@@ -177,3 +177,5 @@ SUFFIXES = (
             ('II','II'),
             ('III','III'),
            )
+
+UNKNOWN_PERSON_ID = 310730

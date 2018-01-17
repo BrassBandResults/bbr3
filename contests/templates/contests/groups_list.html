@@ -16,6 +16,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{% trans "Contest Groups"%}</h1>
 <p>This page allows contest groups to be maintained.  Edit a specific contest to add it to a group.</p>
 <p>There are {{GroupCount}} Contest Groups.</p>
@@ -24,7 +25,7 @@
     <input type="text" name="groupname"/> <input type="submit" value="Add New Group"/>
   </form>
 </p>
-<table id="groups" class="tablesorter">
+<table id="groups" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Name"%}</th>
@@ -49,4 +50,5 @@
 {% endfor %}
 	</tbody>
 </table>
+</div>
 {% endblock %}

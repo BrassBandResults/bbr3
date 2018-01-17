@@ -18,6 +18,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{{User.username}}
 {% if user.is_superuser %}
  [<a href="/adminsite/auth/user/{{User.id}}/">admin user</a>]
@@ -41,7 +42,7 @@
 	  <li><a href="#results">Contests Added To Site</a></li>
   </ul>
 <div id="history">
-	<table id="contest-history" class="tablesorter">
+	<table id="contest-history" class="table table-hover">
 	<thead>
 		<tr>
 			<th>Date</th>
@@ -83,7 +84,7 @@
 {%endfor%}
 </div>
 {% else %}
-<table id="contests" class="tablesorter">
+<table id="contests" class="table table-hover">
 	<thead>
 		<tr>
 			<th>Date</th>
@@ -100,6 +101,7 @@
     </tbody>
 </table>
 {%endif%}
+</div>
 </div>
 </div>
 {% endblock %}

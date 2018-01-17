@@ -86,6 +86,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{{User.username}}
 {% if user.is_superuser %}
  [<a href="/adminsite/auth/user/{{User.id}}/">admin user</a>]
@@ -101,7 +102,7 @@
 </table>
 {% if ClassifiedProfiles %}
 <h2>Classified Profiles</h2>
-<table class="tablesorter">
+<table class="table table-hover">
 <tr>
   <th>Name</th>
   <th>Status</th>
@@ -130,7 +131,7 @@
 <div id="feedback-tab">
 {% if OutstandingFeedback %}
 <p>Feedback not done will automatically be released to a queue after seven days.</p> 
-<table id="feedback" class="tablesorter">
+<table id="feedback" class="table table-hover">
 	<thead>
 		<tr>
 	    <th>Date</th>
@@ -168,7 +169,7 @@
 <div id="sentfeedback-tab">
 {% if SentFeedback %}
 <p>This tab lists feedbacks you have sent, up to a maximum of 50.</p> 
-<table id="sentfeedback" class="tablesorter">
+<table id="sentfeedback" class="table table-hover">
   <thead>
     <tr>
       <th>Date</th>
@@ -196,7 +197,7 @@
 <div id="allfeedback-tab">
 {% if AllFeedback %}
 <p>This tab shows your last 30 completed feedbacks.</p> 
-<table id="all-feedback" class="tablesorter">
+<table id="all-feedback" class="table table-hover">
 	<thead>
 		<tr>
 			<th>Feedback</th>
@@ -225,7 +226,7 @@
 {%endfor%}
 </div>
 {% else %}
-	<table id="contests" class="tablesorter">
+	<table id="contests" class="table table-hover">
 	<thead>
 		<tr>
 			<th>Date</th>
@@ -256,7 +257,7 @@
 </form>
 <h2>Date Ranges</h2>
 {% if DateRanges %}
-<table class="tablesorter">
+<table class="table table-hover">
 	<thead>
 		<tr>
 			<th>Band</th>
@@ -291,7 +292,7 @@
     <td width="40%"><div id="contest-history-pie"><div id="flot_pie"></div></div></td>
   </tr>
 </table>
-<table id="contest-history" class="tablesorter">
+<table id="contest-history" class="table table-hover">
 	<thead>
 		<tr>
 			<th>Date</th>
@@ -328,7 +329,7 @@
 </div>
 <div id="inbox-tab">
     {% if Messages %}
-<table id="messages" class="tablesorter">
+<table id="messages" class="table table-hover">
   <thead>
     <tr>
       <th>Title</th>
@@ -355,6 +356,7 @@
 {% else %}
 <p>Your inbox is empty</p>
 {% endif %}
+</div>
 </div>
 </div>
 {% endblock %}

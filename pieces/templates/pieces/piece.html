@@ -40,7 +40,7 @@
 
 {% if UserResultsForThisPiece %}
 <h2>{% trans "Your Performances"%} ({{UserResultsForThisPieceCount}})</h2>
-<table id="contest-history" class="tablesorter">
+<table id="contest-history" class="table table-hover">
   <thead>
     <tr>
       <th>{% trans "Date"%}</th>
@@ -65,7 +65,7 @@
 {% endif %}
 
 <h2>{% trans "Contest Test Pieces"%} ({{UsageSetTest.count}})</h2>
-<table id="testpieces" class="tablesorter">
+<table id="testpieces" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Date"%}</th>
@@ -114,7 +114,7 @@
 
 <h2>{% trans "Own Choice Test Pieces"%} ({{UsageOwnChoiceCount}})</h2>
 <p class="screenonly">[<a class="hide_highlights">{% trans "Hide Gold/Silver/Bronze Highlight"%}</a>]</p>
-<table id="ownchoice" class="tablesorter">
+<table id="ownchoice" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Date"%}</th>

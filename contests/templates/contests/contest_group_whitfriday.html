@@ -19,11 +19,12 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{{ContestGroup.name}}
   {% if user.is_staff and perms.contests.change_contestgroup %}[<a href="/adminsite/contests/contestgroup/{{ContestGroup.id}}/">admin</a>]{%endif%}
 </h1>
 <h2>{% trans "Overall Results"%}</h2>
-<table id="results" class="tablesorter">
+<table id="results" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Date"%}</th>
@@ -42,7 +43,7 @@
 	</tbody>
 </table>
 <h2>{% trans "Individual Contests"%}</h2>
-<table id="contests" class="tablesorter">
+<table id="contests" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Name"%}</th>
@@ -60,7 +61,7 @@
 </table>
 {% if ExtinctContests %}
 <h2>{% trans "Old Contest Sections"%}</h2>
-<table id="extinctcontests" class="tablesorter">
+<table id="extinctcontests" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Name"%}</th>
@@ -96,4 +97,5 @@
 <h2>{% trans "Notes"%}</h2>
 <p>{{ContestGroup.notes|safe|linebreaksbr}}</p>
 {% endif %}
+</div>
 {% endblock %}

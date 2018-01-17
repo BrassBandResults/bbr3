@@ -8,8 +8,9 @@
 {%block contests-selected%}class="selected"{%endblock%}
 
 {% block content %}
+<div class="container pt-1">
 <h1 class="contest-group"><a href="/contests/{{ContestGroup.actual_slug}}/">{{ContestGroup.name}}</a> {% trans "Overall Results"%} {{ContestDate.year}}</h1>
-<table id="results" class="tablesorter">
+<table id="results" class="table table-hover">
 	<thead>
 		<tr>
 			<th>{% trans "Position"%}</th>
@@ -27,6 +28,7 @@
 {% endfor %}
 	</tbody>
 </table>
+</div>
 {% endblock %}
 
 {% block scriptfooter %}

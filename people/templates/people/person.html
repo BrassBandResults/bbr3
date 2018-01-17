@@ -11,57 +11,15 @@
 
 {%block people-selected%}class="selected"{%endblock%}
 
-{%block head %}
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("#compositions").tablesorter({widgets: ['zebra']});
-    $("#arrangements").tablesorter({widgets: ['zebra']});
-    $("#adjudications").tablesorter({widgets: ['zebra']});
-    $("#contests").tablesorter({headers:{0: {sorter: 'dayMonthYear'} }, widgets: ['zebra']});
-    
-    {% if ShowTabs %}    
-		$("#tabs").tabs();
-    {% endif %}
-    
-    {% if user.profile.pro_member and ResultsWithPosition > 0 %}
-    {% if Wins > 0 or TopSixNotWin > 0 %}    
-        var lPieData = [
-        { label: "Wins", data: {{Wins}}, color: "#ffc600" },  
-        { label: "Top Six", data: {{TopSixNotWin}}, color: "#99ccff" },
-        { label: "Unplaced", data: {{Unplaced}}, color: "#316497" }
-        ];
-    	$.plot($("#flot_pie"), lPieData,
-        {
-          series: {
-            pie: {
-              show: true,
-              label: {
-                formatter: function(label, series){
-                  return '<div style="font-size:8pt;text-align:center;padding:2px;color:black;">'+label+'<br/>'+series.data[0][1]+" (" +Math.round(series.percent)+'%)</div>';
-                }
-              }
-            }
-          },
-          legend: {
-              show: false
-          }
-    	});
-    {% endif %}  
-    {% endif %}
-    
-  });  
- 
-</script>
-{% endblock %}
-
 {% block content %}
 <div class="container pt-1">
-<h1 class="person">{{Person.name}}
+<h1 class="person">{{Person.name}}</h1>
+<span class="screenonly"> 
 {% if ShowEdit %} [<a href="/people/edit/{{Person.slug}}/" title="Edit this person's details">{% trans "edit"%}</a>]{%endif%}
 {% if user.profile.superuser %} [<a href="/people/{{Person.slug}}/aliases/" title="Edit person aliases">{% trans "aliases"%}</a>]{% endif %}
 {% if user.is_staff and perms.pieces.change_composer %} [<a href="/adminsite/people/person/{{Person.id}}/" title="Edit this person in the admin site">admin</a>]{% endif %}
 {% if Profile and request.user == Profile.owner %}[<a href="/people/{{Person.slug}}/edit_classified/">edit profile</a>]{% endif %}
-</h1>
+</span>
 {% if Aliases %}
 <p class="alias"><b>{% trans "Also/previously known as"%}:</b> {%for alias in Aliases%}{{alias.name}}{%if not forloop.last%}, {%endif%}{%endfor%}</p>
 {% endif %} 
@@ -106,8 +64,8 @@
 {% if PiecesAsArrangerCount %}{% trans "Arranged"%} {{PiecesAsArrangerCount}} piece{{PiecesAsArrangerCount|pluralize:"s"}}{%endif%}
 </td>
 <td width="20%" align="right" valign="top" id="link_buttons">
-  {% if ContestResults %}<a href="/people/{{Person.slug}}/csv/">{% trans "Conducting as CSV" %}</a>{%endif%}
-  {% if not Profile %}<a href="/people/{{Person.slug}}/newclassified/?u={{user.username}}" class="profilead">{% trans "Personalise This Page"%}</a>{% endif %}
+  {% if ContestResults %}<a href="/people/{{Person.slug}}/csv/"> <button class="btn btn-outline-primary btn-sm float-left mb-1 mr-1">{% trans "Conducting as CSV" %}</button></a>{%endif%}
+  {% if not Profile %}<a href="/people/{{Person.slug}}/newclassified/?u={{user.username}}" class="profilead"> <button class="btn btn-outline-primary btn-sm float-left mb-1 mr-1">{% trans "Personalise This Page"%}</button></a>{% endif %}
 </td>
 </tr></table>
 <br/>
@@ -118,7 +76,7 @@
   	{% if user.profile.pro_member %}
       <div id="flot_pie"></div>
     {% else %}
-      <a href="/accounts/upgrade/"><img src="/site_media/pie_chart_if_upgrade.jpg"/></a>
+      <a href="/accounts/upgrade/"><img src="/site_media/upgrade/pie_chart_if_upgrade.jpg"/></a>
     {% endif%}
 {% endif %}
 
@@ -143,12 +101,11 @@
 {% if ContestResults %}
 	{% if user.profile.pro_member %}
 	  <div id="flot_chart"></div>
+    <p><strong>{% trans "Date Range (use slider to change)"%}:</strong> <span id="slider-amount"></span></p>
+    <div id="slider-range"></div>
 	{% else %}
-	  <a href="/accounts/upgrade/"><img src="/site_media/results_history_if_upgrade.jpg"/></a>
+	  <a href="/accounts/upgrade/"><img src="/site_media/upgrade/results_history_if_upgrade.jpg"/></a>
 	{% endif %}
-
-<p><strong>{% trans "Date Range (use slider to change)"%}:</strong> <span id="slider-amount"></span></p>
-<div id="slider-range"></div>
 <br/>
 {% endif %}
 
@@ -402,8 +359,46 @@
 {% endblock %}
 
 {% block scriptfooter %}
-{% if user.profile.superuser %}
-<script type="text/javascript">
+<script>
+  $(document).ready(function(){
+    $("#compositions").tablesorter({widgets: ['zebra']});
+    $("#arrangements").tablesorter({widgets: ['zebra']});
+    $("#adjudications").tablesorter({widgets: ['zebra']});
+    $("#contests").tablesorter({headers:{0: {sorter: 'dayMonthYear'} }, widgets: ['zebra']});
+    
+    {% if ShowTabs %}    
+    $("#tabs").tabs();
+    {% endif %}
+    
+    {% if user.profile.pro_member and ResultsWithPosition > 0 %}
+    {% if Wins > 0 or TopSixNotWin > 0 %}    
+        var lPieData = [
+        { label: "Wins", data: {{Wins}}, color: "#ffc600" },  
+        { label: "Top Six", data: {{TopSixNotWin}}, color: "#99ccff" },
+        { label: "Unplaced", data: {{Unplaced}}, color: "#316497" }
+        ];
+      $.plot($("#flot_pie"), lPieData,
+        {
+          series: {
+            pie: {
+              show: true,
+              label: {
+                formatter: function(label, series){
+                  return '<div style="font-size:8pt;text-align:center;padding:2px;color:black;">'+label+'<br/>'+series.data[0][1]+" (" +Math.round(series.percent)+'%)</div>';
+                }
+              }
+            }
+          },
+          legend: {
+              show: false
+          }
+      });
+    {% endif %}  
+    {% endif %}
+    
+  });  
+
+
   function toggleFilter(pResultId){
 	  $('.tags-'+pResultId).toggle("slow");
   }
@@ -556,8 +551,6 @@
 	    $("#flot_chart_tooltip").remove();
 	  }
 	});
-
-	{% endif %}
 </script>
 {% endif %}
 

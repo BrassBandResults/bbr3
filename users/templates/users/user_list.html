@@ -11,9 +11,10 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Users</h1>
 <p>Total of {{UserCount}} users.</p>
-<table id="contests" class="tablesorter">
+<table id="contests" class="table table-hover table-sm">
 	<thead>
 		<tr>
 			<th>User</th>
@@ -59,4 +60,5 @@
 	</tbody>
 </table>
 <p>Total of {{UserCount}} users.</p>
+</div>
 {% endblock %}

@@ -21,7 +21,8 @@
 {% block bodyattrib %}{% if ContestEvent.venue_link.latitude %}onload="initialize();{%endif%}"{% endblock %}
 
 {% block content %}
-<h1 class="contest-event"><a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/">{{ContestEvent.name}} Map</h1>
+<div class="container pt-1">
+<h1 class="contest-event"><a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/">{{ContestEvent.name}} Map</a></h1>
 <h2>{{ContestEvent.event_date_with_day}}</h2>
 <p><a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/">&lt;&lt;Back to results</a></p>
 <br/>
@@ -33,7 +34,7 @@
 </div>
 
 
-<table class="tablesorter" id="geodata">
+<table class="table table-hover" id="geodata">
   <thead>
     <tr>
       <td>Band</td>
@@ -50,5 +51,5 @@
   </tbody>
 </table>
 <p>Average distance: {{GeoAverageDistanceMi|floatformat}} mi / {{GeoAverageDistanceKm|floatformat}} km</p>
-
+</div>
 {% endblock %}

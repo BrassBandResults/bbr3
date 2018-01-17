@@ -22,15 +22,19 @@
 <h2><a href="/calendar/date/{{ContestEvent.event_date_link}}" title="Show contests that match this date">{{ContestEvent.event_date_with_day}}</a></h2>
 
 <p>
-<div id="link_buttons">
+<div id="link_buttons" class="screenonly">
 {% if ResultCount > 0 %}
-      <a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/form/">{% trans "Form Guide"%}</a>
+      <a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/form/">
+       <button class="btn btn-outline-primary btn-sm float-left mb-1 mr-1">{% trans "Form Guide"%}</button>
+      </a>
 {% if ContestEvent.venue_link.latitude %}      
-      <a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/map/">{% trans "Geography"%}</a>
+      <a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/map/">
+       <button class="btn btn-outline-primary btn-sm float-left mb-1 mr-1">{% trans "Geography"%}</button>
+      </a>
 {% endif %}
-{% if user.profile.pro_member %}
-	  <a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/competitors/">{% trans "Competitors"%}</a>
-{% endif %}	  
+	   <a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/competitors/">
+      <button class="btn btn-outline-primary btn-sm float-left mb-1 mr-1">{% trans "Competitors"%}</button>
+     </a>
 {% endif %}
 </div>
 </p>
@@ -88,7 +92,7 @@
 </table>
 </td>
 <td align="right" width="30%" id="link_buttons">
-	<a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/AddToContestHistory/" title="{% trans "Click here to add this contest to your list of results"%}">{% trans "I Played At This Contest"%}</a>
+	<a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/AddToContestHistory/" title="{% trans "Click here to add this contest to your list of results"%}"><button class="btn btn-outline-primary btn-sm float-right mb-1 mr-1">{% trans "I Played At This Contest"%}</button></a>
 </td>
 {% if ContestProgrammeCover %}
 <td class="screenonly">
@@ -108,6 +112,15 @@
 </tr>
 </table>
 <br/>
+
+{% if request.user.profile.superuser %}
+<a title="Fill in position where not known by looking at points column" href="/contests/{{Contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/AssignPositionFromPoints/"><button class="screenonly btn btn-outline-primary btn-sm float-left mb-1 mr-1">Assign Position from Points</button></a>
+<a title="Copies details from unplaced result to placed result for same band, where the band is entered in the results twice" href="/contests/{{Contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/Compress/"><button class="screenonly btn btn-outline-primary btn-sm float-left mb-1 mr-1">Compress</button></a>
+  {% if ContestEvent.contest.group.group_type == 'W'%}
+  <a title="Looks for other results by same band on the same date, and copies the March in where there is none specified" href="/contests/{{Contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/PropagateMarch/"><button class="screenonly btn btn-outline-primary btn-sm float-left mb-1 mr-1">Propagate Marches</button></a>
+  {% endif %}
+{% endif %}
+
 <button class="screenonly reset btn btn-outline-primary btn-sm float-right mb-1">{% trans "Reset Sort"%}</button>
 <button class="screenonly hide_highlights btn btn-outline-primary btn-sm float-right mb-1 mr-1">{% trans "Hide Highlight"%}</button>
 <table class="next-previous screenonly" width="100%">
@@ -246,6 +259,43 @@
 	</tr>
 </table>
 
+
+
+<br/>
+
+<table width="100%"><tr>
+<td width="75%">
+
+{% if not ContestEvent.complete %}
+
+<span class="screenonly">
+{% ifequal ContestEvent.owner user %}
+[<a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/5/">Add More Results</a>] [<a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/amend/">{% trans "Amend Existing Results"%}</a>]
+{% else %}
+{% if user.profile.enhanced_functionality %}
+[<a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/5/">Add More Results</a>] [<a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/amend/">{% trans "Amend Existing Results"%}</a>]
+{% else %}
+{% if ContestEvent.not_complete %}
+<p class="screenonly">This contest does not appear to have complete results.  <a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/5/">{% trans "Add More Here"%}</a>.</p>
+{% endif %}
+{% endif %}
+{% endifequal %}
+</span>
+
+{% endif %}
+
+</td>
+<td width="25%" align="right">
+ <div class="screenonly">
+{% if TakeOwnershipEnabled %}    
+    [<a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/TakeOwnership/" title="{% trans "Click here to take ownership of this result, so you can modify it"%}" onClick="return confirm_take_ownership()">{% trans "Take Ownership"%}</a>]&nbsp;&nbsp;
+{% endif %}
+    <a href="/users/{{ContestEvent.owner.username}}/">{% gravatar ContestEvent.owner 40 %}<br/>{{ContestEvent.owner.username}}</a>
+ </div>
+</td>
+
+</tr></table>
+
 {% if Statistics and user.profile.pro_member %}
 <div class="border border-info rounded p-3">
 <p>Correlation coefficients of multiple adjudicator rankings; 1 = perfect correlation, 0 = no correlation, -1 = backwards correlation.</p>
@@ -280,48 +330,6 @@
 {% endif %}
 
 <p>{{ContestEvent.notes|safe|linebreaksbr}}</p>
-<table width="100%"><tr>
-<td width="75%">
-
-{% if not ContestEvent.complete %}
-
-<span class="screenonly">
-{% ifequal ContestEvent.owner user %}
-[<a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/5/">Add More Results</a>] [<a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/amend/">{% trans "Amend Existing Results"%}</a>]
-{% else %}
-{% if user.profile.enhanced_functionality %}
-[<a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/5/">Add More Results</a>] [<a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/amend/">{% trans "Amend Existing Results"%}</a>]
-{% else %}
-{% if ContestEvent.not_complete %}
-<p class="screenonly">This contest does not appear to have complete results.  <a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/5/">{% trans "Add More Here"%}</a>.</p>
-{% endif %}
-{% endif %}
-{% endifequal %}
-</span>
-
-{% endif %}
-
-{% if request.user.profile.superuser %}
-<span class="screenonly">
-[<a title="Fill in position where not known by looking at points column" href="/contests/{{Contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/AssignPositionFromPoints/">Assign Position from Points</a>]
-[<a title="Copies details from unplaced result to placed result for same band, where the band is entered in the results twice" href="/contests/{{Contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/Compress/">Compress</a>]
-{% if request.user.profile.superuser and ContestEvent.contest.group.group_type == 'W'%}
-[<a title="Looks for other results by same band on the same date, and copies the March in where there is none specified" href="/contests/{{Contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/PropagateMarch/">Propagate Marches</a>]
-{% endif %}
-</span>
-{% endif %}
-
-</td>
-<td width="25%" align="right">
- <div class="screenonly">
-{% if TakeOwnershipEnabled %}    
-    [<a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/TakeOwnership/" title="{% trans "Click here to take ownership of this result, so you can modify it"%}" onClick="return confirm_take_ownership()">{% trans "Take Ownership"%}</a>]&nbsp;&nbsp;
-{% endif %}
-    <a href="/users/{{ContestEvent.owner.username}}/">{% gravatar ContestEvent.owner 40 %}<br/>{{ContestEvent.owner.username}}</a>
- </div>
-</td>
-
-</tr></table>
 
 </div>
 

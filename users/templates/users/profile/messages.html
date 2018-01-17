@@ -11,15 +11,20 @@
 {% block adbarBottom %}<br/>{% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <div id="UserProfile">
-<h1>{{User.username}}
+<h1>{{User.username}}</h1>
+<span class="screenonly">
  [<a href="/users/{{User.username}}/change_password/">change password</a>]
+{% if user.is_authenticated and user.profile.superuser %}
+ [<a href="/users/{{User.username}}/talk/">talk</a>]
+{% endif %} 
 {% if user.is_superuser %}
  [<a href="/adminsite/auth/user/{{User.id}}/">admin user</a>]
  [<a href="/adminsite/users/userprofile/{{User.profile.id}}/">admin profile</a>]
 {%endif%}
-</h1>
-<div id="avatar">
+</span>
+<div id="avatar" class="float-right">
   {% gravatar User 80 %}<br/>
   <b>{{Profile.points}}</b><br/>
   reputation<br/>
@@ -39,16 +44,13 @@
     <li><a href="/users/{{User.username}}/results_added/" title="Results Added to Site">Results{% if ContestCount %} ({{ContestCount}}){%endif%}</a></li>
     <li><a href="/users/{{User.username}}/contest_history/" title="Personal Contest History">Performances{% if PerformanceCount %} ({{PerformanceCount}}){%endif%}</a></li>
     <li class="selected">Messages{% if MessageCount%} ({{MessageCount}}){%endif%}</li>
-    <li><a href="/users/{{User.username}}/classifieds/" title="Classified Profiles">Classifieds</a></li>
-{% if User.is_superuser %}    
-    <li><a href="/users/{{User.username}}/notifications/" title="Change Email Options">Notifications</a></li>
-{% endif %}   
+    <li><a href="/users/{{User.username}}/classifieds/" title="Classified Profiles">Classifieds</a></li>  
   </ul>
 </div>
 
 <div id="Messages">
     {% if Messages %}
-<table id="messages" class="tablesorter">
+<table id="messages" class="table table-hover">
   <thead>
     <tr>
       <th>Title</th>
@@ -75,6 +77,7 @@
 {% else %}
 <p>Your inbox is empty</p>
 {% endif %}
+</div>
 </div>
 </div>
 {%endblock%}

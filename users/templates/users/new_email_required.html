@@ -4,6 +4,7 @@
 {% block title %}{% trans "Change Password"%}{% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{% trans 'Email Invalid'%}</h1>
 <p>{% trans "Your email address is invalid, and we've had trouble contacting you.  Please enter a new email address below." %}</p>
 <form action="" method="post">{% csrf_token %}
@@ -21,6 +22,7 @@
 <tr><td></td><td><input type="submit" value="Save New Email"/></td></tr>
 </table>
 </form>
+</div>
 {% endblock %}
 
 {% block scriptfooter %}

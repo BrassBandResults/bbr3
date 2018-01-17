@@ -38,7 +38,7 @@
 {% for mergeRequest in MergeRequests %}
   <tr id="mergeRequestRow-{{mergeRequest.id}}">
     <td>
-      <table class="tablesorter">
+      <table class="table table-hover">
         <tr><td>From: <a href="/users/{{mergeRequest.owner}}/">{{mergeRequest.owner}}</a></td><th>To Delete</th><th>Destination</th></tr>
         <tr><th>Name:</th><td><a href="/venues/{{mergeRequest.source_venue.slug}}/">{{mergeRequest.source_venue.name}}</a></td><td><a href="/venues/{{mergeRequest.destination_venue.slug}}/">{{mergeRequest.destination_venue.name}}</a></td></tr>
         <tr><th>Country:</th><td>{{mergeRequest.source_venue.country.name}}</td><td>{{mergeRequest.country.name}}</td></tr>

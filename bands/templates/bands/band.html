@@ -12,7 +12,8 @@
 
 {% block content %}
 <div class="container pt-1">
-<h1 class="band">{{Band.name}}
+<h1 class="band">{{Band.name}}</h1>
+<span class="screenonly"> 
 {% if user.profile.enhanced_functionality %}
 {%if ShowEdit %} 
   [<a href="/bands/edit/{{Band.slug}}/" title="{% trans "Edit this band's details"%}">{% trans "edit"%}</a>]
@@ -28,9 +29,10 @@
 {% if user.is_staff and perms.bands.change_band %}
   [<a href="/adminsite/bands/band/{{Band.id}}/" title="Edit this band in the admin site">admin</a>]
 {% endif %}
-</h1>
+</span>
+
 {% if Aliases %}
-<p class="alias"><b>{% trans "Also/previously known as"%}:</b> {%for alias in Aliases%}{{alias.old_name}}{%if not forloop.last%}, {%endif%}{%endfor%}</p>
+<p class="alias"><small><b>{% trans "Also/previously known as"%}:</b> {%for alias in Aliases%}{{alias.old_name}}{%if not forloop.last%}, {%endif%}{%endfor%}</small></p>
 {% endif %}
 {% if CurrentChampions %}
 <div id="champions">
@@ -98,25 +100,25 @@
   </table>  	
   	<div id="link_buttons">
 {% if ShowOnMap %}
-      <a href="/map/band/{{Band.slug}}/{% ifequal Band.status 0 %}?show_extinct=Y{%endifequal%}">{% trans "View On Map"%}</a>
-      <a href="/map/search/?location={{Band.name}}&lat={{Band.latitude}}&lng={{Band.longitude}}&distance=10&type=mi&from=band">{% trans "Nearby Bands"%}</a>
+      <a href="/map/band/{{Band.slug}}/{% ifequal Band.status 0 %}?show_extinct=Y{%endifequal%}"><button class="screenonly btn btn-outline-primary btn-sm float-left mb-1 mr-1">{% trans "View On Map"%}</button></a>
+      <a href="/map/search/?location={{Band.name}}&lat={{Band.latitude}}&lng={{Band.longitude}}&distance=10&type=mi&from=band"><button class="screenonly btn btn-outline-primary btn-sm float-left mb-1 mr-1">{% trans "Nearby Bands"%}</button></a>
 {% endif %}
 {% if ContestResults %}  
-      <a href="/compare/bands/{{Band.slug}}/">Compare</a>
-      <a href="/bands/{{Band.slug}}/embed/" rel="nofollow">{% trans "Embed Results"%}</a>
-      <a href="/bands/{{Band.slug}}/csv/" rel="nofollow">{% trans "Results as CSV"%}</a>
+      <a href="/compare/bands/{{Band.slug}}/"><button class="screenonly btn btn-outline-primary btn-sm float-left mb-1 mr-1">Compare</button></a>
+      <a href="/bands/{{Band.slug}}/embed/" rel="nofollow"><button class="screenonly btn btn-outline-primary btn-sm float-left mb-1 mr-1">{% trans "Embed Results"%}</button></a>
+      <a href="/bands/{{Band.slug}}/csv/" rel="nofollow"><button class="screenonly btn btn-outline-primary btn-sm float-left mb-1 mr-1">{% trans "Results as CSV"%}</button></a>
 {% endif %}  
     </div>
+    <br/>
   </div>
   <div id="right-top-block" class="pt-2">
   	{% if user.profile.pro_member %}
   	  <div id="pie-chart"></div>
   	{% else %}
-  	  <a href="/accounts/upgrade/"><img src="/site_media/pie_chart_if_upgrade.jpg"/></a>
+  	  <a href="/accounts/upgrade/"><img src="/site_media/upgrade/pie_chart_if_upgrade.jpg"/></a>
   	{% endif%}
   </div>
 </div>
-<div class="clear"></div>
 
 {% if user.is_authenticated %}
 {% if Twitter %}
@@ -139,10 +141,12 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+<br/>
 {% endif %}
 </div>
 </div>
 
+<br/>
 <h2>Contest Results</h2>
 {% if ResultsWithPosition > 1 %}
 {% if Filter %}
@@ -152,7 +156,7 @@
 {% if user.profile.pro_member %}
   <div id="flot_chart"></div>
 {% else %}
-  <a href="/accounts/upgrade/"><img src="/site_media/results_history_if_upgrade.jpg"/></a>
+  <a href="/accounts/upgrade/"><img src="/site_media/upgrade/results_history_if_upgrade.jpg"/></a>
 {% endif %}
 {% endif %}
 <br/>
@@ -164,7 +168,7 @@
 {% if Filter %}
 <p class="alert alert-warning">{% trans "This view of the band's results is filtered to"%} <b>{{FilteredTo.name}}</b>.  [<a href="/bands/{{Band.slug}}/">{% trans "Remove Filter"%}</a>].</p>
 {% endif %}
-{% if ContestResults %}
+{% if ContestResults and user.profile.pro_member %}
 <p><strong>{% trans "Date Range (use slider to change)"%}:</strong> <span id="slider-amount"></span></p>
 <div id="slider-range"></div>
 {% endif %}
@@ -184,9 +188,9 @@
 
 {% if ContestResults %}
 <div id="contests-tab">
-<button id="reset-contests" class="reset btn btn-outline-primary btn-sm float-right mb-1">Reset Sort</button>
-<button class="hide-highlight reset btn btn-outline-primary btn-sm float-right mb-1">Hide Highlight</button>
-<table id="contests" class="table table-hover">
+<button id="reset-contests" class="screenonly reset btn btn-outline-primary btn-sm float-right mb-1 mr-1">{% trans "Reset Sort"%}</button>
+<button class="screenonly hide_highlights btn btn-outline-primary btn-sm float-right mb-1 mr-1">{% trans "Hide Highlight"%}</button>
+<table id="contests" class="table table-hover table-sm">
 	<thead>
 		<tr>
 			<th>{% trans "Date"%}</th>
@@ -334,9 +338,6 @@
 </div> <!-- tab div -->
 {% endif %}
 
-{% if ContestResults %}
-<p class="screenonly">[<a class="hide_highlights">{% trans "Hide Gold/Silver/Bronze Highlight"%}</a>]</p>
-{% endif %}
 <p class="screenonly"><font color="red">{% trans "Do you know full results from contests this band played at?"%} {% trans "Please"%} <a href="/addresults/">{% trans "enter them here"%}</a>.</font></p>
 
 {% if not Filter and user.is_authenticated %}
@@ -362,17 +363,35 @@
     $("#runs").tablesorter();
   });
 
+   $('button.reset').click(function(){
+    $('#contests').trigger('sortReset');
+    return false;
+  });
+
+  $(document).on('click', '.hide_highlights', function(){
+    $('.tablesorter tr.result-1').addClass('result-off-1').removeClass('result-1');
+    $('.tablesorter tr.result-2').addClass('result-off-2').removeClass('result-2');
+    $('.tablesorter tr.result-3').addClass('result-off-3').removeClass('result-3');
+    $('.hide_highlights').removeClass('hide_highlights').addClass('show_highlights').html('Show Highlight');
+  });
+  $(document).on('click','.show_highlights', function(){
+    $('.tablesorter tr.result-off-1').addClass('result-1').removeClass('result-off-1');
+    $('.tablesorter tr.result-off-2').addClass('result-2').removeClass('result-off-2');
+    $('.tablesorter tr.result-off-3').addClass('result-3').removeClass('result-off-3');
+    $('.show_highlights').removeClass('show_highlights').addClass('hide_highlights').html('Hide Highlight');
+  });
+
 	$(document).on('click', '.hide_highlights', function(){
 		$('tr.result-1').addClass('result-off-1').removeClass('result-1');
 		$('tr.result-2').addClass('result-off-2').removeClass('result-2');
 		$('tr.result-3').addClass('result-off-3').removeClass('result-3');
-		$('.hide_highlights').removeClass('hide_highlights').addClass('show_highlights').html('{% trans "Show Gold/Silver/Bronze Highlight"%}');
+		$('.hide_highlights').removeClass('hide_highlights').addClass('show_highlights').html('{% trans "Show Highlight"%}');
 	});
 	$(document).on('click', '.show_highlights', function(){
 		$('tr.result-off-1').addClass('result-1').removeClass('result-off-1');
 		$('tr.result-off-2').addClass('result-2').removeClass('result-off-2');
 		$('tr.result-off-3').addClass('result-3').removeClass('result-off-3');
-		$('.show_highlights').removeClass('show_highlights').addClass('hide_highlights').html('{% trans "Hide Gold/Silver/Bronze Highlight"%}');
+		$('.show_highlights').removeClass('show_highlights').addClass('hide_highlights').html('{% trans "Hide Highlight"%}');
 	});
 	
 {% if not Filter and user.is_authenticated %}

@@ -1,1 +1,0 @@
-New Adjudicator: {{ThingNew.name|safe}}
