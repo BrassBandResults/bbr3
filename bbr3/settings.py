@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sitemaps',
 
     'sorl.thumbnail',
 
@@ -179,3 +180,6 @@ SUFFIXES = (
            )
 
 UNKNOWN_PERSON_ID = 310730
+
+ACCOUNT_ACTIVATION_DAYS = 3
+

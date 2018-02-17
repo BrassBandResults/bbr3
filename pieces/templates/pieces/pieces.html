@@ -78,8 +78,8 @@
 {% for piece in Pieces %}
     	<tr>
     	  <td class="test-piece"><a href="/pieces/{{piece.slug}}/">{{piece.name}}</a></td>
-    	  <td class="composer"><a href="/composers/{{piece.composer.slug}}/">{{piece.composer.name}}</a></td>
-    	  <td class="arranger"><a href="/composers/{{piece.arranger.slug}}/">{{piece.arranger.name}}</a></td>
+    	  <td class="composer"><a href="/people/{{piece.composer.slug}}/">{{piece.composer.name}}</a></td>
+    	  <td class="arranger"><a href="/people/{{piece.arranger.slug}}/">{{piece.arranger.name}}</a></td>
     	  <td>{{piece.set_test_count}}</td>
     	  <td>{{piece.own_choice_count}}</td>
     	  <td>{{piece.year}}</td>

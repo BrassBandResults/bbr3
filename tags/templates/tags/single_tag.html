@@ -20,6 +20,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{{ContestTag.name}}</h1>
 <p><a href="/tags">&lt;&lt;&lt; Back to tags list</a></p>
 <table id="contests" class="table table-hover">
@@ -53,4 +54,5 @@
 {% endfor %}
   </tbody>
 </table>
+</div>
 {% endblock %}

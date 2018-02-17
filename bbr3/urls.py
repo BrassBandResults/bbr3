@@ -20,6 +20,7 @@ from django.contrib import admin
 
 from home import views as home_views
 from accounts import views as account_views
+from users import views as user_views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -60,20 +61,20 @@ urlpatterns = [
     url(r'^venues/', include('venues.urls')),
     url(r'^years/', include('years.urls')),
     
- #   url(r'^sitemap.xml$', home.views.sitemap_index),
- #   url(r'^robots.txt$', home.views.robotstxt),
+    url(r'^sitemap.xml$', home_views.sitemap_index),
+    url(r'^robots.txt$', home_views.robotstxt),
        
     url(r'^accounts/login/$', auth_views.login,  {'template_name': 'accounts/login.html'}),
     url(r'^accounts/logout/$', auth_views.logout,  {'template_name': 'accounts/logout.html'}),
- #   url(r'^accounts/forgottenpassword/$', users.views.forgotten_password),
- #   url(r'^accounts/forgottenpassword/sent/$', users.views.forgotten_password_sent),
- #   url(r'^accounts/resetpassword/([A-Za-z0-9]+)/$', users.views.reset_password),
- #   url(r'^accounts/changepassword/$', django.contrib.auth.views.password_change, {'template_name' : 'users/changepassword.html', 'post_change_redirect' : '/'}),
+    url(r'^accounts/forgottenpassword/$', user_views.forgotten_password),
+    url(r'^accounts/forgottenpassword/sent/$', user_views.forgotten_password_sent),
+    url(r'^accounts/resetpassword/([A-Za-z0-9]+)/$', user_views.reset_password),
+    url(r'^accounts/changepassword/$', auth_views.password_change, {'template_name' : 'users/changepassword.html', 'post_change_redirect' : '/'}),
     
     url(r'^accounts/loginpro/$', auth_views.login, {'template_name' : 'accounts/loginpro.html',}),
- #   url(r'^accounts/upgrade/$', users.views.pro_upgrade),
- #   url(r'^accounts/paid/$', users.views.pro_paid),
- #   url(r'^accounts/pro/thanks/$', users.views.pro_thanks),
+    url(r'^accounts/upgrade/$', user_views.pro_upgrade),
+    url(r'^accounts/paid/$', user_views.pro_paid),
+    url(r'^accounts/pro/thanks/$', user_views.pro_thanks),
     
- #   url(r'^account/', include(registration.backends.default.urls)),
+    url(r'^account/', include('registration.backends.hmac.urls')),
 ]
