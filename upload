@@ -7,4 +7,6 @@ EXCLUDES=~/web/bbr3/upload_excludes.txt
 
 RSYNC_OPTS="-avz --exclude-from=$EXCLUDES"
 
+cp ~/web/bbr3-settings-live.py ~/web/bbr3/bbr3/settingslive.py
 rsync $RSYNC_OPTS $SRC_DIR $DEST_DIR
+rm ~/web/bbr3/bbr3/settingslive.py
