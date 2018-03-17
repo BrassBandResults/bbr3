@@ -1,0 +1,48 @@
+{% extends "template.html" %}
+{% load i18n %}
+
+{%block title %}Winning Conductors{% endblock %}
+
+{%block description%}List of people who have won brass band competitions{%endblock%}
+
+{%block head %}
+<script src="https://d3js.org/d3.v3.js" charset="utf-8"></script>
+{%endblock%}
+
+{%block scriptfooter%}
+<script>
+  $(document).ready(function(){
+    $("#people").tablesorter();
+
+    $('button.reset').click(function(){
+      $('#people').trigger('sortReset');
+      return false;
+    });
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container pt-1">
+<h1>Contest Winning Conductors</h1>
+<p>These statistics do not include Whit Friday</p>
+
+<button class="reset btn btn-outline-primary btn-sm float-right mb-1">Reset Sort</button>
+<table id="people" class="table table-hover">
+	<thead>
+		<tr>
+			<th>{% trans "Name"%}</th>
+			<th>{% trans "Wins"%}</th>
+		</tr>
+	</thead>
+	<tbody>
+{% for person in People %}
+ 		<tr>
+ 			<td class="person"><a href="/people/{{person.slug}}/">{{person.first_names}} {{person.surname}}</a></td>
+			<td>{{person.wins}}</td>	
+		</tr>
+{% endfor %}
+	</tbody>
+</table>
+</div>
+{% endblock %}

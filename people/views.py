@@ -852,8 +852,37 @@ def people_list_by_letter(request, pLetter):
                                                        'People' : lPeople,
                                                        })
     
-
-
+@login_required_pro_user
+def contest_winners(request):
+    """
+    Show list of which conductors have won the most contests, excluding whit friday
+    """
+    lPeople = []
+    cursor = connection.cursor()
+    
+    cursor.execute("""
+SELECT p.slug, p.surname, p.first_names, count(r)
+FROM people_person p
+INNER JOIN contests_contestresult r ON r.person_conducting_id = p.id
+INNER JOIN contests_contestevent e ON e.id = r.contest_event_id
+INNER JOIN contests_contest c ON c.id = e.contest_id
+WHERE r.results_position = 1
+AND c.group_id NOT IN (509,76.77) -- whit friday Rochdale/Tameside/Saddleworth
+AND p.slug != 'unknown'
+GROUP BY p.slug, p.surname, p.first_names
+ORDER BY 4 desc""") 
+    rows = cursor.fetchall()
+    for row in rows:
+        lPerson = ResultObject()
+        lPerson.slug = row[0]
+        lPerson.surname = row[1]
+        lPerson.first_names = row[2]
+        lPerson.wins = row[3]
+        lPeople.append(lPerson)
+    cursor.close()
+    return render_auth(request, 'people/winners.html', {
+                                                       'People' : lPeople,
+                                                       })
 
         
         

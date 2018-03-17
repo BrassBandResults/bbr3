@@ -28,10 +28,10 @@
 	"buffers":
 	[
 		{
-			"file": "bbr3/urls.py",
+			"file": "home/templates/template.html",
 			"settings":
 			{
-				"buffer_size": 3610,
+				"buffer_size": 11259,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -41,91 +41,30 @@
 			"settings":
 			{
 				"buffer_size": 4229,
-				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "accounts/views.py",
+			"file": "contests/templates/contests/edit_contest_event.html",
 			"settings":
 			{
-				"buffer_size": 64,
+				"buffer_size": 515,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "accounts/models.py",
+			"file": "contests/templates/contests/edit_result.html",
 			"settings":
 			{
-				"buffer_size": 137,
+				"buffer_size": 10880,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "accounts/__init__.py",
+			"file": "addresults/templates/addresults/amend_bands.html",
 			"settings":
 			{
-				"buffer_size": 78,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "accounts/Templates/accounts/login.html",
-			"settings":
-			{
-				"buffer_size": 1038,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "pieces/templates/pieces/pieces.html",
-			"settings":
-			{
-				"buffer_size": 9546,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "pieces/models.py",
-			"settings":
-			{
-				"buffer_size": 6992,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Searching 733 files for \"celery\" (case sensitive)\n\n/Users/timsawyer/web/bbr3/.gitignore:\n   76  .python-version\n   77  \n   78: # celery beat schedule file\n   79: celerybeat-schedule\n   80  \n   81  # SageMath parsed files\n\n/Users/timsawyer/web/bbr3/requirements.txt:\n    1  amqp==2.2.2\n    2  billiard==3.5.0.3\n    3: celery==4.1.0\n    4  certifi==2017.7.27.1\n    5  chardet==3.0.4\n\n/Users/timsawyer/web/bbr3/badges/tasks.py:\n    4  \n    5  \n    6: from celery.task import task\n    7  \n    8  from badges.models import Badge\n\n/Users/timsawyer/web/bbr3/bands/tasks.py:\n    3  from bbr3.notification import notify\n    4  from users.models import PointsAward\n    5: from celery.task import task\n    6  from django.conf import settings\n    7  from django.core.mail import send_mail\n\n/Users/timsawyer/web/bbr3/classifieds/tasks.py:\n    4  \n    5  \n    6: from celery.task import task\n    7  from bbr3.notification import notify\n    8  import difflib\n\n/Users/timsawyer/web/bbr3/contests/tasks.py:\n    4  \n    5  \n    6: from celery.task import task\n    7  from bbr3.notification import notify\n    8  from datetime import timedelta, date\n\n/Users/timsawyer/web/bbr3/embed/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  \n    6  from embed.models import EmbeddedResultsLog\n\n/Users/timsawyer/web/bbr3/feedback/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  \n    6  from bbr3.notification import notify\n\n/Users/timsawyer/web/bbr3/move/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  from bbr3.notification import notify\n    6  \n\n/Users/timsawyer/web/bbr3/people/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  from bbr3.notification import notify\n    6  \n\n/Users/timsawyer/web/bbr3/pieces/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  from bbr3.notification import notify\n    6  \n\n/Users/timsawyer/web/bbr3/usermessages/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  \n    6  from bbr3.notification import notify\n\n/Users/timsawyer/web/bbr3/users/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  from bbr3.notification import notify\n    6  \n\n/Users/timsawyer/web/bbr3/venues/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  from bbr3.notification import notify\n    6  from users.models import PointsAward\n\n15 matches across 14 files\n",
-			"settings":
-			{
-				"buffer_size": 2821,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "bbr3/wsgi.py",
-			"settings":
-			{
-				"buffer_size": 390,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "contests/models.py",
-			"settings":
-			{
-				"buffer_size": 41505,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "requirements.txt",
-			"settings":
-			{
-				"buffer_size": 421,
+				"buffer_size": 12497,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -180,15 +119,35 @@
 	"expanded_folders":
 	[
 		"/Users/timsawyer/web/bbr3",
-		"/Users/timsawyer/web/bbr3/accounts",
-		"/Users/timsawyer/web/bbr3/accounts/Templates",
-		"/Users/timsawyer/web/bbr3/accounts/Templates/accounts",
-		"/Users/timsawyer/web/bbr3/bbr3",
-		"/Users/timsawyer/web/bbr3/home",
-		"/Users/timsawyer/web/bbr3/home/templates"
+		"/Users/timsawyer/web/bbr3/addresults",
+		"/Users/timsawyer/web/bbr3/addresults/templates",
+		"/Users/timsawyer/web/bbr3/addresults/templates/addresults",
+		"/Users/timsawyer/web/bbr3/contests",
+		"/Users/timsawyer/web/bbr3/contests/templates",
+		"/Users/timsawyer/web/bbr3/contests/templates/contests"
 	],
 	"file_history":
 	[
+		"/Users/timsawyer/web/bbr3/accounts/templates/accounts/loginpro.html",
+		"/Users/timsawyer/web/bbr3/bbr3/urls.py",
+		"/Users/timsawyer/web/bbr3/bbr3/settings.py",
+		"/Users/timsawyer/web/bbr3/accounts/views.py",
+		"/Users/timsawyer/web/bbr3/accounts/models.py",
+		"/Users/timsawyer/web/bbr3/accounts/__init__.py",
+		"/Users/timsawyer/web/bbr3/accounts/Templates/accounts/login.html",
+		"/Users/timsawyer/web/bbr3/accounts/templates/registration/registration_form.html",
+		"/Users/timsawyer/web/bbr3/accounts/templates/registration/registration_complete.html",
+		"/Users/timsawyer/web/bbr3/accounts/templates/registration/activate.html",
+		"/Users/timsawyer/web/bbr3/accounts/templates/accounts/logout.html",
+		"/Users/timsawyer/web/bbr3/addresults/templates/addresults/adjudicators.html",
+		"/Users/timsawyer/web/bbr3/addresults/templates/addresults/amend_bands.html",
+		"/Users/timsawyer/web/bbr3/addresults/templates/addresults/bands.html",
+		"/Users/timsawyer/web/bbr3/bands/templates/bands/band.html",
+		"/Users/timsawyer/web/bbr3/pieces/templates/pieces/pieces.html",
+		"/Users/timsawyer/web/bbr3/pieces/models.py",
+		"/Users/timsawyer/web/bbr3/bbr3/wsgi.py",
+		"/Users/timsawyer/web/bbr3/contests/models.py",
+		"/Users/timsawyer/web/bbr3/requirements.txt",
 		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/profile/user.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/profile/classifieds.html",
@@ -196,18 +155,14 @@
 		"/Users/timsawyer/web/bbr3/users/templates/users/profile/messages.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/profile/notifications.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/profile/performances.html",
-		"/Users/timsawyer/web/bbr3/contests/models.py",
 		"/Users/timsawyer/web/bbr3/tags/templates/tags/home.html",
 		"/Users/timsawyer/web/bbr3/tags/templates/tags/single_tag.html",
-		"/Users/timsawyer/web/bbr3/requirements.txt",
 		"/Users/timsawyer/web/bbr3/users/templates/users/profile/results_added.html",
 		"/Users/timsawyer/web/bbr3/site_media/css2017/bbr3.css",
-		"/Users/timsawyer/web/bbr3/bbr3/settings.py",
 		"/Users/timsawyer/web/bbr3/home/views.py",
 		"/Users/timsawyer/web/bbr3/people/templates/people/person.html",
 		"/Users/timsawyer/web/bbr3/adjudicators/models.py",
 		"/Users/timsawyer/web/bbr3/conductors/views.py",
-		"/Users/timsawyer/web/bbr3/bands/templates/bands/band.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/blank.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/change_date_ranges.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/changepassword.html",
@@ -245,9 +200,7 @@
 		"/Users/timsawyer/web/bbr3/adjudicators/admin.py",
 		"/Users/timsawyer/web/bbr3/adjudicators/urls.py",
 		"/Users/timsawyer/web/bbr3/addresults/templates/addresults/notes.html",
-		"/Users/timsawyer/web/bbr3/addresults/templates/addresults/adjudicators.html",
 		"/Users/timsawyer/web/bbr3/accounts/Templates/accounts/activate.html",
-		"/Users/timsawyer/web/bbr3/accounts/Templates/accounts/login.html",
 		"/Users/timsawyer/web/bbr3/contests/templates/contests/contests.html",
 		"/Users/timsawyer/web/bbr3/contests/templates/contests/edit_contest.html",
 		"/Users/timsawyer/web/bbr3/contests/templates/contests/edit_contest_event.html",
@@ -299,24 +252,10 @@
 		"/Users/timsawyer/web/bbr3/contests/views.py",
 		"/Users/timsawyer/web/bbr3/bands/templates/bands/bands.html",
 		"/Users/timsawyer/web/bbr3/home/templates/template.html",
-		"/Users/timsawyer/web/bbr3/bbr3/urls.py",
 		"/Users/timsawyer/web/bbr3/home/templates/home/cookies.html",
 		"/Users/timsawyer/web/bbr3/home/templates/home/home.html",
 		"/Users/timsawyer/web/bbr3/bands/views.py",
-		"/Users/timsawyer/web/bbr3/bands/urls.py",
-		"/Users/timsawyer/web/bbr3/bbr3/siteutils.py",
-		"/Users/timsawyer/web/bbr3/move/views/move_people.py",
-		"/Users/timsawyer/web/bbr3/bbr3/decorators.py",
-		"/Users/timsawyer/web/bbr3/compare/templates/compare/bands/compare_result.html",
-		"/Users/timsawyer/web/bbr3/compare/templates/compare/bands/cant_compare_with_self.html",
-		"/Users/timsawyer/web/bbr3/compare/templates/compare/conductors/cant_compare_with_self.html",
-		"/Users/timsawyer/web/bbr3/compare/templates/compare/bands/compare_this_another.html",
-		"/Users/timsawyer/web/bbr3/compare/templates/compare/conductors/compare_this_another.html",
-		"/Users/timsawyer/web/bbr3/compare/templates/compare/bands/compare.html",
-		"/Users/timsawyer/web/bbr3/contest_calendar/templates/calendar/home.html",
-		"/Users/timsawyer/web/bbr3/contest_calendar/urls.py",
-		"/Users/timsawyer/web/bbr3/years/templates/years/year.html",
-		"/Users/timsawyer/web/bbr3/years/templates/years/years.html"
+		"/Users/timsawyer/web/bbr3/bands/urls.py"
 	],
 	"find":
 	{
@@ -381,37 +320,37 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "bbr3/urls.py",
+					"file": "home/templates/template.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3610,
+						"buffer_size": 11259,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3604,
-								3604
+								9666,
+								9666
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 268.0,
+						"translation.y": 2068.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -427,8 +366,8 @@
 						"selection":
 						[
 							[
-								4014,
-								4014
+								0,
+								4229
 							]
 						],
 						"settings":
@@ -438,34 +377,6 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1053.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "accounts/views.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 64,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
-						},
-						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
@@ -473,68 +384,12 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "accounts/models.py",
+					"buffer": 2,
+					"file": "contests/templates/contests/edit_contest_event.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 137,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "accounts/__init__.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 78,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "accounts/Templates/accounts/login.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1038,
+						"buffer_size": 515,
 						"regions":
 						{
 						},
@@ -553,24 +408,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "pieces/templates/pieces/pieces.html",
+					"buffer": 3,
+					"file": "contests/templates/contests/edit_result.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9546,
+						"buffer_size": 10880,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5372,
-								5372
+								315,
+								287
 							]
 						],
 						"settings":
@@ -580,229 +435,40 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 795.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "pieces/models.py",
+					"buffer": 4,
+					"file": "addresults/templates/addresults/amend_bands.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6992,
+						"buffer_size": 12497,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1149,
+								1149
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2821,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										129,
-										135
-									],
-									[
-										162,
-										168
-									],
-									[
-										317,
-										323
-									],
-									[
-										453,
-										459
-									],
-									[
-										667,
-										673
-									],
-									[
-										854,
-										860
-									],
-									[
-										1018,
-										1024
-									],
-									[
-										1255,
-										1261
-									],
-									[
-										1466,
-										1472
-									],
-									[
-										1666,
-										1672
-									],
-									[
-										1868,
-										1874
-									],
-									[
-										2070,
-										2076
-									],
-									[
-										2278,
-										2284
-									],
-									[
-										2479,
-										2485
-									],
-									[
-										2681,
-										2687
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ \t].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "bbr3/wsgi.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 390,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								349,
-								349
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "contests/models.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 41505,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 12571.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "requirements.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 421,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								167,
-								167
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

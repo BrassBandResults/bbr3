@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^([\w\-]+)/newclassified/too_many/$', views.too_many_classified),
     url(r'^([\w\-]+)/edit_classified/$', views.edit_classified),    
     url(r'^add/$', views.add_person),
+    url(r'^winners/$', views.contest_winners),
     url(r'^edit/([-\w]+)/$', views.edit_person),
     url(r'^options/$', views.people_options),
     url(r'^options.json/$', views.people_options_json),

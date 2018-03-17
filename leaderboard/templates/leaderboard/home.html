@@ -17,8 +17,8 @@
   });
   
   var lPieData = [
-    { label: "> 70 points", data: {{OnLeaderboardCount}}, color: "#ffc600" },  
-    { label: "< 70 points", data: {{NotOnLeaderboardCount}}, color: "#99ccff" },
+    { label: ">= 50 points", data: {{OnLeaderboardCount}}, color: "#ffc600" },  
+    { label: "< 50 points", data: {{NotOnLeaderboardCount}}, color: "#99ccff" },
     { label: "No Points", data: {{NoPointsCount}}, color: "#316497" }
     ];
   $.plot($("#flot_pie"), lPieData,
@@ -37,7 +37,6 @@
           show: false
       }
   });
-});
 </script>
 {% endblock %}
 

@@ -8,7 +8,7 @@ def home(request):
     """
     Show leaderboard
     """
-    lLeaderboardTolerance = 70
+    lLeaderboardTolerance = 50
     lUserProfiles = UserProfile.objects.exclude(user__is_superuser=True).filter(points__gte=lLeaderboardTolerance).order_by('-points').select_related()
     lNoPointsCount = UserProfile.objects.filter(points=0).count()
     lNotOnLeaderboardCount = UserProfile.objects.filter(points__gt=0, points__lt=lLeaderboardTolerance).count()
