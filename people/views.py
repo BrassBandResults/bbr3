@@ -861,23 +861,40 @@ def contest_winners(request):
     cursor = connection.cursor()
     
     cursor.execute("""
-SELECT p.slug, p.surname, p.first_names, count(r)
+WITH 
+  winners AS
+   (SELECT person_conducting_id, count(*) as winners
+    FROM contests_contestresult r
+    INNER JOIN contests_contestevent e ON e.id = r.contest_event_id
+    INNER JOIN contests_contest c ON c.id = e.contest_id
+    WHERE r.results_position = 1
+    AND (c.group_id is null or c.group_id NOT IN (509,76.77)) -- whit friday Rochdale/Tameside/Saddleworth
+    AND person_conducting_id != 310730
+    GROUP BY person_conducting_id),
+  total AS
+   (SELECT person_conducting_id, count(*) as contests
+    FROM contests_contestresult r
+    INNER JOIN contests_contestevent e ON e.id = r.contest_event_id
+    INNER JOIN contests_contest c ON c.id = e.contest_id
+    AND (c.group_id is null or c.group_id NOT IN (509,76.77)) -- whit friday Rochdale/Tameside/Saddleworth
+    AND person_conducting_id != 310730
+    AND r.results_position < 1000
+    GROUP BY person_conducting_id)
+SELECT p.slug, p.surname, p.first_names, p.bandname, w.winners, t.contests
 FROM people_person p
-INNER JOIN contests_contestresult r ON r.person_conducting_id = p.id
-INNER JOIN contests_contestevent e ON e.id = r.contest_event_id
-INNER JOIN contests_contest c ON c.id = e.contest_id
-WHERE r.results_position = 1
-AND c.group_id NOT IN (509,76.77) -- whit friday Rochdale/Tameside/Saddleworth
-AND p.slug != 'unknown'
-GROUP BY p.slug, p.surname, p.first_names
-ORDER BY 4 desc""") 
+INNER JOIN winners w ON p.id = w.person_conducting_id
+INNER JOIN total t ON p.id = t.person_conducting_id
+ORDER BY 5 desc""") 
     rows = cursor.fetchall()
     for row in rows:
         lPerson = ResultObject()
         lPerson.slug = row[0]
         lPerson.surname = row[1]
         lPerson.first_names = row[2]
-        lPerson.wins = row[3]
+        lPerson.bandname = row[3]
+        lPerson.wins = row[4]
+        lPerson.contests = row[5]
+        lPerson.percent_win = (lPerson.wins * 100) // lPerson.contests
         lPeople.append(lPerson)
     cursor.close()
     return render_auth(request, 'people/winners.html', {
