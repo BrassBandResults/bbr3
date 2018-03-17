@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.http import Http404, HttpResponseRedirect
 
+from bbr3.decorators import login_required_pro_user
 from bbr3.siteutils import slugify, browser_details
 from bbr3.render import render_auth
 from contests.models import ContestEvent, ContestResult, ResultPiecePerformance
@@ -254,7 +255,7 @@ def single_piece(request, pPieceSlug):
         
     lSetTestChartData = ""
     lYear = lSetTestYearCount.keys()
-    lYear.sort()
+    sorted(lYear)
     for year in lYear:
         lYearCount = lSetTestYearCount[year]
         lSetTestChartData += "['%d', %d]," % (year, lYearCount) 
@@ -271,7 +272,7 @@ def single_piece(request, pPieceSlug):
         
     lOwnChoiceChartData = ""
     lYear = lOwnChoiceYearCount.keys()
-    lYear.sort()
+    sorted(lYear)
     for year in lYear:
         lYearCount = lOwnChoiceYearCount[year]
         lOwnChoiceChartData += "['%d', %d]," % (year, lYearCount) 
@@ -425,7 +426,7 @@ class PieceRank(object):
     pass
 
 
-@login_required
+@login_required_pro_user
 def best_own_choice(request):
     """
     Rank most successful own choice pieces
@@ -433,7 +434,14 @@ def best_own_choice(request):
     lBestOwnChoice = {}
     lPieceNames = {}
     cursor = connection.cursor()
-    lOwnChoiceSql = "SELECT r.results_position, p.slug, p.name FROM contests_contestresult r, pieces_testpiece p WHERE r.test_piece_id = p.id AND r.results_position < 4"
+    lOwnChoiceSql = """
+       SELECT r.results_position, p.slug, p.name 
+       FROM contests_contestresult r
+       INNER JOIN pieces_testpiece p ON r.test_piece_id = p.id  
+       INNER JOIN contests_contestevent e ON e.id = r.contest_event_id
+       INNER JOIN contests_contest c ON c.id = e.contest_id
+       WHERE r.results_position < 4
+       AND (c.group_id is NULL OR c.group_id NOT IN (509,76.77)) -- whit friday Rochdale/Tameside/Saddleworth"""
     cursor.execute(lOwnChoiceSql)
     rows = cursor.fetchall()
     for row in rows:

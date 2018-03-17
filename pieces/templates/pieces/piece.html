@@ -19,6 +19,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1 class="test-piece">{{Piece.name}}{% if Piece.year%} ({{Piece.year}}){%endif%}, <a href="/people/{{Piece.composer.slug}}/">{{Piece.composer.name}}</a>{% if Piece.arranger %} arranged <a href="/people/{{Piece.arranger.slug}}/">{{Piece.arranger.name}}</a>{%endif%} 
 {% if ShowEdit %} [<a href="/pieces/edit/{{Piece.slug}}/" title="Edit this test piece's details">{% trans "edit"%}</a>]{%endif%}
 {% if user.is_staff and perms.pieces.change_testpiece %} [<a href="/adminsite/pieces/testpiece/{{Piece.id}}/" title="Edit this piece in the admin site">admin</a>]{% endif %}
@@ -147,6 +148,7 @@
 <p><input type="checkbox" id="move_pieces"/> {% trans "Request merge with"%} <span id="piece_to_move_to">{% trans "another piece"%}.</span></p>
 </form>
 {% endif %}
+</div>
 {% endblock %}
 
 {% block scriptfooter %}

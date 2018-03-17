@@ -18,9 +18,11 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>{% trans "Most Successful Own Choice Test Pieces"%}</h1>
 <p>{% trans "Points are calculated by looking through all the times a piece has been used for an own choice contest, and it has come in the top three places.  10 points are given for a first place, 5 for a second, and 3 for a third."%}</p>
 <p>{% trans "The Podiums column shows the number of times this piece has featured in the top three at an own choice contest."%}</p>
+<p>Whit Friday contests are excluded.</p>
 <table id="pieces" class="table table-hover">
   <thead>
     <tr>
@@ -39,4 +41,5 @@
 {% endfor %}
   </tbody>
 </table>
+</div>
 {% endblock %}
