@@ -33,7 +33,7 @@
 </table>
 <div id="badges">
   {% for userBadge in UserBadges %}
-  <a href="/badges/"><span class="profileBadge" title="{{userBadge.type.description}}">{{userBadge.type.name|safe}}</span></a>
+  <a href="/badges/"><span class="screenonly btn btn-outline-primary btn-sm float-left mb-1 mr-1" title="{{userBadge.type.description}}">{{userBadge.type.name|safe}}</span></a>
   {% endfor %}
 </div>
 

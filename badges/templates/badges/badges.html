@@ -11,7 +11,7 @@
 <table id="badges" class="table table-hover">
 {% for badge in Badges %}
   <tr>
-    <td><span class="profileBadge">{{badge.name}}</span>&nbsp;&nbsp;x {{badge.count}}</td>
+    <td><span class="screenonly btn btn-outline-primary btn-sm float-left mb-1 mr-1">{{badge.name}}</span>&nbsp;&nbsp;x {{badge.count}}</td>
     <td>{{badge.description}}</td>
   </tr>
 {% endfor %}  
