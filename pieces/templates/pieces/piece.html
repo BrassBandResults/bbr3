@@ -22,7 +22,7 @@
 <div class="container pt-1">
 <h1 class="test-piece">{{Piece.name}}{% if Piece.year%} ({{Piece.year}}){%endif%}, <a href="/people/{{Piece.composer.slug}}/">{{Piece.composer.name}}</a>{% if Piece.arranger %} arranged <a href="/people/{{Piece.arranger.slug}}/">{{Piece.arranger.name}}</a>{%endif%} 
 {% if ShowEdit %} [<a href="/pieces/edit/{{Piece.slug}}/" title="Edit this test piece's details">{% trans "edit"%}</a>]{%endif%}
-{% if user.is_staff and perms.pieces.change_testpiece %} [<a href="/adminsite/pieces/testpiece/{{Piece.id}}/" title="Edit this piece in the admin site">admin</a>]{% endif %}
+{% if user.is_staff and perms.pieces.change_testpiece %} [<a href="/bbradmin/pieces/testpiece/{{Piece.id}}/" title="Edit this piece in the admin site">admin</a>]{% endif %}
 </h1>
 
 {% if DownloadAlbums %}

@@ -7,7 +7,7 @@
 {%block feedback-selected%}class="selected"{%endblock%}
 
 {% block content %}
-<h1>Feedback Detail{% if user.is_staff and perms.feedback.change_sitefeedback %} [<a href="/adminsite/feedback/sitefeedback/{{Feedback.id}}/">admin</a>]{%endif%}</h1>
+<h1>Feedback Detail{% if user.is_staff and perms.feedback.change_sitefeedback %} [<a href="/bbradmin/feedback/sitefeedback/{{Feedback.id}}/">admin</a>]{%endif%}</h1>
 <table>
   <tr>
     <th>Submitter:</th>

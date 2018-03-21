@@ -21,7 +21,7 @@
     <td class="band"><a href="/bands/{{result.band.slug}}/" title="{{result.band.name}}">{{ result.band_name }}</a></td>
     <td class="band-contest-position" title="{{result.result_tooltip}}">{{ result.results_position_display }}</td>
 {% if user.is_staff and perms.contests.change_contestresult  %}
-      <td>[<a href="/adminsite/contests/contestresult/{{result.id}}/">admin</a>]</td>      
+      <td>[<a href="/bbradmin/contests/contestresult/{{result.id}}/">admin</a>]</td>      
 {% endif %}   
       </tr>
 {% endfor %}

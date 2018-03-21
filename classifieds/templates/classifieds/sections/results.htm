@@ -35,7 +35,7 @@
         <td class="band-contest-points">{% if result.points %}{{result.points_display}}{% endif %}</td>
         <td class="band-contest-draw">{% if result.draw %}{{ result.draw }}{% endif %}</td>
 {% if user.is_staff and perms.contests.change_contestresult %}
-       <td>[<a href="/adminsite/contests/contestresult/{{result.id}}/">admin</a>]</td>      
+       <td>[<a href="/bbradmin/contests/contestresult/{{result.id}}/">admin</a>]</td>      
 {% endif %}   
       </tr>
 {% endfor %}

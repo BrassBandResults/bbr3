@@ -152,3 +152,7 @@ tbody tr.result-3 td, td.result-3 {
 #UserProfile #tabs li.selected {
   border-bottom: 1px solid white;
 }
+
+.center {
+  text-align: center;
+}

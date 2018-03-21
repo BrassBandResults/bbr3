@@ -62,8 +62,8 @@
 {% endif %}
 {% if ShowEdit %} [<a href="/conductors/edit/{{Conductor.slug}}/" title="Edit this conductor's details">edit</a>]{%endif%}
 {% if user.profile.superuser %} [<a href="/conductors/{{Conductor.slug}}/aliases/" title="Edit conductor aliases">aliases</a>]{% endif %}
-{% if user.is_staff  and perms.conductors.change_conductor and perms.classifieds.change_classifiedprofile %} [<a href="/adminsite/conductors/conductor/{{Conductor.id}}/" title="Edit this conductor in the admin site">admin</a>]
-                       [<a href="/adminsite/classifieds/classifiedprofile/{{Profile.id}}/">admin classified</a>]
+{% if user.is_staff  and perms.conductors.change_conductor and perms.classifieds.change_classifiedprofile %} [<a href="/bbradmin/conductors/conductor/{{Conductor.id}}/" title="Edit this conductor in the admin site">admin</a>]
+                       [<a href="/bbradmin/classifieds/classifiedprofile/{{Profile.id}}/">admin classified</a>]
 {% endif %}
 </h1>
 {% if Profile.picture %}<img src="{{Profile.picture.url_200x200}}" id="ProfileImage"/>{% endif %}

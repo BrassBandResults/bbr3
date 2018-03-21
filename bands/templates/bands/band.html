@@ -27,7 +27,7 @@
 {% endif %}
 {% endif %}
 {% if user.is_staff and perms.bands.change_band %}
-  [<a href="/adminsite/bands/band/{{Band.id}}/" title="Edit this band in the admin site">admin</a>]
+  [<a href="/bbradmin/bands/band/{{Band.id}}/" title="Edit this band in the admin site">admin</a>]
 {% endif %}
 </span>
 
@@ -236,7 +236,7 @@
 {% endif %}
 		</td>
 {% if user.is_staff and perms.contests.change_contestresult %}
-		<td>[<a href="/adminsite/contests/contestresult/{{result.id}}/">admin</a>]</td>	
+		<td>[<a href="/bbradmin/contests/contestresult/{{result.id}}/">admin</a>]</td>	
 {% endif %}
       </tr>
 {% endfor %}
@@ -288,7 +288,7 @@
 		    </td>
 		    <td class="test_piece">{% if result.test_piece%}<a href="/pieces/{{result.test_piece.slug}}/">{{result.test_piece.name}}</a>{%endif%}</td>
 {% if user.is_staff and perms.contests.change_contestresult %}
-		    <td>[<a href="/adminsite/contests/contestresult/{{result.id}}/">admin</a>]</td>	
+		    <td>[<a href="/bbradmin/contests/contestresult/{{result.id}}/">admin</a>]</td>	
 {% endif %}
       </tr>
 {% endfor %}

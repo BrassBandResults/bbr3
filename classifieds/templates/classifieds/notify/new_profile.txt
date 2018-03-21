@@ -19,4 +19,4 @@ Profile:
 Last Changed By: {{ThingNew.lastChangedBy.username}} on {{ThingNew.last_modified}}
 Owner: {{ThingNew.owner.username}}, created {{ThingNew.created}}
 
-https://brassbandresults.co.uk/adminsite/classifieds/classifiedprofile/{{ThingNew.id}}/
+https://brassbandresults.co.uk/bbradmin/classifieds/classifiedprofile/{{ThingNew.id}}/

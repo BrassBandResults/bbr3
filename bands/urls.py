@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^add/$', views.add_band),
     url(r'^options/$', views.band_options),
     url(r'^edit/([-\w]+)/$', views.edit_band),
+    url(r'^winners/$', views.contest_winners),
     url(r'^([A-Z0]+)/$', views.bands_list),
     url(r'^([\w\-]+)/$', views.single_band),
     url(r'^([\w\-]+)/delete/$', views.delete_single_band),

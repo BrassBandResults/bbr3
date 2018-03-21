@@ -68,8 +68,8 @@
   [<a href="/bands/{{Band.slug}}/talk/" title="Band Talk Page">talk</a>]
 {% endif %}
 {% if user.is_staff and perms.bands.change_band and perms.classifieds.change_classifiedband  %} 
-[<a href="/adminsite/bands/band/{{Band.id}}/" title="Edit this band in the admin site">admin band</a>]
-[<a href="/adminsite/classifieds/classifiedband/{{ClassifiedProfile.id}}/" title="Edit this band profile in the admin site">admin classified</a>]
+[<a href="/bbradmin/bands/band/{{Band.id}}/" title="Edit this band in the admin site">admin band</a>]
+[<a href="/bbradmin/classifieds/classifiedband/{{ClassifiedProfile.id}}/" title="Edit this band profile in the admin site">admin classified</a>]
 {% endif %}
 </h1>
 {% if Aliases %}
@@ -351,7 +351,7 @@
 {% endif %}			
 		</td>
 {% if user.is_staff and perms.contests.change_contestresult %}
-		<td>[<a href="/adminsite/contests/contestresult/{{result.id}}/">admin</a>]</td>	
+		<td>[<a href="/bbradmin/contests/contestresult/{{result.id}}/">admin</a>]</td>	
 {% endif %}
       </tr>
 {% endfor %}
@@ -403,7 +403,7 @@
 		    </td>
 		    <td class="test_piece">{% if result.test_piece%}<a href="/pieces/{{result.test_piece.slug}}/">{{result.test_piece.name}}</a>{%endif%}</td>
 {% if user.is_staff and perms.contests.change_contestresult %}
-		    <td>[<a href="/adminsite/contests/contestresult/{{result.id}}/">admin</a>]</td>	
+		    <td>[<a href="/bbradmin/contests/contestresult/{{result.id}}/">admin</a>]</td>	
 {% endif %}
       </tr>
 {% endfor %}

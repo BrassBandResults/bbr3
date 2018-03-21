@@ -23,7 +23,7 @@
 {%if ShowEdit %} [<a href="/venues/edit/{{Venue.slug}}/" title="{% trans "Edit this venue's details"%}">edit</a>]{%endif%}
 {%endif%}
 {% if user.profile.superuser %} [<a href="/venues/{{Venue.slug}}/aliases/">edit aliases</a>]{% endif %}
-{% if user.is_staff and perms.contests.change_venue %} [<a href="/adminsite/contests/venue/{{Venue.id}}/">admin</a>]{% endif %}
+{% if user.is_staff and perms.contests.change_venue %} [<a href="/bbradmin/contests/venue/{{Venue.id}}/">admin</a>]{% endif %}
 </h1>
 {% if Aliases %}
 <p class="alias"><b>{% trans "Also known as"%}:</b> {%for alias in Aliases%}{{alias.name}}{% if alias.alias_start_date %} ({% if alias.show_start_date %}{{alias.alias_start_date|date:"Y"}}{%endif%}-{{alias.alias_end_date|date:"Y"}}){%endif%}{%if not forloop.last%}, {%endif%}{%endfor%}</p>

@@ -13,7 +13,7 @@
 {% block content %}
 <div class="container pt-1">
 <h1 class="contest-event"><a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/">{{ContestEvent.name}}</a> 
-    {% if user.is_staff and perms.contests.change_contestevent %}[<a href="/adminsite/contests/contestevent/{{ContestEvent.id}}/">admin</a>]{% endif %}
+    {% if user.is_staff and perms.contests.change_contestevent %}[<a href="/bbradmin/contests/contestevent/{{ContestEvent.id}}/">admin</a>]{% endif %}
 </h1>
 <h2>{{ContestEvent.event_date_with_day}}</h2>
 <div id="all-pages">

@@ -17,7 +17,7 @@
   [<a href="/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/edit/{{ContestEvent.id}}/">{% trans "edit"%}</a>]
   [<a href="/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:"Y-m-d"}}/6/">{% trans "edit adjudicators"%}</a>]
 {%endif%} 
-{% if user.is_staff and perms.contests.change_contestevent %}[<a href="/adminsite/contests/contestevent/{{ContestEvent.id}}/">admin</a>]{% endif %}
+{% if user.is_staff and perms.contests.change_contestevent %}[<a href="/bbradmin/contests/contestevent/{{ContestEvent.id}}/">admin</a>]{% endif %}
 </span>
 <h2><a href="/calendar/date/{{ContestEvent.event_date_link}}" title="Show contests that match this date">{{ContestEvent.event_date_with_day}}</a></h2>
 
@@ -244,7 +244,7 @@
         [<a href="/contests/result/delete/{{result.id}}/" class="screenonly" title="Delete this result">{% trans "delete"%}</a>]
 {% endif %}              
 {% if user.is_staff and perms.contests.change_contestresult %}
-        [<a href="/adminsite/contests/contestresult/{{result.id}}/" class="screenonly" title="Created {{result.created|date:"jS F Y, H:i"}} by {% firstof result.original_owner.username result.owner.username %}, last changed {{result.last_modified|date:"jS F Y, H:i"}} by {{result.lastChangedBy.username}}">admin</a>]        
+        [<a href="/bbradmin/contests/contestresult/{{result.id}}/" class="screenonly" title="Created {{result.created|date:"jS F Y, H:i"}} by {% firstof result.original_owner.username result.owner.username %}, last changed {{result.last_modified|date:"jS F Y, H:i"}} by {{result.lastChangedBy.username}}">admin</a>]        
 {% endif %}
             </td>            
 {% endif %}

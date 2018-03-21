@@ -18,7 +18,7 @@
 {% block content %}
 <div class="container pt-1">
 <h1><a href="/contests/{{ContestGroup.actual_slug}}/">{{ContestGroup.name}}</a> {{Year}} 
-  {% if user.is_staff and perms.contests.change_contestgroup %}[<a href="/adminsite/contests/contestgroup/{{ContestGroup.id}}/">admin</a>]{%endif%}
+  {% if user.is_staff and perms.contests.change_contestgroup %}[<a href="/bbradmin/contests/contestgroup/{{ContestGroup.id}}/">admin</a>]{%endif%}
 </h1>
 <table class="next-previous" width="100%">
   <tr>

@@ -31,8 +31,8 @@
 {% block content %}
 <h1 class="composer">{% if Profile.title %} {{Profile.title}} {%endif%}{{Composer.name}} <span id="postfix_letters">{{Profile.qualifications}}</span>
 {% if ShowEdit %} [<a href="/composer/edit/{{Composer.slug}}/" title="Edit this composer's details">edit</a>]{%endif%}
-{% if user.is_staff and perms.pieces.change_composer and perms.classifieds.change_classifiedprofile %} [<a href="/adminsite/pieces/composer/{{Composer.id}}/" title="Edit this composer in the admin site">admin</a>]
-                       [<a href="/adminsite/classifieds/classifiedprofile/{{Profile.id}}/">admin classified</a>]
+{% if user.is_staff and perms.pieces.change_composer and perms.classifieds.change_classifiedprofile %} [<a href="/bbradmin/pieces/composer/{{Composer.id}}/" title="Edit this composer in the admin site">admin</a>]
+                       [<a href="/bbradmin/classifieds/classifiedprofile/{{Profile.id}}/">admin classified</a>]
 {% endif %}
 </h1>
 {% if Profile.picture %}<img src="{{Profile.picture.url_200x200}}" id="ProfileImage"/>{% endif %}

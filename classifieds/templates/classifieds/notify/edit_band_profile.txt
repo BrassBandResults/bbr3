@@ -17,5 +17,5 @@ Profile Diff:
 Last Changed By: {{ThingNew.lastChangedBy.username}} on {{ThingNew.last_modified}}
 Owner: {{ThingNew.owner.username}}, created {{ThingNew.created}}
 
-https://brassbandresults.co.uk/adminsite/classifieds/classifiedband/{{ThingNew.id}}/
+https://brassbandresults.co.uk/bbradmin/classifieds/classifiedband/{{ThingNew.id}}/
 

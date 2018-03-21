@@ -23,7 +23,7 @@
   {% if user.profile.superuser %}
   [<a href="/contests/{{ContestGroup.actual_slug}}/talk/" title="{% trans "Contest Group Talk Page"%}">{% trans "talk"%}</a>]
   {% endif %}
-  {% if user.is_staff and perms.contests.change_contestgroup %}[<a href="/adminsite/contests/contestgroup/{{ContestGroup.id}}/">admin</a>]{%endif%}
+  {% if user.is_staff and perms.contests.change_contestgroup %}[<a href="/bbradmin/contests/contestgroup/{{ContestGroup.id}}/">admin</a>]{%endif%}
 </h1>
 {% if GroupAliases %}
 <p class="alias"><b>{% trans "Also/previously known as"%}:</b> {%for alias in GroupAliases%}{{alias.name}}{%if not forloop.last%}, {%endif%}{%endfor%}</p>

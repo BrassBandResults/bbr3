@@ -1,4 +1,4 @@
-{% load i18n %}<!DOCTYPE html>
+{%load badges %}{% load i18n %}<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -13,7 +13,19 @@
   <link rel="stylesheet" href="/site_media/css2017/bbr3-print.css" media="print"/>
   <link rel="stylesheet" href="/site_media/js/tablesorter/theme.bootstrap_4.css">
   <link rel="stylesheet" href="/site_media/jqueryui/jquery-ui.min.css">
-  {% block head %}{% endblock %}
+
+  {% if not user.profile.pro_member %}
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+  <script>
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"https://brassbandresults.co.uk/privacy/","theme":"dark-bottom"};
+  </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+<!-- End Cookie Consent plugin -->
+  {% endif %}
+
+    {% block head %}{% endblock %}
 </head>
 <body {% block bodyattrib %}{% endblock %}>
 
@@ -36,6 +48,7 @@
           <a class="dropdown-item" aria-labelledby="bandsDropdown" href="/map/search/">Search Map</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" aria-labelledby="bandsDropdown" href="/compare/bands/">Compare Bands</a>
+          <a class="dropdown-item" aria-labelledby="bandsDropdown" href="/bands/winners/">Winning Bands</a>
         </div>
       </div>
       
@@ -134,6 +147,31 @@
   </div>
 </nav>
 
+<div class="clear"></div>
+<br/>
+{% if user.is_authenticated %}
+{% badge_notifications_for_user user %}
+{% endif %}
+
+{% block adbar %}  
+<div id="adBarTop"> 
+{% if not user.profile.pro_member %}
+<div class="container pt-1">
+<!-- BrassBandResults Header -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5087204743199130"
+     data-ad-slot="3029222401"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p class="center">[<a href="/accounts/upgrade/">Upgrade to pro and remove adverts</a>]</p>
+</div>
+{% endif %}
+  </div>
+{% endblock %}
+
 {% block content%}
 <h1>Content</h1>
 <p>You'll be wanting to override block content</p>
@@ -173,6 +211,21 @@
 </footer>
 
 <p class="printonly"><br/><br/>Printed from https://brassbandresults.co.uk/</p>
+
+{% block adbarBottom %}  
+{% if request.user.is_anonymous %}
+<br/>
+<div id="adBarBottom">
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-5087204743199130"
+     data-ad-slot="6711458397"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+{% endif %}
+{% endblock %}
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

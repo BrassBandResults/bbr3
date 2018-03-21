@@ -873,7 +873,7 @@ def edit_result(request, pResultSerial):
         if form.is_valid():
             lContestResult = form.save(commit=False)
             lPenaltyPoints = lContestResult.penalty_points
-            if len(lPenaltyPoints.strip()) > 0:
+            if lPenaltyPoints and len(lPenaltyPoints.strip()) > 0:
                 if lPenaltyPoints.strip().startswith('-') == False:
                     lContestResult.penalty_points = "-%s" % lPenaltyPoints.strip()
             try:

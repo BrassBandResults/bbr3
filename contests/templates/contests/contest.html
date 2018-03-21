@@ -18,7 +18,7 @@
      [<a href="/contests/{{Contest.slug}}/talk/" title="{% trans "Contest Talk Page"%}">{% trans "talk"%}</a>]
     {% endif %}
     {% if user.profile.superuser and Contest.count == 0  %} [<a href="/contests/delete/{{Contest.slug}}/">delete</a>]{% endif %}
-	{% if user.is_staff and perms.contests.change_contest %} [<a href="/adminsite/contests/contest/{{Contest.id}}/">admin</a>]{% endif %}
+	{% if user.is_staff and perms.contests.change_contest %} [<a href="/bbradmin/contests/contest/{{Contest.id}}/">admin</a>]{% endif %}
 </h1>
 {% if Contest.qualifies_for %}
 <p class="alias">{% trans "Qualifying contest for"%} <a href="/contests/{{Contest.qualifies_for.slug}}/">{{Contest.qualifies_for.name}}</a></p>

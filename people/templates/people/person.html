@@ -17,7 +17,7 @@
 <span class="screenonly"> 
 {% if ShowEdit %} [<a href="/people/edit/{{Person.slug}}/" title="Edit this person's details">{% trans "edit"%}</a>]{%endif%}
 {% if user.profile.superuser %} [<a href="/people/{{Person.slug}}/aliases/" title="Edit person aliases">{% trans "aliases"%}</a>]{% endif %}
-{% if user.is_staff and perms.pieces.change_composer %} [<a href="/adminsite/people/person/{{Person.id}}/" title="Edit this person in the admin site">admin</a>]{% endif %}
+{% if user.is_staff and perms.pieces.change_composer %} [<a href="/bbradmin/people/person/{{Person.id}}/" title="Edit this person in the admin site">admin</a>]{% endif %}
 {% if Profile and request.user == Profile.owner %}[<a href="/people/{{Person.slug}}/edit_classified/">edit profile</a>]{% endif %}
 </span>
 {% if Aliases %}
@@ -169,7 +169,7 @@
 		<td class="band-contest-points">{% if result.points %}{{result.points_display}}{% endif %}</td>
 		<td class="band-contest-draw">{% if result.draw %}{{ result.draw }}{% endif %}</td>
 {% if user.is_staff and perms.contests.change_contestresult %}
-			<td>[<a href="/adminsite/contests/contestresult/{{result.id}}/">admin</a>]</td>			
+			<td>[<a href="/bbradmin/contests/contestresult/{{result.id}}/">admin</a>]</td>			
 {% endif %}		
       </tr>
 {% endfor %}
@@ -205,7 +205,7 @@
 		<td class="band"><a href="/bands/{{result.band.slug}}/" title="{{result.band.name}}">{{ result.band_name }}</a></td>
 		<td class="band-contest-position" title="{{result.result_tooltip}}">{{ result.results_position_display }}</td>
 {% if user.is_staff and perms.contests.change_contestresult %}
-			<td>[<a href="/adminsite/contests/contestresult/{{result.id}}/">admin</a>]</td>			
+			<td>[<a href="/bbradmin/contests/contestresult/{{result.id}}/">admin</a>]</td>			
 {% endif %}		
       </tr>
 {% endfor %}

@@ -28,8 +28,8 @@
 
 {% block content %}
 <h1 class="adjudicator">{% if Profile.title %} {{Profile.title}} {%endif%}{{Adjudicator.name}} <span id="postfix_letters">{{Profile.qualifications}}</span>
-  {% if user.is_staff and perms.adjudicators.change_adjudicator and perms.classifieds.change_classifiedprofile %} [<a href="/adminsite/adjudicators/adjudicator/{{Adjudicator.id}}/">admin</a>]
-                         [<a href="/adminsite/classifieds/classifiedprofile/{{Profile.id}}/">admin classified</a>]
+  {% if user.is_staff and perms.adjudicators.change_adjudicator and perms.classifieds.change_classifiedprofile %} [<a href="/bbradmin/adjudicators/adjudicator/{{Adjudicator.id}}/">admin</a>]
+                         [<a href="/bbradmin/classifieds/classifiedprofile/{{Profile.id}}/">admin classified</a>]
   {% endif %}
 </h1>
 {% if Profile.picture %}<img src="{{Profile.picture.url_200x200}}" id="ProfileImage"/>{% endif %}

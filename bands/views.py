@@ -713,3 +713,54 @@ def delete_single_band(request, pSlug):
     lBand.delete()
     
     return HttpResponseRedirect('/bands/')
+
+
+class ResultObject:
+    pass  
+
+@login_required_pro_user
+def contest_winners(request):
+    """
+    Show list of which bands have won the most contests, excluding whit friday
+    """
+    lBands = []
+    cursor = connection.cursor()
+    
+    cursor.execute("""
+WITH 
+  winners AS
+   (SELECT band_id, count(*) as winners
+    FROM contests_contestresult r
+    INNER JOIN contests_contestevent e ON e.id = r.contest_event_id
+    INNER JOIN contests_contest c ON c.id = e.contest_id
+    WHERE r.results_position = 1
+    AND (c.group_id is null or c.group_id NOT IN (509,76,77)) -- whit friday Rochdale/Tameside/Saddleworth
+    GROUP BY band_id),
+  total AS
+   (SELECT band_id, count(*) as contests
+    FROM contests_contestresult r
+    INNER JOIN contests_contestevent e ON e.id = r.contest_event_id
+    INNER JOIN contests_contest c ON c.id = e.contest_id
+    AND (c.group_id is null or c.group_id NOT IN (509,76,77)) -- whit friday Rochdale/Tameside/Saddleworth
+    AND r.results_position < 1000
+    GROUP BY band_id)
+SELECT b.slug, b.name, w.winners, t.contests
+FROM bands_band b
+INNER JOIN winners w ON b.id = w.band_id
+INNER JOIN total t ON b.id = t.band_id
+ORDER BY 3 desc""") 
+    rows = cursor.fetchall()
+    for row in rows:
+        lBand = ResultObject()
+        lBand.slug = row[0]
+        lBand.name = row[1]
+        lBand.wins = row[2]
+        lBand.contests = row[3]
+        lBand.percent_win = (lBand.wins * 100) // lBand.contests
+        if lBand.contests >= 10:
+            lBands.append(lBand)
+    cursor.close()
+    return render_auth(request, 'bands/winners.html', {
+                                                       'Bands' : lBands,
+                                                       })
+   
