@@ -13,6 +13,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Search Results for "{{SearchCriteria}}"</h1>
 {% if SearchResults %}
 <table id="results" class="table table-hover">
@@ -40,6 +41,7 @@
 {% else %}
 <p>No results returned.</p>
 {% endif %}
+</div>
 {% endblock %}
 
 {%block feedback%}{%endblock%}
