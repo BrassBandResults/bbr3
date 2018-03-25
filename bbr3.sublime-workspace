@@ -32,353 +32,19 @@
 	"buffers":
 	[
 		{
-			"file": "pieces/templates/pieces/by_section.html",
+			"file": "site_media/css2017/bbr3.css",
 			"settings":
 			{
-				"buffer_size": 6567,
+				"buffer_size": 3020,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "people/views.py",
+			"file": "badges/templates/badges/badges.html",
 			"settings":
 			{
-				"buffer_size": 37947,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "bands/views.py",
-			"settings":
-			{
-				"buffer_size": 32268,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "home/templates/template.html",
-			"settings":
-			{
-				"buffer_size": 11576,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "bands/templates/bands/winners.html",
-			"settings":
-			{
-				"buffer_size": 1546,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "bbr3/urls.py",
-			"settings":
-			{
-				"buffer_size": 3610,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Searching 736 files for \"siteadmin\" (case sensitive)\n\n0 matches\n\nSearching 736 files for \"adminsite\" (case sensitive)\n\n/Users/timsawyer/web/bbr3/bands/templates/bands/band.html:\n   28  {% endif %}\n   29  {% if user.is_staff and perms.bands.change_band %}\n   30:   [<a href=\"/adminsite/bands/band/{{Band.id}}/\" title=\"Edit this band in the admin site\">admin</a>]\n   31  {% endif %}\n   32  </span>\n   ..\n  237  \t\t</td>\n  238  {% if user.is_staff and perms.contests.change_contestresult %}\n  239: \t\t<td>[<a href=\"/adminsite/contests/contestresult/{{result.id}}/\">admin</a>]</td>\t\n  240  {% endif %}\n  241        </tr>\n  ...\n  289  \t\t    <td class=\"test_piece\">{% if result.test_piece%}<a href=\"/pieces/{{result.test_piece.slug}}/\">{{result.test_piece.name}}</a>{%endif%}</td>\n  290  {% if user.is_staff and perms.contests.change_contestresult %}\n  291: \t\t    <td>[<a href=\"/adminsite/contests/contestresult/{{result.id}}/\">admin</a>]</td>\t\n  292  {% endif %}\n  293        </tr>\n\n/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/adjudicator.html:\n   29  {% block content %}\n   30  <h1 class=\"adjudicator\">{% if Profile.title %} {{Profile.title}} {%endif%}{{Adjudicator.name}} <span id=\"postfix_letters\">{{Profile.qualifications}}</span>\n   31:   {% if user.is_staff and perms.adjudicators.change_adjudicator and perms.classifieds.change_classifiedprofile %} [<a href=\"/adminsite/adjudicators/adjudicator/{{Adjudicator.id}}/\">admin</a>]\n   32:                          [<a href=\"/adminsite/classifieds/classifiedprofile/{{Profile.id}}/\">admin classified</a>]\n   33    {% endif %}\n   34  </h1>\n\n/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/band.html:\n   69  {% endif %}\n   70  {% if user.is_staff and perms.bands.change_band and perms.classifieds.change_classifiedband  %} \n   71: [<a href=\"/adminsite/bands/band/{{Band.id}}/\" title=\"Edit this band in the admin site\">admin band</a>]\n   72: [<a href=\"/adminsite/classifieds/classifiedband/{{ClassifiedProfile.id}}/\" title=\"Edit this band profile in the admin site\">admin classified</a>]\n   73  {% endif %}\n   74  </h1>\n   ..\n  352  \t\t</td>\n  353  {% if user.is_staff and perms.contests.change_contestresult %}\n  354: \t\t<td>[<a href=\"/adminsite/contests/contestresult/{{result.id}}/\">admin</a>]</td>\t\n  355  {% endif %}\n  356        </tr>\n  ...\n  404  \t\t    <td class=\"test_piece\">{% if result.test_piece%}<a href=\"/pieces/{{result.test_piece.slug}}/\">{{result.test_piece.name}}</a>{%endif%}</td>\n  405  {% if user.is_staff and perms.contests.change_contestresult %}\n  406: \t\t    <td>[<a href=\"/adminsite/contests/contestresult/{{result.id}}/\">admin</a>]</td>\t\n  407  {% endif %}\n  408        </tr>\n\n/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/composer.html:\n   32  <h1 class=\"composer\">{% if Profile.title %} {{Profile.title}} {%endif%}{{Composer.name}} <span id=\"postfix_letters\">{{Profile.qualifications}}</span>\n   33  {% if ShowEdit %} [<a href=\"/composer/edit/{{Composer.slug}}/\" title=\"Edit this composer's details\">edit</a>]{%endif%}\n   34: {% if user.is_staff and perms.pieces.change_composer and perms.classifieds.change_classifiedprofile %} [<a href=\"/adminsite/pieces/composer/{{Composer.id}}/\" title=\"Edit this composer in the admin site\">admin</a>]\n   35:                        [<a href=\"/adminsite/classifieds/classifiedprofile/{{Profile.id}}/\">admin classified</a>]\n   36  {% endif %}\n   37  </h1>\n\n/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/conductor.html:\n   63  {% if ShowEdit %} [<a href=\"/conductors/edit/{{Conductor.slug}}/\" title=\"Edit this conductor's details\">edit</a>]{%endif%}\n   64  {% if user.profile.superuser %} [<a href=\"/conductors/{{Conductor.slug}}/aliases/\" title=\"Edit conductor aliases\">aliases</a>]{% endif %}\n   65: {% if user.is_staff  and perms.conductors.change_conductor and perms.classifieds.change_classifiedprofile %} [<a href=\"/adminsite/conductors/conductor/{{Conductor.id}}/\" title=\"Edit this conductor in the admin site\">admin</a>]\n   66:                        [<a href=\"/adminsite/classifieds/classifiedprofile/{{Profile.id}}/\">admin classified</a>]\n   67  {% endif %}\n   68  </h1>\n\n/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/notify/edit_band_profile.txt:\n   18  Owner: {{ThingNew.owner.username}}, created {{ThingNew.created}}\n   19  \n   20: https://brassbandresults.co.uk/adminsite/classifieds/classifiedband/{{ThingNew.id}}/\n   21  \n   22  \n\n/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/notify/edit_profile.txt:\n   20  Owner: {{ThingNew.owner.username}}, created {{ThingNew.created}}\n   21  \n   22: https://brassbandresults.co.uk/adminsite/classifieds/classifiedprofile/{{ThingNew.id}}/\n   23  \n\n/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/notify/new_band_profile.txt:\n   18  Owner: {{ThingNew.owner.username}}, created {{ThingNew.created}}\n   19  \n   20: https://brassbandresults.co.uk/adminsite/classifieds/classifiedband/{{ThingNew.id}}/\n   21  \n   22  \n\n/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/notify/new_profile.txt:\n   20  Owner: {{ThingNew.owner.username}}, created {{ThingNew.created}}\n   21  \n   22: https://brassbandresults.co.uk/adminsite/classifieds/classifiedprofile/{{ThingNew.id}}/\n   23  \n\n/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/sections/results.htm:\n   36          <td class=\"band-contest-draw\">{% if result.draw %}{{ result.draw }}{% endif %}</td>\n   37  {% if user.is_staff and perms.contests.change_contestresult %}\n   38:        <td>[<a href=\"/adminsite/contests/contestresult/{{result.id}}/\">admin</a>]</td>      \n   39  {% endif %}   \n   40        </tr>\n\n/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/sections/whitfriday.htm:\n   22      <td class=\"band-contest-position\" title=\"{{result.result_tooltip}}\">{{ result.results_position_display }}</td>\n   23  {% if user.is_staff and perms.contests.change_contestresult  %}\n   24:       <td>[<a href=\"/adminsite/contests/contestresult/{{result.id}}/\">admin</a>]</td>      \n   25  {% endif %}   \n   26        </tr>\n\n/Users/timsawyer/web/bbr3/contests/templates/contests/contest.html:\n   19      {% endif %}\n   20      {% if user.profile.superuser and Contest.count == 0  %} [<a href=\"/contests/delete/{{Contest.slug}}/\">delete</a>]{% endif %}\n   21: \t{% if user.is_staff and perms.contests.change_contest %} [<a href=\"/adminsite/contests/contest/{{Contest.id}}/\">admin</a>]{% endif %}\n   22  </h1>\n   23  {% if Contest.qualifies_for %}\n\n/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event.html:\n   18    [<a href=\"/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:\"Y-m-d\"}}/6/\">{% trans \"edit adjudicators\"%}</a>]\n   19  {%endif%} \n   20: {% if user.is_staff and perms.contests.change_contestevent %}[<a href=\"/adminsite/contests/contestevent/{{ContestEvent.id}}/\">admin</a>]{% endif %}\n   21  </span>\n   22  <h2><a href=\"/calendar/date/{{ContestEvent.event_date_link}}\" title=\"Show contests that match this date\">{{ContestEvent.event_date_with_day}}</a></h2>\n   ..\n  245  {% endif %}              \n  246  {% if user.is_staff and perms.contests.change_contestresult %}\n  247: \t\t[<a href=\"/adminsite/contests/contestresult/{{result.id}}/\" class=\"screenonly\" title=\"Created {{result.created|date:\"jS F Y, H:i\"}} by {% firstof result.original_owner.username result.owner.username %}, last changed {{result.last_modified|date:\"jS F Y, H:i\"}} by {{result.lastChangedBy.username}}\">admin</a>]\t\t\n  248  {% endif %}\n  249              </td>\t\t\t\n\n/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_future.html:\n   18    [<a href=\"/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:\"Y-m-d\"}}/6/\">{% trans \"edit adjudicators\"%}</a>]\n   19  {%endif%} \n   20: {% if user.is_staff and perms.contests.change_contestevent %}[<a href=\"/adminsite/contests/contestevent/{{ContestEvent.id}}/\">admin</a>]{% endif %}\n   21  </span>\n   22  <h2><a href=\"/calendar/date/{{ContestEvent.event_date_link}}\" title=\"Show contests that match this date\">{{ContestEvent.event_date_with_day}}</a></h2>\n   ..\n  236  {% endif %}              \n  237  {% if user.is_staff and perms.contests.change_contestresult %}\n  238:         [<a href=\"/adminsite/contests/contestresult/{{result.id}}/\" class=\"screenonly\" title=\"Created {{result.created|date:\"jS F Y, H:i\"}} by {% firstof result.original_owner.username result.owner.username %}, last changed {{result.last_modified|date:\"jS F Y, H:i\"}} by {{result.lastChangedBy.username}}\">admin</a>]        \n  239  {% endif %}\n  240              </td>            \n\n/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_programme.html:\n   14  <div class=\"container pt-1\">\n   15  <h1 class=\"contest-event\"><a href=\"/contests/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:\"Y-m-d\"}}/\">{{ContestEvent.name}}</a> \n   16:     {% if user.is_staff and perms.contests.change_contestevent %}[<a href=\"/adminsite/contests/contestevent/{{ContestEvent.id}}/\">admin</a>]{% endif %}\n   17  </h1>\n   18  <h2>{{ContestEvent.event_date_with_day}}</h2>\n\n/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_today.html:\n   18    [<a href=\"/addresults/{{ContestEvent.contest.slug}}/{{ContestEvent.date_of_event|date:\"Y-m-d\"}}/6/\">{% trans \"edit adjudicators\"%}</a>]\n   19  {%endif%} \n   20: {% if user.is_staff and perms.contests.change_contestevent %}[<a href=\"/adminsite/contests/contestevent/{{ContestEvent.id}}/\">admin</a>]{% endif %}\n   21  </span>\n   22  <h2><a href=\"/calendar/date/{{ContestEvent.event_date_link}}\" title=\"Show contests that match this date\">{{ContestEvent.event_date_with_day}}</a></h2>\n   ..\n  245  {% endif %}              \n  246  {% if user.is_staff and perms.contests.change_contestresult %}\n  247:         [<a href=\"/adminsite/contests/contestresult/{{result.id}}/\" class=\"screenonly\" title=\"Created {{result.created|date:\"jS F Y, H:i\"}} by {% firstof result.original_owner.username result.owner.username %}, last changed {{result.last_modified|date:\"jS F Y, H:i\"}} by {{result.lastChangedBy.username}}\">admin</a>]        \n  248  {% endif %}\n  249              </td>            \n\n/Users/timsawyer/web/bbr3/contests/templates/contests/contest_group.html:\n   24    [<a href=\"/contests/{{ContestGroup.actual_slug}}/talk/\" title=\"{% trans \"Contest Group Talk Page\"%}\">{% trans \"talk\"%}</a>]\n   25    {% endif %}\n   26:   {% if user.is_staff and perms.contests.change_contestgroup %}[<a href=\"/adminsite/contests/contestgroup/{{ContestGroup.id}}/\">admin</a>]{%endif%}\n   27  </h1>\n   28  {% if GroupAliases %}\n\n/Users/timsawyer/web/bbr3/contests/templates/contests/contest_group_whitfriday.html:\n   22  <div class=\"container pt-1\">\n   23  <h1>{{ContestGroup.name}}\n   24:   {% if user.is_staff and perms.contests.change_contestgroup %}[<a href=\"/adminsite/contests/contestgroup/{{ContestGroup.id}}/\">admin</a>]{%endif%}\n   25  </h1>\n   26  <h2>{% trans \"Overall Results\"%}</h2>\n\n/Users/timsawyer/web/bbr3/contests/templates/contests/contest_group_year.html:\n   19  <div class=\"container pt-1\">\n   20  <h1><a href=\"/contests/{{ContestGroup.actual_slug}}/\">{{ContestGroup.name}}</a> {{Year}} \n   21:   {% if user.is_staff and perms.contests.change_contestgroup %}[<a href=\"/adminsite/contests/contestgroup/{{ContestGroup.id}}/\">admin</a>]{%endif%}\n   22  </h1>\n   23  <table class=\"next-previous\" width=\"100%\">\n\n/Users/timsawyer/web/bbr3/feedback/templates/feedback/feedback_detail.html:\n    8  \n    9  {% block content %}\n   10: <h1>Feedback Detail{% if user.is_staff and perms.feedback.change_sitefeedback %} [<a href=\"/adminsite/feedback/sitefeedback/{{Feedback.id}}/\">admin</a>]{%endif%}</h1>\n   11  <table>\n   12    <tr>\n\n/Users/timsawyer/web/bbr3/home/templates/home/faq.html:\n   14  <h3>{{section.name}}</h3>\n   15   {% for question in section.faqentry_set.all %}\n   16:   <h5>{{question.question}} {% if user.is_staff and perms.home.change_faqentry %}[<a href=\"/adminsite/home/faqentry/{{question.id}}/\">admin</a>]{%endif%}</p></h5>\n   17    <p class=\"answer\">{{question.answer|safe|linebreaksbr}}</p>\n   18   {% endfor %}\n\n/Users/timsawyer/web/bbr3/people/templates/people/people.html:\n  122  \t\t\t<td>{{person.arrangement_count}}</td>\n  123  {% if user.is_staff and StartsWith == 'NOTHING' %}\n  124: \t\t    <td>[<a href=\"/adminsite/people/person/{{person.id}}/delete/\">delete</a>]</td>\n  125  {% endif %}\t\t\t\t\t\t\n  126  \t\t</tr>\n\n/Users/timsawyer/web/bbr3/people/templates/people/person.html:\n   18  {% if ShowEdit %} [<a href=\"/people/edit/{{Person.slug}}/\" title=\"Edit this person's details\">{% trans \"edit\"%}</a>]{%endif%}\n   19  {% if user.profile.superuser %} [<a href=\"/people/{{Person.slug}}/aliases/\" title=\"Edit person aliases\">{% trans \"aliases\"%}</a>]{% endif %}\n   20: {% if user.is_staff and perms.pieces.change_composer %} [<a href=\"/adminsite/people/person/{{Person.id}}/\" title=\"Edit this person in the admin site\">admin</a>]{% endif %}\n   21  {% if Profile and request.user == Profile.owner %}[<a href=\"/people/{{Person.slug}}/edit_classified/\">edit profile</a>]{% endif %}\n   22  </span>\n   ..\n  170  \t\t<td class=\"band-contest-draw\">{% if result.draw %}{{ result.draw }}{% endif %}</td>\n  171  {% if user.is_staff and perms.contests.change_contestresult %}\n  172: \t\t\t<td>[<a href=\"/adminsite/contests/contestresult/{{result.id}}/\">admin</a>]</td>\t\t\t\n  173  {% endif %}\t\t\n  174        </tr>\n  ...\n  206  \t\t<td class=\"band-contest-position\" title=\"{{result.result_tooltip}}\">{{ result.results_position_display }}</td>\n  207  {% if user.is_staff and perms.contests.change_contestresult %}\n  208: \t\t\t<td>[<a href=\"/adminsite/contests/contestresult/{{result.id}}/\">admin</a>]</td>\t\t\t\n  209  {% endif %}\t\t\n  210        </tr>\n\n/Users/timsawyer/web/bbr3/pieces/templates/pieces/piece.html:\n   23  <h1 class=\"test-piece\">{{Piece.name}}{% if Piece.year%} ({{Piece.year}}){%endif%}, <a href=\"/people/{{Piece.composer.slug}}/\">{{Piece.composer.name}}</a>{% if Piece.arranger %} arranged <a href=\"/people/{{Piece.arranger.slug}}/\">{{Piece.arranger.name}}</a>{%endif%} \n   24  {% if ShowEdit %} [<a href=\"/pieces/edit/{{Piece.slug}}/\" title=\"Edit this test piece's details\">{% trans \"edit\"%}</a>]{%endif%}\n   25: {% if user.is_staff and perms.pieces.change_testpiece %} [<a href=\"/adminsite/pieces/testpiece/{{Piece.id}}/\" title=\"Edit this piece in the admin site\">admin</a>]{% endif %}\n   26  </h1>\n   27  \n\n/Users/timsawyer/web/bbr3/regions/templates/regions/.tmp_region.html.13076~:\n   12  \n   13  {% block content %}\n   14: <h1 class=\"region\">{{Region.name}} {% if user.is_staff %} [<a href=\"/adminsite/regions/region/{{Region.id}}/\">edit</a>]{% endif %}</h1>\n   15  <p>\n   16  {% for region in Regions %}\n\n/Users/timsawyer/web/bbr3/users/templates/users/user.html:\n   22  <h1>{{User.username}}\n   23  {% if user.is_superuser %}\n   24:  [<a href=\"/adminsite/auth/user/{{User.id}}/\">admin user</a>]\n   25:  [<a href=\"/adminsite/users/userprofile/{{User.profile.id}}/\">admin profile</a>]\n   26  {%endif%}\n   27  </h1>\n\n/Users/timsawyer/web/bbr3/users/templates/users/user_profile.html:\n   90  <h1>{{User.username}}\n   91  {% if user.is_superuser %}\n   92:  [<a href=\"/adminsite/auth/user/{{User.id}}/\">admin user</a>]\n   93:  [<a href=\"/adminsite/users/userprofile/{{User.profile.id}}/\">admin profile</a>]\n   94  {%endif%}\n   95  </h1>\n\n/Users/timsawyer/web/bbr3/users/templates/users/profile/classifieds.html:\n   21  {% endif %} \n   22  {% if user.is_superuser %}\n   23:  [<a href=\"/adminsite/auth/user/{{User.id}}/\">admin user</a>]\n   24:  [<a href=\"/adminsite/users/userprofile/{{User.profile.id}}/\">admin profile</a>]\n   25  {%endif%}\n   26  </span>\n\n/Users/timsawyer/web/bbr3/users/templates/users/profile/feedback_sent.html:\n   21  {% endif %} \n   22  {% if user.is_superuser %}\n   23:  [<a href=\"/adminsite/auth/user/{{User.id}}/\">admin user</a>]\n   24:  [<a href=\"/adminsite/users/userprofile/{{User.profile.id}}/\">admin profile</a>]\n   25  {%endif%}\n   26  </span>\n\n/Users/timsawyer/web/bbr3/users/templates/users/profile/messages.html:\n   21  {% endif %} \n   22  {% if user.is_superuser %}\n   23:  [<a href=\"/adminsite/auth/user/{{User.id}}/\">admin user</a>]\n   24:  [<a href=\"/adminsite/users/userprofile/{{User.profile.id}}/\">admin profile</a>]\n   25  {%endif%}\n   26  </span>\n\n/Users/timsawyer/web/bbr3/users/templates/users/profile/performances.html:\n   21  {% endif %} \n   22  {% if user.is_superuser %}\n   23:  [<a href=\"/adminsite/auth/user/{{User.id}}/\">admin user</a>]\n   24:  [<a href=\"/adminsite/users/userprofile/{{User.profile.id}}/\">admin profile</a>]\n   25  {%endif%}\n   26  </span>\n\n/Users/timsawyer/web/bbr3/users/templates/users/profile/results_added.html:\n   21  {% endif %} \n   22  {% if user.is_superuser %}\n   23:  [<a href=\"/adminsite/auth/user/{{User.id}}/\">admin user</a>]\n   24:  [<a href=\"/adminsite/users/userprofile/{{User.profile.id}}/\">admin profile</a>]\n   25  {%endif%}\n   26  </span>\n\n/Users/timsawyer/web/bbr3/users/templates/users/profile/user.html:\n   19  {% endif %} \n   20  {% if user.is_superuser %}\n   21:  [<a href=\"/adminsite/auth/user/{{User.id}}/\">admin user</a>]\n   22:  [<a href=\"/adminsite/users/userprofile/{{User.profile.id}}/\">admin profile</a>]\n   23  {%endif%}\n   24  </span>\n\n/Users/timsawyer/web/bbr3/users/templates/users/public/user.html:\n   23  <h1>{{User.username}}\n   24  {% if user.is_superuser %}\n   25:  [<a href=\"/adminsite/auth/user/{{User.id}}/\">admin user</a>]\n   26:  [<a href=\"/adminsite/users/userprofile/{{User.profile.id}}/\">admin profile</a>]\n   27  {%endif%}\n   28  </h1>\n\n/Users/timsawyer/web/bbr3/venues/templates/venues/venue.html:\n   24  {%endif%}\n   25  {% if user.profile.superuser %} [<a href=\"/venues/{{Venue.slug}}/aliases/\">edit aliases</a>]{% endif %}\n   26: {% if user.is_staff and perms.contests.change_venue %} [<a href=\"/adminsite/contests/venue/{{Venue.id}}/\">admin</a>]{% endif %}\n   27  </h1>\n   28  {% if Aliases %}\n\n57 matches across 35 files\n",
-			"settings":
-			{
-				"buffer_size": 17918,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "bands/templates/bands/band.html",
-			"settings":
-			{
-				"buffer_size": 23816,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "classifieds/templates/classifieds/adjudicator.html",
-			"settings":
-			{
-				"buffer_size": 4400,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "classifieds/templates/classifieds/band.html",
-			"settings":
-			{
-				"buffer_size": 25928,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "classifieds/templates/classifieds/composer.html",
-			"settings":
-			{
-				"buffer_size": 3468,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "classifieds/templates/classifieds/conductor.html",
-			"settings":
-			{
-				"buffer_size": 12240,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "classifieds/templates/classifieds/notify/edit_band_profile.txt",
-			"settings":
-			{
-				"buffer_size": 1553,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "classifieds/templates/classifieds/notify/edit_profile.txt",
-			"settings":
-			{
-				"buffer_size": 1916,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "classifieds/templates/classifieds/notify/new_band_profile.txt",
-			"settings":
-			{
-				"buffer_size": 700,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "classifieds/templates/classifieds/notify/new_profile.txt",
-			"settings":
-			{
-				"buffer_size": 707,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "classifieds/templates/classifieds/sections/results.htm",
-			"settings":
-			{
-				"buffer_size": 2817,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "classifieds/templates/classifieds/sections/whitfriday.htm",
-			"settings":
-			{
-				"buffer_size": 1264,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "contests/templates/contests/contest.html",
-			"settings":
-			{
-				"buffer_size": 9842,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "contests/templates/contests/contest_event.html",
-			"settings":
-			{
-				"buffer_size": 18886,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "contests/templates/contests/contest_event_future.html",
-			"settings":
-			{
-				"buffer_size": 17348,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "contests/templates/contests/contest_event_programme.html",
-			"settings":
-			{
-				"buffer_size": 1507,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "contests/templates/contests/contest_event_today.html",
-			"settings":
-			{
-				"buffer_size": 19441,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "contests/templates/contests/contest_group.html",
-			"settings":
-			{
-				"buffer_size": 4080,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "contests/templates/contests/contest_group_whitfriday.html",
-			"settings":
-			{
-				"buffer_size": 2952,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "contests/templates/contests/contest_group_year.html",
-			"settings":
-			{
-				"buffer_size": 2722,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "feedback/templates/feedback/feedback_detail.html",
-			"settings":
-			{
-				"buffer_size": 1669,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "home/templates/home/faq.html",
-			"settings":
-			{
-				"buffer_size": 660,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "people/templates/people/people.html",
-			"settings":
-			{
-				"buffer_size": 11140,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "people/templates/people/person.html",
-			"settings":
-			{
-				"buffer_size": 22435,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "pieces/templates/pieces/piece.html",
-			"settings":
-			{
-				"buffer_size": 8899,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "regions/templates/regions/.tmp_region.html.13076~",
-			"settings":
-			{
-				"buffer_size": 835,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "users/templates/users/user.html",
-			"settings":
-			{
-				"buffer_size": 3855,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "users/templates/users/user_profile.html",
-			"settings":
-			{
-				"buffer_size": 13028,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "users/templates/users/profile/classifieds.html",
-			"settings":
-			{
-				"buffer_size": 2454,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "users/templates/users/profile/feedback_sent.html",
-			"settings":
-			{
-				"buffer_size": 2842,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "users/templates/users/profile/messages.html",
-			"settings":
-			{
-				"buffer_size": 2813,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "users/templates/users/profile/performances.html",
-			"settings":
-			{
-				"buffer_size": 10057,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "users/templates/users/profile/results_added.html",
-			"settings":
-			{
-				"buffer_size": 4722,
+				"buffer_size": 557,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -387,7 +53,7 @@
 			"file": "users/templates/users/profile/user.html",
 			"settings":
 			{
-				"buffer_size": 5311,
+				"buffer_size": 5361,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -396,34 +62,133 @@
 			"file": "users/templates/users/public/user.html",
 			"settings":
 			{
-				"buffer_size": 3806,
+				"buffer_size": 3856,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "venues/templates/venues/venue.html",
+			"file": "addresults/templates/addresults/adjudicators.html",
 			"settings":
 			{
-				"buffer_size": 3460,
+				"buffer_size": 4059,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "contests/views.py",
+			"file": "addresults/templates/addresults/bands.html",
 			"settings":
 			{
-				"buffer_size": 82968,
+				"buffer_size": 3105,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "bands/urls.py",
+			"file": "addresults/templates/addresults/composer.html",
 			"settings":
 			{
-				"buffer_size": 1747,
+				"buffer_size": 3091,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addresults/templates/addresults/contestdate.html",
+			"settings":
+			{
+				"buffer_size": 1738,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addresults/templates/addresults/contestname.html",
+			"settings":
+			{
+				"buffer_size": 2319,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addresults/templates/addresults/contesttype.html",
+			"settings":
+			{
+				"buffer_size": 747,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addresults/templates/addresults/exists.html",
+			"settings":
+			{
+				"buffer_size": 643,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addresults/templates/addresults/notes.html",
+			"settings":
+			{
+				"buffer_size": 1937,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addresults/templates/addresults/testpiece.html",
+			"settings":
+			{
+				"buffer_size": 2583,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addresults/templates/addresults/venue.html",
+			"settings":
+			{
+				"buffer_size": 2668,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addresults/templates/addresults/whitfriday.html",
+			"settings":
+			{
+				"buffer_size": 550,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addwhitfriday/templates/addwhitfriday/bands.html",
+			"settings":
+			{
+				"buffer_size": 2078,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addwhitfriday/templates/addwhitfriday/contestdate.html",
+			"settings":
+			{
+				"buffer_size": 1384,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addwhitfriday/templates/addwhitfriday/contestname.html",
+			"settings":
+			{
+				"buffer_size": 631,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -478,15 +243,60 @@
 	"expanded_folders":
 	[
 		"/Users/timsawyer/web/bbr3",
-		"/Users/timsawyer/web/bbr3/people",
-		"/Users/timsawyer/web/bbr3/people/templates",
-		"/Users/timsawyer/web/bbr3/people/templates/people"
+		"/Users/timsawyer/web/bbr3/addresults",
+		"/Users/timsawyer/web/bbr3/addresults/templates",
+		"/Users/timsawyer/web/bbr3/addresults/templates/addresults",
+		"/Users/timsawyer/web/bbr3/site_media",
+		"/Users/timsawyer/web/bbr3/site_media/css2017"
 	],
 	"file_history":
 	[
+		"/Users/timsawyer/web/bbr3/pieces/templates/pieces/by_section.html",
+		"/Users/timsawyer/web/bbr3/people/views.py",
+		"/Users/timsawyer/web/bbr3/bands/views.py",
 		"/Users/timsawyer/web/bbr3/home/templates/template.html",
-		"/Users/timsawyer/web/bbr3/pieces/templates/pieces/pieces.html",
+		"/Users/timsawyer/web/bbr3/search/templates/search/results.html",
+		"/Users/timsawyer/web/bbr3/search/templates/search/results_blank_search.html",
+		"/Users/timsawyer/web/bbr3/bands/templates/bands/winners.html",
+		"/Users/timsawyer/web/bbr3/bbr3/urls.py",
+		"/Users/timsawyer/web/bbr3/bands/templates/bands/band.html",
+		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/adjudicator.html",
+		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/band.html",
+		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/composer.html",
+		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/conductor.html",
+		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/notify/edit_band_profile.txt",
+		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/notify/edit_profile.txt",
+		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/notify/new_band_profile.txt",
+		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/notify/new_profile.txt",
+		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/sections/results.htm",
+		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/sections/whitfriday.htm",
+		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest.html",
+		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event.html",
+		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_future.html",
+		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_programme.html",
+		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_today.html",
+		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_group.html",
+		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_group_whitfriday.html",
+		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_group_year.html",
+		"/Users/timsawyer/web/bbr3/feedback/templates/feedback/feedback_detail.html",
+		"/Users/timsawyer/web/bbr3/home/templates/home/faq.html",
+		"/Users/timsawyer/web/bbr3/people/templates/people/people.html",
+		"/Users/timsawyer/web/bbr3/people/templates/people/person.html",
 		"/Users/timsawyer/web/bbr3/pieces/templates/pieces/piece.html",
+		"/Users/timsawyer/web/bbr3/regions/templates/regions/.tmp_region.html.13076~",
+		"/Users/timsawyer/web/bbr3/users/templates/users/user.html",
+		"/Users/timsawyer/web/bbr3/users/templates/users/user_profile.html",
+		"/Users/timsawyer/web/bbr3/users/templates/users/profile/classifieds.html",
+		"/Users/timsawyer/web/bbr3/users/templates/users/profile/feedback_sent.html",
+		"/Users/timsawyer/web/bbr3/users/templates/users/profile/messages.html",
+		"/Users/timsawyer/web/bbr3/users/templates/users/profile/performances.html",
+		"/Users/timsawyer/web/bbr3/users/templates/users/profile/results_added.html",
+		"/Users/timsawyer/web/bbr3/users/templates/users/profile/user.html",
+		"/Users/timsawyer/web/bbr3/users/templates/users/public/user.html",
+		"/Users/timsawyer/web/bbr3/venues/templates/venues/venue.html",
+		"/Users/timsawyer/web/bbr3/contests/views.py",
+		"/Users/timsawyer/web/bbr3/bands/urls.py",
+		"/Users/timsawyer/web/bbr3/pieces/templates/pieces/pieces.html",
 		"/Users/timsawyer/web/bbr3/pieces/templates/pieces/new_piece.html",
 		"/Users/timsawyer/web/bbr3/pieces/templates/pieces/edit_piece.html",
 		"/Users/timsawyer/web/bbr3/pieces/templates/pieces/best_own_choice.html",
@@ -498,13 +308,11 @@
 		"/Users/timsawyer/web/bbr3/leaderboard/templates/leaderboard/home.html",
 		"/Users/timsawyer/web/bbr3/home/templates/home/aboutus.html",
 		"/Users/timsawyer/web/bbr3/people/urls.py",
-		"/Users/timsawyer/web/bbr3/people/views.py",
 		"/Users/timsawyer/web/bbr3/people/templates/people/winners.html",
 		"/Users/timsawyer/web/bbr3/home/templates/500.html",
 		"/Users/timsawyer/web/bbr3/home/templates/404.html",
 		"/Users/timsawyer/web/bbr3/leaderboard/views.py",
 		"/Users/timsawyer/web/bbr3/accounts/templates/accounts/loginpro.html",
-		"/Users/timsawyer/web/bbr3/bbr3/urls.py",
 		"/Users/timsawyer/web/bbr3/accounts/views.py",
 		"/Users/timsawyer/web/bbr3/accounts/models.py",
 		"/Users/timsawyer/web/bbr3/accounts/__init__.py",
@@ -515,24 +323,15 @@
 		"/Users/timsawyer/web/bbr3/accounts/templates/accounts/logout.html",
 		"/Users/timsawyer/web/bbr3/addresults/templates/addresults/adjudicators.html",
 		"/Users/timsawyer/web/bbr3/addresults/templates/addresults/bands.html",
-		"/Users/timsawyer/web/bbr3/bands/templates/bands/band.html",
 		"/Users/timsawyer/web/bbr3/pieces/models.py",
 		"/Users/timsawyer/web/bbr3/bbr3/wsgi.py",
 		"/Users/timsawyer/web/bbr3/contests/models.py",
 		"/Users/timsawyer/web/bbr3/requirements.txt",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event.html",
-		"/Users/timsawyer/web/bbr3/users/templates/users/profile/user.html",
-		"/Users/timsawyer/web/bbr3/users/templates/users/profile/classifieds.html",
-		"/Users/timsawyer/web/bbr3/users/templates/users/profile/feedback_sent.html",
-		"/Users/timsawyer/web/bbr3/users/templates/users/profile/messages.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/profile/notifications.html",
-		"/Users/timsawyer/web/bbr3/users/templates/users/profile/performances.html",
 		"/Users/timsawyer/web/bbr3/tags/templates/tags/home.html",
 		"/Users/timsawyer/web/bbr3/tags/templates/tags/single_tag.html",
-		"/Users/timsawyer/web/bbr3/users/templates/users/profile/results_added.html",
 		"/Users/timsawyer/web/bbr3/site_media/css2017/bbr3.css",
 		"/Users/timsawyer/web/bbr3/home/views.py",
-		"/Users/timsawyer/web/bbr3/people/templates/people/person.html",
 		"/Users/timsawyer/web/bbr3/adjudicators/models.py",
 		"/Users/timsawyer/web/bbr3/conductors/views.py",
 		"/Users/timsawyer/web/bbr3/users/templates/users/blank.html",
@@ -542,15 +341,11 @@
 		"/Users/timsawyer/web/bbr3/users/templates/users/new_email_required.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/talk.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/talk_edit.html",
-		"/Users/timsawyer/web/bbr3/users/templates/users/user.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/user_contests_year.htm",
 		"/Users/timsawyer/web/bbr3/users/templates/users/user_list.html",
-		"/Users/timsawyer/web/bbr3/users/templates/users/user_profile.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/pro/activated.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/pro/upgrade.html",
-		"/Users/timsawyer/web/bbr3/users/templates/users/public/user.html",
 		"/Users/timsawyer/web/bbr3/venues/templates/venues/event.html",
-		"/Users/timsawyer/web/bbr3/venues/templates/venues/venue.html",
 		"/Users/timsawyer/web/bbr3/venues/templates/venues/venue_aliases.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/resetpassword/forgotten_password.html",
 		"/Users/timsawyer/web/bbr3/users/templates/users/resetpassword/password_reminder_sent.html",
@@ -561,13 +356,9 @@
 		"/Users/timsawyer/web/bbr3/conductors/urls.py",
 		"/Users/timsawyer/web/bbr3/composers/admin.py",
 		"/Users/timsawyer/web/bbr3/compare/templates/compare/conductors/compare_result.html",
-		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/sections/whitfriday.htm",
-		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/sections/results.htm",
 		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/sections/compositions.htm",
 		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/sections/adjudications.htm",
 		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/band_profile_concerts.html",
-		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/band.html",
-		"/Users/timsawyer/web/bbr3/classifieds/templates/classifieds/adjudicator.html",
 		"/Users/timsawyer/web/bbr3/bands/templates/bands/band_aliases.html",
 		"/Users/timsawyer/web/bbr3/adjudicators/admin.py",
 		"/Users/timsawyer/web/bbr3/adjudicators/urls.py",
@@ -585,33 +376,9 @@
 		"/Users/timsawyer/web/bbr3/move/templates/move/list_venue_merge_requests.html",
 		"/Users/timsawyer/web/bbr3/myresults/templates/myresults/list.html",
 		"/Users/timsawyer/web/bbr3/people/templates/people/person_aliases.html",
-		"/Users/timsawyer/web/bbr3/pieces/templates/pieces/by_section.html",
-		"/Users/timsawyer/web/bbr3/regions/templates/regions/.tmp_region.html.13076~",
-		"/Users/timsawyer/web/bbr3/search/templates/search/results.html",
 		"/Users/timsawyer/web/bbr3/usermessages/templates/messages/list.html",
 		"/Users/timsawyer/web/bbr3/contests/templates/contests/programmes_index.html",
-		"/Users/timsawyer/web/bbr3/accounts/Templates/accounts/loginpro.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/add_future_event.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/add_to_contest_history.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/AddFutureEvent.htm",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_draw.html",
-		"/Users/timsawyer/web/bbr3/accounts/Templates/accounts/logout.html",
-		"/Users/timsawyer/web/bbr3/accounts/Templates/accounts/registration_complete.html",
-		"/Users/timsawyer/web/bbr3/accounts/Templates/accounts/registration_form.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_competitors.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_form_guide.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_future.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_map.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_programme.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_event_today.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_group.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_group_whitfriday.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_group_year.html",
-		"/Users/timsawyer/web/bbr3/contests/templates/contests/contest_position.html",
-		"/Users/timsawyer/web/bbr3/conductors/templates/conductors/conductor_aliases.html",
-		"/Users/timsawyer/web/bbr3/composers/templates/composers/composer.html",
-		"/Users/timsawyer/web/bbr3/composers/templates/composers/composers.html"
+		"/Users/timsawyer/web/bbr3/accounts/Templates/accounts/loginpro.html"
 	],
 	"find":
 	{
@@ -631,6 +398,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"profileBadge",
 			"adminsite",
 			"siteadmin",
 			"sort",
@@ -667,6 +435,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"screenonly btn btn-outline-primary btn-sm float-left mb-1 mr-1",
 			"bbradmin",
 			"class=\"table table-hover\"",
 			"\"table table-hover\""
@@ -680,819 +449,46 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "pieces/templates/pieces/by_section.html",
+					"file": "site_media/css2017/bbr3.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6567,
+						"buffer_size": 3020,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								759,
-								759
+								2479,
+								2479
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 315.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 43,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "people/views.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 37947,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								37659,
-								37659
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 12688.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "bands/views.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 32268,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								32038,
-								32038
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 10528.0,
+						"translation.y": 1989.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "home/templates/template.html",
+					"buffer": 1,
+					"file": "badges/templates/badges/badges.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11576,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2721,
-								2721
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 240.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "bands/templates/bands/winners.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1546,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1250,
-								1250
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "bbr3/urls.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3610,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1136,
-								1136
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 42,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 17918,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										275,
-										284
-									],
-									[
-										511,
-										520
-									],
-									[
-										871,
-										880
-									],
-									[
-										1376,
-										1385
-									],
-									[
-										1486,
-										1495
-									],
-									[
-										1812,
-										1821
-									],
-									[
-										1922,
-										1931
-									],
-									[
-										2204,
-										2213
-									],
-									[
-										2564,
-										2573
-									],
-									[
-										3148,
-										3157
-									],
-									[
-										3289,
-										3298
-									],
-									[
-										3879,
-										3888
-									],
-									[
-										4027,
-										4036
-									],
-									[
-										4347,
-										4356
-									],
-									[
-										4621,
-										4630
-									],
-									[
-										4894,
-										4903
-									],
-									[
-										5167,
-										5176
-									],
-									[
-										5513,
-										5522
-									],
-									[
-										5932,
-										5941
-									],
-									[
-										6348,
-										6357
-									],
-									[
-										6782,
-										6791
-									],
-									[
-										7160,
-										7169
-									],
-									[
-										7831,
-										7840
-									],
-									[
-										8215,
-										8224
-									],
-									[
-										8936,
-										8945
-									],
-									[
-										9401,
-										9410
-									],
-									[
-										9785,
-										9794
-									],
-									[
-										10457,
-										10466
-									],
-									[
-										10809,
-										10818
-									],
-									[
-										11235,
-										11244
-									],
-									[
-										11583,
-										11592
-									],
-									[
-										11931,
-										11940
-									],
-									[
-										12290,
-										12299
-									],
-									[
-										12813,
-										12822
-									],
-									[
-										13265,
-										13274
-									],
-									[
-										13594,
-										13603
-									],
-									[
-										14250,
-										14259
-									],
-									[
-										14566,
-										14575
-									],
-									[
-										14821,
-										14830
-									],
-									[
-										14890,
-										14899
-									],
-									[
-										15139,
-										15148
-									],
-									[
-										15208,
-										15217
-									],
-									[
-										15455,
-										15464
-									],
-									[
-										15524,
-										15533
-									],
-									[
-										15775,
-										15784
-									],
-									[
-										15844,
-										15853
-									],
-									[
-										16090,
-										16099
-									],
-									[
-										16159,
-										16168
-									],
-									[
-										16409,
-										16418
-									],
-									[
-										16478,
-										16487
-									],
-									[
-										16729,
-										16738
-									],
-									[
-										16798,
-										16807
-									],
-									[
-										17040,
-										17049
-									],
-									[
-										17109,
-										17118
-									],
-									[
-										17359,
-										17368
-									],
-									[
-										17428,
-										17437
-									],
-									[
-										17791,
-										17800
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								65,
-								65
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 2,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ \t].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 45.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 41,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "bands/templates/bands/band.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 23816,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 40,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "classifieds/templates/classifieds/adjudicator.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4400,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 39,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "classifieds/templates/classifieds/band.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 25928,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 38,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "classifieds/templates/classifieds/composer.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3468,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 37,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "classifieds/templates/classifieds/conductor.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 12240,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 36,
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "classifieds/templates/classifieds/notify/edit_band_profile.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1553,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 35,
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "classifieds/templates/classifieds/notify/edit_profile.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1916,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 34,
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "classifieds/templates/classifieds/notify/new_band_profile.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 700,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 33,
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "classifieds/templates/classifieds/notify/new_profile.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 707,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 32,
-					"type": "text"
-				},
-				{
-					"buffer": 16,
-					"file": "classifieds/templates/classifieds/sections/results.htm",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2817,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 31,
-					"type": "text"
-				},
-				{
-					"buffer": 17,
-					"file": "classifieds/templates/classifieds/sections/whitfriday.htm",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1264,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 30,
-					"type": "text"
-				},
-				{
-					"buffer": 18,
-					"file": "contests/templates/contests/contest.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9842,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 29,
-					"type": "text"
-				},
-				{
-					"buffer": 19,
-					"file": "contests/templates/contests/contest_event.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 18886,
+						"buffer_size": 557,
 						"regions":
 						{
 						},
@@ -1506,330 +502,6 @@
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 28,
-					"type": "text"
-				},
-				{
-					"buffer": 20,
-					"file": "contests/templates/contests/contest_event_future.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 17348,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 27,
-					"type": "text"
-				},
-				{
-					"buffer": 21,
-					"file": "contests/templates/contests/contest_event_programme.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1507,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 26,
-					"type": "text"
-				},
-				{
-					"buffer": 22,
-					"file": "contests/templates/contests/contest_event_today.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19441,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 25,
-					"type": "text"
-				},
-				{
-					"buffer": 23,
-					"file": "contests/templates/contests/contest_group.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4080,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 24,
-					"type": "text"
-				},
-				{
-					"buffer": 24,
-					"file": "contests/templates/contests/contest_group_whitfriday.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2952,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 23,
-					"type": "text"
-				},
-				{
-					"buffer": 25,
-					"file": "contests/templates/contests/contest_group_year.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2722,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 22,
-					"type": "text"
-				},
-				{
-					"buffer": 26,
-					"file": "feedback/templates/feedback/feedback_detail.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1669,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 21,
-					"type": "text"
-				},
-				{
-					"buffer": 27,
-					"file": "home/templates/home/faq.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 660,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 20,
-					"type": "text"
-				},
-				{
-					"buffer": 28,
-					"file": "people/templates/people/people.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11140,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 19,
-					"type": "text"
-				},
-				{
-					"buffer": 29,
-					"file": "people/templates/people/person.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 22435,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 18,
-					"type": "text"
-				},
-				{
-					"buffer": 30,
-					"file": "pieces/templates/pieces/piece.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8899,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1839,12 +511,12 @@
 					"type": "text"
 				},
 				{
-					"buffer": 31,
-					"file": "regions/templates/regions/.tmp_region.html.13076~",
+					"buffer": 2,
+					"file": "users/templates/users/profile/user.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 835,
+						"buffer_size": 5361,
 						"regions":
 						{
 						},
@@ -1857,7 +529,9 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1867,20 +541,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 32,
-					"file": "users/templates/users/user.html",
+					"buffer": 3,
+					"file": "users/templates/users/public/user.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3855,
+						"buffer_size": 3856,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								495,
+								467
 							]
 						],
 						"settings":
@@ -1895,20 +569,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 33,
-					"file": "users/templates/users/user_profile.html",
+					"buffer": 4,
+					"file": "addresults/templates/addresults/adjudicators.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 13028,
+						"buffer_size": 4059,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								4044,
+								4044
 							]
 						],
 						"settings":
@@ -1918,27 +592,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 954.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 34,
-					"file": "users/templates/users/profile/classifieds.html",
+					"buffer": 5,
+					"file": "addresults/templates/addresults/bands.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2454,
+						"buffer_size": 3105,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								3090,
+								3090
 							]
 						],
 						"settings":
@@ -1948,27 +622,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 99.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 35,
-					"file": "users/templates/users/profile/feedback_sent.html",
+					"buffer": 6,
+					"file": "addresults/templates/addresults/composer.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2842,
+						"buffer_size": 3091,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								3076,
+								3076
 							]
 						],
 						"settings":
@@ -1978,147 +652,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 519.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 36,
-					"file": "users/templates/users/profile/messages.html",
+					"buffer": 7,
+					"file": "addresults/templates/addresults/contestdate.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2813,
+						"buffer_size": 1738,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 37,
-					"file": "users/templates/users/profile/performances.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10057,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 38,
-					"file": "users/templates/users/profile/results_added.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4722,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 39,
-					"file": "users/templates/users/profile/user.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5311,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 40,
-					"file": "users/templates/users/public/user.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3806,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								1723,
+								1723
 							]
 						],
 						"settings":
@@ -2129,24 +683,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 41,
-					"file": "venues/templates/venues/venue.html",
+					"buffer": 8,
+					"file": "addresults/templates/addresults/contestname.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3460,
+						"buffer_size": 2319,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								2170,
+								2184
 							]
 						],
 						"settings":
@@ -2156,62 +710,204 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+						"translation.y": 369.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "addresults/templates/addresults/contesttype.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 747,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								732,
+								732
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "addresults/templates/addresults/exists.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 643,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								628,
+								628
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "addresults/templates/addresults/notes.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1937,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1922,
+								1922
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "addresults/templates/addresults/testpiece.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2583,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2568,
+								2568
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 368.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "addresults/templates/addresults/venue.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2668,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2653,
+								2653
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 444.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 42,
-					"file": "contests/views.py",
+					"buffer": 14,
+					"file": "addresults/templates/addresults/whitfriday.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 82968,
+						"buffer_size": 550,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								44796,
-								44796
+								535,
+								535
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 12663.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 43,
-					"file": "bands/urls.py",
+					"buffer": 15,
+					"file": "addwhitfriday/templates/addwhitfriday/bands.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1747,
+						"buffer_size": 2078,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								584,
-								584
+								2063,
+								2063
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
@@ -2220,6 +916,63 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "addwhitfriday/templates/addwhitfriday/contestdate.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1384,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1369,
+								1369
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "addwhitfriday/templates/addwhitfriday/contestname.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 631,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								615,
+								615
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]

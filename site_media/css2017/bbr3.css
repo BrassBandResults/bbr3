@@ -153,6 +153,37 @@ tbody tr.result-3 td, td.result-3 {
   border-bottom: 1px solid white;
 }
 
+/* Center text */
+
 .center {
   text-align: center;
+}
+
+/* Popup suggestion box */
+.suggestionsBox {
+    position: relative;
+    left: 30px;
+    margin: 10px 0px 0px 0px;
+    width: 400px;
+    background-color: #212427;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    border: 2px solid #000;
+    color: #fff;
+}
+
+.suggestionList {
+    margin: 0px;
+    padding: 0px;
+}
+
+.suggestionList li {
+    margin: 0px 0px 3px 0px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.suggestionList li:hover {
+    background-color: #659CD8;
 }

@@ -53,6 +53,7 @@ function fill(pValue) {
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Add Contest Results</h1>
 <form id="contestform" action="." method="post">{% csrf_token %}
 <div id="helpbox">
@@ -112,4 +113,5 @@ function fill(pValue) {
 	</tbody>
 </table>
 </form>
+</div>
 {% endblock %}

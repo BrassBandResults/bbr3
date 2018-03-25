@@ -7,7 +7,8 @@ from people.models import Person, PersonAlias, ClassifiedPerson, PersonRelation
 
 
 class PersonRelationAdmin(BbrAdmin):
-    pass
+    raw_id_fields = ['source_person', 'relation_person']
+    search_fields = ['source_person__first_names', 'source_person__surname', 'relation_person__first_names', 'relation_person__surname']
 
 class PersonAliasInline(admin.TabularInline):
     model = PersonAlias

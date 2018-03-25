@@ -53,6 +53,7 @@ function fill(thisValue) {
 {% endblock %}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Add Contest Results</h1>
 <form id="contestform" action="." method="post">{% csrf_token %}
 <div id="helpbox">
@@ -79,4 +80,5 @@ function fill(thisValue) {
 	</tr>
 </table>
 </form>
+</div>
 {% endblock %}

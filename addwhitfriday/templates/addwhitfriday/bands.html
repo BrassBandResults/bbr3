@@ -7,6 +7,7 @@
 {%block add-whitfriday-selected%}class="selected"{%endblock%}
 
 {% block content %}
+<div class="container pt-1">
 <h1>Add Contest Results</h1>
 <div id="helpbox">
 <p>Select the contests in the order you have results using the droplists.  Then, enter results in the large box at the bottom in the following format - one line per band:</p>
@@ -18,7 +19,7 @@
 <table>
 	<tr><th>Contest Area:</th><td>{{ContestGroup.name}}</td></tr>
 	<tr><th>Contest Date:</th><td>{{ContestDate|date:"jS F Y"}}</td></tr>
-  <tr><th>Event Names:</th><td>1: {{form.event_1}}<br/>
+    <tr><th>Event Names:</th><td>1: {{form.event_1}}<br/>
                                  2: {{form.event_2}}<br/>
                                  3: {{form.event_3}}<br/>
                                  4: {{form.event_4}}<br/>
@@ -30,7 +31,7 @@
                                  10: {{form.event_10}}<br/>
                                  11: {{form.event_11}}<br/>
                                  12: {{form.event_12}}<br/>
-                             </td>
+                              </td></tr>
     <tr><th>Check this if entering points, not placings:</th><td>{{form.entering_points}}</td></tr>
     <tr><td colspan="2">{{ form.results.errors }} {{ HowToCorrectErrors|safe }}<br/><input type="submit" value="Submit" /><br/>
 	    {{ form.results }}
@@ -38,4 +39,5 @@
 	<tr><td colspan="2"><input type="submit" value="Submit" /></td></tr>
 </table>
 </form>
+</div>
 {% endblock %}
