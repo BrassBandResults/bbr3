@@ -41,6 +41,52 @@
 			}
 		},
 		{
+			"contents": "Searching 737 files for \"smart_unicode\" (case sensitive)\n\n/Users/timsawyer/web/bbr3/bbr3/siteutils.py:\n    9  \n   10  def slugify(s, entities=True, decimal=True, hexadecimal=True, instance=None, slug_field='slug', filter_dict=None):\n   11:     s = smart_unicode(s)\n   12  \n   13      #character entity reference\n\n/Users/timsawyer/web/bbr3/people/views.py:\n  829                  except KeyError:\n  830                      lList = u\"\"\n  831:                 lList += u\"!\" + smart_unicode(person.first_names) + u\",\" + smart_unicode(person.surname);\n  832                  lPeopleStructure[lFirstLetter] = lList\n  833              \n\n3 matches across 2 files\n\n\nSearching 737 files for \"smart_unicode\" (case sensitive)\n\n/Users/timsawyer/web/bbr3/people/views.py:\n  829                  except KeyError:\n  830                      lList = u\"\"\n  831:                 lList += u\"!\" + smart_unicode(person.first_names) + u\",\" + smart_unicode(person.surname);\n  832                  lPeopleStructure[lFirstLetter] = lList\n  833              \n\n2 matches in 1 file\n\n\nSearching 737 files for \"slugify\" (case sensitive)\n\n/Users/timsawyer/web/bbr3/addresults/views.py:\n   12  from bands.models import Band, PreviousBandName\n   13  from bands.tasks import notification as band_notification\n   14: from bbr3.siteutils import add_space_after_dot, add_dot_after_initial, slugify, browser_details\n   15  from bbr3.render import render_auth    \n   16  from people.tasks import notification as person_notification\n   ..\n   49                  lContest = Contest()\n   50                  lContest.name = lContestName\n   51:                 lContest.slug = slugify(lContestName, instance=lContest)\n   52                  lContest.description = ''\n   53                  lContest.lastChangedBy = request.user\n   ..\n  187                      lTestPiece = TestPiece()\n  188                      lTestPiece.name = lTestPieceName\n  189:                     lTestPiece.slug = slugify(lTestPieceName, instance=lTestPiece)\n  190                      lTestPiece.lastChangedBy = request.user\n  191                      lTestPiece.owner = request.user\n  ...\n  265                      lPerson.surname = lComposerSurname\n  266                      lPerson.first_names = lComposerFirstNames\n  267:                     lPerson.slug = slugify(lComposerName, instance=lPerson)\n  268                      lPerson.owner = request.user\n  269                      lPerson.lastChangedBy = request.user\n  ...\n  283                      lPerson.surname = lArrangerSurname\n  284                      lPerson.first_names = lArrangerFirstNames\n  285:                     lPerson.slug = slugify(lArrangerName, instance=lPerson)\n  286                      lPerson.owner = request.user\n  287                      lPerson.lastChangedBy = request.user\n  ...\n  341                      lNewVenue.lastChangedBy = request.user\n  342                      lNewVenue.owner = request.user\n  343:                     lNewVenue.slug = slugify(lNewVenue.name, instance=lNewVenue)\n  344                      lNewVenue.save()\n  345                      venue_notification.delay(None, lNewVenue, 'venue', 'new', request.user, browser_details(request))\n  ...\n  397                  lNewConductorPerson = Person()\n  398                  lNewConductorPerson.name = request.POST['conductor']\n  399:                 lNewConductorPerson.slug = slugify(lNewConductorPerson.name, instance=lNewConductorPerson)\n  400                  lNewConductorPerson.lastChangedBy = request.user\n  401                  lNewConductorPerson.owner = request.user\n  ...\n  429                  lNewBand = Band()\n  430                  lNewBand.name = lNewBandName\n  431:                 lNewBand.slug = slugify(lNewBandName, instance=lNewBand)\n  432                  lNewBand.region = Region.objects.filter(id=lNewBandRegion)[0]\n  433                  lNewBand.owner = request.user\n  ...\n  684              lPerson.surname = lAdjudicatorSurname\n  685              lPerson.first_names = lAdjudicatorFirstNames\n  686:             lPerson.slug = slugify(lAdjudicatorName, instance=lPerson)\n  687              lPerson.owner = request.user\n  688              lPerson.lastChangedBy = request.user\n\n/Users/timsawyer/web/bbr3/addwhitfriday/views.py:\n   10      ResultsForm\n   11  from bands.models import Band, PreviousBandName\n   12: from bbr3.siteutils import slugify\n   13  from bbr3.render import render_auth    \n   14  from contests.models import ContestGroup\n   ..\n   88                  lNewBand = Band()\n   89                  lNewBand.name = lNewBandName\n   90:                 lNewBand.slug = slugify(lNewBandName, instance=lNewBand)\n   91                  lNewBand.region = Region.objects.filter(name='Unknown')[0]\n   92                  lNewBand.owner = request.user\n\n/Users/timsawyer/web/bbr3/bands/views.py:\n   13  from contests.models import Contest, ContestGroup, ContestAchievementAward, CurrentChampion, ContestTag\n   14  \n   15: from bbr3.siteutils import slugify, browser_details\n   16  \n   17  \n   ..\n   96          if form.is_valid():\n   97              lNewBand = form.save(commit=False)\n   98:             lNewBand.slug = slugify(lNewBand.name, instance=lNewBand)\n   99              lNewBand.lastChangedBy = request.user\n  100              lNewBand.owner = request.user\n\n/Users/timsawyer/web/bbr3/bbr3/siteutils.py:\n    9  \n   10  \n   11: def slugify(s, entities=True, decimal=True, hexadecimal=True, instance=None, slug_field='slug', filter_dict=None):\n   12      s = smart_text(s)\n   13  \n\n/Users/timsawyer/web/bbr3/contests/views.py:\n   21  from bands.models import Band\n   22  from bbr3.decorators import login_required_pro_user\n   23: from bbr3.siteutils import browser_details, slugify\n   24  from bbr3.render import render_auth\n   25  from bbr3.talkutils import fetch_recent_talk_changes\n   ..\n 1378          lNewGroup.name = request.POST['groupname'].strip()\n 1379          if len(lNewGroup.name) > 0: \n 1380:             lNewGroup.slug = slugify(lNewGroup.name)\n 1381              lNewGroup.type = 'S'\n 1382              lNewGroup.lastChangedBy = request.user\n ....\n 1705                              lMatchingComposer.owner = request.user\n 1706                              lMatchingComposer.name = lComposer\n 1707:                             lMatchingComposer.slug = slugify(lComposer)\n 1708                              lMatchingComposer.save()\n 1709                          lMatchingArranger = None\n ....\n 1716                                  lMatchingArranger.owner = request.user\n 1717                                  lMatchingArranger.name = lArranger\n 1718:                                 lMatchingArranger.slug = slugify(lArranger)\n 1719                                  lMatchingArranger.save()\n 1720                          lPiece = TestPiece()\n ....\n 1722                          lPiece.owner = request.user\n 1723                          lPiece.name = lPieceName\n 1724:                         lPiece.slug = slugify(lPieceName)\n 1725                          lPiece.year = lYear\n 1726                          lPiece.composer = lMatchingComposer\n\n/Users/timsawyer/web/bbr3/people/views.py:\n   17  from bands.models import Band\n   18  from bbr3.decorators import login_required_pro_user\n   19: from bbr3.siteutils import slugify, browser_details\n   20  from bbr3.render import render_auth\n   21  from contests.models import ContestResult, ContestGroup, Contest, ContestEvent\n   ..\n  486          if form.is_valid():\n  487              lNewPerson = form.save(commit=False)\n  488:             lNewPerson.slug = slugify(lNewPerson.name, instance=lNewPerson)\n  489              lNewPerson.lastChangedBy = request.user\n  490              lNewPerson.owner = request.user\n\n/Users/timsawyer/web/bbr3/pieces/views.py:\n    9  \n   10  from bbr3.decorators import login_required_pro_user\n   11: from bbr3.siteutils import slugify, browser_details\n   12  from bbr3.render import render_auth\n   13  from contests.models import ContestEvent, ContestResult, ResultPiecePerformance\n   ..\n  371          if form.is_valid():\n  372              lNewPiece = form.save(commit=False)\n  373:             lNewPiece.slug = slugify(lNewPiece.name, instance=lNewPiece)\n  374              lNewPiece.lastChangedBy = request.user\n  375              lNewPiece.owner = request.user\n\n/Users/timsawyer/web/bbr3/tags/models.py:\n    6  from django.db import models\n    7  \n    8: from bbr3.siteutils import slugify\n    9  \n   10  \n   ..\n   25      def save(self):\n   26          if len(self.slug) == 0:\n   27:             self.slug = slugify(self.name)\n   28          self.last_modified = datetime.now()\n   29          super(ContestTag, self).save()\n\n/Users/timsawyer/web/bbr3/venues/views.py:\n    7  \n    8  from bands.models import Band\n    9: from bbr3.siteutils import slugify, browser_details\n   10  from bbr3.render import render_auth\n   11  from contests.models import Venue, Contest, ContestEvent\n   ..\n  185          if form.is_valid():\n  186              lNewVenue = form.save(commit=False)\n  187:             lNewVenue.slug = slugify(lNewVenue.name, instance=lNewVenue)\n  188              lNewVenue.lastChangedBy = request.user\n  189              lNewVenue.owner = request.user\n\n27 matches across 9 files\n\n\nSearching 737 files for \"CELERY\" (case sensitive)\n\n/Users/timsawyer/web/bbr3/bbr3/settings.py:\n  184  ACCOUNT_ACTIVATION_DAYS = 3\n  185  \n  186: CELERY_TASK_SERIALIZER = 'pickle'\n  187  \n  188  \n\n1 match in 1 file\n\n\nSearching 737 files for \"CELERY\"\n\n/Users/timsawyer/web/bbr3/.gitignore:\n   76  .python-version\n   77  \n   78: # celery beat schedule file\n   79: celerybeat-schedule\n   80  \n   81  # SageMath parsed files\n\n/Users/timsawyer/web/bbr3/requirements.txt:\n    1  amqp==2.2.2\n    2  billiard==3.5.0.3\n    3: celery==4.1.0\n    4  certifi==2017.7.27.1\n    5  chardet==3.0.4\n\n/Users/timsawyer/web/bbr3/badges/tasks.py:\n    4  \n    5  \n    6: from celery.task import task\n    7  \n    8  from badges.models import Badge\n\n/Users/timsawyer/web/bbr3/bands/tasks.py:\n    3  from bbr3.notification import notify\n    4  from users.models import PointsAward\n    5: from celery.task import task\n    6  from django.conf import settings\n    7  from django.core.mail import send_mail\n\n/Users/timsawyer/web/bbr3/bbr3/settings.py:\n  184  ACCOUNT_ACTIVATION_DAYS = 3\n  185  \n  186: CELERY_TASK_SERIALIZER = 'pickle'\n  187  \n  188  \n\n/Users/timsawyer/web/bbr3/classifieds/tasks.py:\n    4  \n    5  \n    6: from celery.task import task\n    7  from bbr3.notification import notify\n    8  import difflib\n\n/Users/timsawyer/web/bbr3/contests/tasks.py:\n    4  \n    5  \n    6: from celery.task import task\n    7  from bbr3.notification import notify\n    8  from datetime import timedelta, date\n\n/Users/timsawyer/web/bbr3/embed/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  \n    6  from embed.models import EmbeddedResultsLog\n\n/Users/timsawyer/web/bbr3/feedback/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  \n    6  from bbr3.notification import notify\n\n/Users/timsawyer/web/bbr3/move/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  from bbr3.notification import notify\n    6  \n\n/Users/timsawyer/web/bbr3/people/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  from bbr3.notification import notify\n    6  \n\n/Users/timsawyer/web/bbr3/pieces/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  from bbr3.notification import notify\n    6  \n\n/Users/timsawyer/web/bbr3/usermessages/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  \n    6  from bbr3.notification import notify\n\n/Users/timsawyer/web/bbr3/users/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  from bbr3.notification import notify\n    6  \n\n/Users/timsawyer/web/bbr3/venues/tasks.py:\n    2  # (c) 2009, 2012, 2015 Tim Sawyer, All Rights Reserved\n    3  \n    4: from celery.task import task\n    5  from bbr3.notification import notify\n    6  from users.models import PointsAward\n\n16 matches across 15 files\n\n\nSearching 737 files for \"autodiscover\"\n\n0 matches",
+			"settings":
+			{
+				"buffer_size": 12448,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "people/views.py",
+			"settings":
+			{
+				"buffer_size": 37986,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bbr3/siteutils.py",
+			"settings":
+			{
+				"buffer_size": 2574,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bbr3/settings.py",
+			"settings":
+			{
+				"buffer_size": 4264,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/timsawyer/web/bbr3-settings-live.py",
+			"settings":
+			{
+				"buffer_size": 5617,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "people/admin.py",
 			"settings":
 			{
@@ -117,6 +163,22 @@
 			{
 				"buffer_size": 1738,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bbr3/__init__.py",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bbr3/render.py",
+			"settings":
+			{
+				"buffer_size": 239,
 				"line_ending": "Unix"
 			}
 		},
@@ -260,7 +322,9 @@
 	"expanded_folders":
 	[
 		"/Users/timsawyer/web/bbr3",
-		"/Users/timsawyer/web/bbr3/people"
+		"/Users/timsawyer/web/bbr3/addresults",
+		"/Users/timsawyer/web/bbr3/bands",
+		"/Users/timsawyer/web/bbr3/bbr3"
 	],
 	"file_history":
 	[
@@ -408,9 +472,13 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"autodiscover",
+			"CELERY",
+			"slugify",
+			"smart_unicode",
 			"profileBadge",
 			"adminsite",
 			"siteadmin",
@@ -462,7 +530,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -489,14 +557,373 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1888.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12448,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										248,
+										261
+									],
+									[
+										474,
+										487
+									],
+									[
+										517,
+										530
+									],
+									[
+										877,
+										890
+									],
+									[
+										920,
+										933
+									],
+									[
+										1353,
+										1360
+									],
+									[
+										1634,
+										1641
+									],
+									[
+										1948,
+										1955
+									],
+									[
+										2298,
+										2305
+									],
+									[
+										2638,
+										2645
+									],
+									[
+										2973,
+										2980
+									],
+									[
+										3372,
+										3379
+									],
+									[
+										3710,
+										3717
+									],
+									[
+										4050,
+										4057
+									],
+									[
+										4361,
+										4368
+									],
+									[
+										4602,
+										4609
+									],
+									[
+										4974,
+										4981
+									],
+									[
+										5145,
+										5152
+									],
+									[
+										5366,
+										5373
+									],
+									[
+										5707,
+										5714
+									],
+									[
+										5970,
+										5977
+									],
+									[
+										6302,
+										6309
+									],
+									[
+										6659,
+										6666
+									],
+									[
+										6960,
+										6967
+									],
+									[
+										7272,
+										7279
+									],
+									[
+										7560,
+										7567
+									],
+									[
+										7861,
+										7868
+									],
+									[
+										8148,
+										8155
+									],
+									[
+										8421,
+										8428
+									],
+									[
+										8548,
+										8555
+									],
+									[
+										8787,
+										8794
+									],
+									[
+										9051,
+										9058
+									],
+									[
+										9377,
+										9383
+									],
+									[
+										9560,
+										9566
+									],
+									[
+										9593,
+										9599
+									],
+									[
+										9748,
+										9754
+									],
+									[
+										9884,
+										9890
+									],
+									[
+										10098,
+										10104
+									],
+									[
+										10303,
+										10309
+									],
+									[
+										10430,
+										10436
+									],
+									[
+										10594,
+										10600
+									],
+									[
+										10831,
+										10837
+									],
+									[
+										11042,
+										11048
+									],
+									[
+										11242,
+										11248
+									],
+									[
+										11444,
+										11450
+									],
+									[
+										11646,
+										11652
+									],
+									[
+										11854,
+										11860
+									],
+									[
+										12055,
+										12061
+									],
+									[
+										12257,
+										12263
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								12399,
+								12399
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 6,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4935.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "people/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 37986,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								416,
+								372
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "bbr3/siteutils.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2574,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								417,
+								417
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 4,
+					"file": "bbr3/settings.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4264,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4262,
+								4229
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1873.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/timsawyer/web/bbr3-settings-live.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5617,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5614,
+								5614
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2542.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"file": "people/admin.py",
 					"semi_transient": false,
 					"settings":
@@ -508,8 +935,8 @@
 						"selection":
 						[
 							[
-								438,
-								438
+								1053,
+								1053
 							]
 						],
 						"settings":
@@ -520,11 +947,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 7,
 					"file": "people/models.py",
 					"semi_transient": false,
 					"settings":
@@ -550,11 +977,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 8,
 					"file": "badges/templates/badges/badges.html",
 					"semi_transient": false,
 					"settings":
@@ -578,11 +1005,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 9,
 					"file": "users/templates/users/profile/user.html",
 					"semi_transient": false,
 					"settings":
@@ -608,11 +1035,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 25,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 10,
 					"file": "users/templates/users/public/user.html",
 					"semi_transient": false,
 					"settings":
@@ -636,11 +1063,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 11,
 					"file": "addresults/templates/addresults/adjudicators.html",
 					"semi_transient": false,
 					"settings":
@@ -666,11 +1093,11 @@
 						"translation.y": 954.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 12,
 					"file": "addresults/templates/addresults/bands.html",
 					"semi_transient": false,
 					"settings":
@@ -696,11 +1123,11 @@
 						"translation.y": 99.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 13,
 					"file": "addresults/templates/addresults/composer.html",
 					"semi_transient": false,
 					"settings":
@@ -726,11 +1153,11 @@
 						"translation.y": 519.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 14,
 					"file": "addresults/templates/addresults/contestdate.html",
 					"semi_transient": false,
 					"settings":
@@ -742,8 +1169,8 @@
 						"selection":
 						[
 							[
-								1723,
-								1723
+								1494,
+								1494
 							]
 						],
 						"settings":
@@ -754,11 +1181,67 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 15,
+					"file": "bbr3/__init__.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "bbr3/render.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 239,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
 					"file": "addresults/templates/addresults/contestname.html",
 					"semi_transient": false,
 					"settings":
@@ -781,14 +1264,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 369.0,
+						"translation.y": 307.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 18,
 					"file": "addresults/templates/addresults/contesttype.html",
 					"semi_transient": false,
 					"settings":
@@ -812,11 +1295,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 19,
 					"file": "addresults/templates/addresults/exists.html",
 					"semi_transient": false,
 					"settings":
@@ -840,11 +1323,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 20,
 					"file": "addresults/templates/addresults/notes.html",
 					"semi_transient": false,
 					"settings":
@@ -868,11 +1351,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 21,
 					"file": "addresults/templates/addresults/testpiece.html",
 					"semi_transient": false,
 					"settings":
@@ -898,11 +1381,11 @@
 						"translation.y": 368.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 22,
 					"file": "addresults/templates/addresults/venue.html",
 					"semi_transient": false,
 					"settings":
@@ -928,11 +1411,11 @@
 						"translation.y": 444.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 23,
 					"file": "addresults/templates/addresults/whitfriday.html",
 					"semi_transient": false,
 					"settings":
@@ -956,11 +1439,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 24,
 					"file": "addwhitfriday/templates/addwhitfriday/bands.html",
 					"semi_transient": false,
 					"settings":
@@ -986,11 +1469,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 25,
 					"file": "addwhitfriday/templates/addwhitfriday/contestdate.html",
 					"semi_transient": false,
 					"settings":
@@ -1015,11 +1498,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 26,
 					"file": "addwhitfriday/templates/addwhitfriday/contestname.html",
 					"semi_transient": false,
 					"settings":
@@ -1043,7 +1526,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 12,
 					"type": "text"
 				}
 			]
