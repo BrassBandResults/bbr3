@@ -8,7 +8,7 @@ import django
 
 
 # set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bbr.settingslive')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bbr3.settingslive')
 django.setup()
 
 app = Celery('bbr')
