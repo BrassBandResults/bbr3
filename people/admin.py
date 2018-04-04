@@ -20,7 +20,7 @@ class PersonAdmin(BbrAdmin):
     
 class ClassifiedPersonAdmin(BbrAdmin):
     list_filter = ('visible','show_on_homepage')
-    list_display = ('__unicode__', 'owner', 'visible', 'show_on_homepage', 'created', 'last_modified')
+    list_display = ('__str__', 'owner', 'visible', 'show_on_homepage', 'created', 'last_modified')
 
 admin.site.register(Person, PersonAdmin)
 admin.site.register(PersonRelation, PersonRelationAdmin)

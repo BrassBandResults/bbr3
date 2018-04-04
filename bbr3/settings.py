@@ -26,10 +26,19 @@ SECRET_KEY = 'f69cytx1o42nne1tm1@b$v0$9yl)0!+iqo+yjpsh!tq6abnuw_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+THUMBNAIL_DEBUG = True
 
 ALLOWED_HOSTS = []
 
 GOOGLE_MAPS_API_KEY = "AIzaSyDRGGo0pfBGKEE5n6iS7IEqhWeSHYiEI2c"
+
+# Sorl Thumbnail logging
+import logging
+from sorl.thumbnail.log import ThumbnailLogHandler
+handler = ThumbnailLogHandler()
+handler.setLevel(logging.ERROR)
+logging.getLogger('sorl.thumbnail').addHandler(handler)
+
 
 
 # Application definition

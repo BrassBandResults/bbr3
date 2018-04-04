@@ -17,7 +17,7 @@ class FaqSection(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='FaqSectionLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='FaqSectionOwner')
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.name)
     
     def save(self):
@@ -40,7 +40,7 @@ class FaqEntry(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='FaqEntryLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='FaqEntryOwner')
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % self.question
     
     def save(self):

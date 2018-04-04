@@ -18,7 +18,7 @@ class UserPayment(models.Model):
     gross_amount = models.DecimalField(max_digits=5, decimal_places=2)
     net_amount = models.DecimalField(max_digits=5, decimal_places=2)
             
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s" % (self.created, self.user_profile.user.username)
     
     def save(self):

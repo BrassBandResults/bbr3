@@ -48,7 +48,7 @@ class Badge(models.Model):
     level = models.CharField(max_length=1, choices=LEVEL_CHOICES, default='B')
     description = models.CharField(max_length=1024, blank=True, null=True)
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.name)
     
     def save(self, force_insert=False, force_update=False, using=None):

@@ -19,7 +19,7 @@ class Message(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='MessageLastChangedBy',blank=True,null=True)
     owner = models.ForeignKey(User, editable=False, related_name='MessageOwner',blank=True,null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s->%s - %s" % (self.from_user.username, self.to_user.username, self.title)
     
     def save(self):

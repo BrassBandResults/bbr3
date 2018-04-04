@@ -19,7 +19,7 @@ class Section(models.Model):
     owner = models.ForeignKey(User, editable=False, related_name='SectionOwner')
     
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.name)
     
     @property

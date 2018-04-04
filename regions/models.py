@@ -29,7 +29,7 @@ class Region(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='RegionLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='RegionOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.name)
     
     def get_absolute_url(self):

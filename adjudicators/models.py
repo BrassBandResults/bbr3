@@ -29,7 +29,7 @@ class ContestAdjudicator(models.Model):
     owner = models.ForeignKey(User, editable=False, related_name='ContestAdjudicatorOwner')
     
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s" % (self.contest_event.name, self.person.name)
     
     def save(self):

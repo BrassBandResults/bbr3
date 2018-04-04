@@ -9,7 +9,7 @@ from users.models import UserProfile, PointsAward, UserBadge, \
 
 class UserProfileAdmin(BbrAdmin):
     search_fields = ('user__username','user__email')
-    list_display = ('__unicode__', 'rankings_access')
+    list_display = ('__str__', 'rankings_access')
     fieldsets = (
         (None, {
                 'fields' : ('user','points','display_name','contest_history_visibility','enhanced_functionality', 'pro_member', 'new_email_required')
@@ -39,7 +39,7 @@ class PersonalContestHistoryDateRangeAdmin(BbrAdmin):
     
 class UserNotificationAdmin(BbrAdmin):
     search_fields = ('notify_user__username',)
-    list_display = ('__unicode__', 'notify_type', 'enabled', 'created', 'last_modified')
+    list_display = ('__str__', 'notify_type', 'enabled', 'created', 'last_modified')
     list_filter = ('enabled',)
     
 class UserBadgeAdmin(BbrAdmin):

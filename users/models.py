@@ -58,7 +58,7 @@ class PointsAward(models.Model):
     TYPE_FEEDBACK_CLAIM = 'FeedbackClaim'
     TYPE_FEEDBACK_CLAIM_RETURNED = 'FC-Deleted'
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s (%s:%d)" % (self.user.username, self.type, self.points_awarded)
     
     def save(self):
@@ -105,7 +105,7 @@ class UserProfile(models.Model):
     stripe_customer = models.CharField(max_length=100, blank=True, null=True)
     max_profile_count = models.IntegerField(default=1)
             
-    def __unicode__(self):
+    def __str__(self):
         return "%s (%s)" % (self.user.username, self.points)
     
     def is_regional_superuser_region(self, pRegion):
@@ -203,7 +203,7 @@ class PersonalContestHistory(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="accepted")
     instrument = models.ForeignKey(PlayerPosition, blank=True, null=True, on_delete=models.PROTECT)
             
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s - %s %s" % (self.user.username, self.result.contest_event.date_of_event, self.result.band_name, self.result.contest_event.contest.name)
     
     def save(self):
@@ -226,7 +226,7 @@ class PersonalContestHistoryDateRange(models.Model):
     end_date = models.DateField(blank=True, null=True)
     imported = models.BooleanField(default=False)
             
-    def __unicode__(self):
+    def __str__(self):
         return "%s (%s)" % (self.user.username, self.band.name)
     
     def save(self):
@@ -249,7 +249,7 @@ class PasswordReset(models.Model):
     username = models.CharField(max_length=50, help_text='The user to reset when the key is passed in on the url')
     used = models.DateTimeField(blank=True, null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return '%s : %s' % (self.username, self.ip)
     
     def generateKey(self):
@@ -277,7 +277,7 @@ class UserNotification(models.Model):
     notify_type = models.CharField(max_length=6, choices=TYPE_CHOICES, default='all')
     enabled = models.BooleanField(default=True)
     
-    def __unicode__(self):
+    def __str__(self):
         lText = '%s : %s' % (self.notify_user.username, self.type)
         if self.enabled:
             return lText
@@ -299,7 +299,7 @@ class UserBadge(models.Model):
     type = models.ForeignKey(Badge)
     notified = models.BooleanField(default=False, help_text='True if user has been notified of badge')
     
-    def __unicode__(self):
+    def __str__(self):
         return '%s : %s' % (self.user.username, self.type.name)
     
     def save(self):

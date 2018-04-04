@@ -93,7 +93,7 @@ class ContestTalkPageAdmin(BbrAdmin):
 
 class ResultPiecePerformanceAdmin(BbrAdmin):
     raw_id_fields = ('result',)
-    list_display = ('__unicode__', 'suffix')
+    list_display = ('__str__', 'suffix')
     
 admin.site.register(Contest, ContestAdmin)
 admin.site.register(ContestType, ContestTypeAdmin)

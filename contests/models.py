@@ -43,7 +43,7 @@ class Venue(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='VenueLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='VenueOwner')
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.name)
     
     def asJson(self):
@@ -104,7 +104,7 @@ class VenueAlias(models.Model):
     def slug(self):
         return self.venue.slug
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s -> %s" % (self.name, self.venue.name)
     
     class Meta:
@@ -197,7 +197,7 @@ class ContestGroup(models.Model):
         except AttributeError:
             return "/contests/%s/" % (self.slug.upper())
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % self.name
     
     class Meta:
@@ -231,7 +231,7 @@ class ContestGroupAlias(models.Model):
     def slug(self):
         return self.group.slug
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s -> %s" % (self.name, self.group.name)
     
     class Meta:
@@ -267,7 +267,7 @@ class ContestType(models.Model):
         self.last_modified = datetime.now()
         super(ContestType, self).save()
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.name)
     
     class Meta:
@@ -301,7 +301,7 @@ class Contest(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='ContestLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='ContestOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.name)
     
     def get_absolute_url(self):
@@ -419,7 +419,7 @@ class ContestAlias(models.Model):
     def count(self):
         return self.contest.count
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s -> %s" % (self.name, self.contest.name)
     
     class Meta:
@@ -453,7 +453,7 @@ class ContestEvent(models.Model):
     owner = models.ForeignKey(User, editable=False, related_name='ContestEventOwner')
     original_owner = models.ForeignKey(User, editable=False, blank=True, null=True, related_name='ContestEventOriginalOwner')
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s: %s" % (self.date_of_event, self.name)
     
     def future(self):
@@ -614,7 +614,7 @@ class ContestGroupLinkEventLink(models.Model):
     contest = models.ForeignKey(Contest, on_delete=models.PROTECT)
     event = models.ForeignKey(ContestEvent, on_delete=models.PROTECT)
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s -> %s" % (self.event.name, self.contest.name)
     
     def save(self):
@@ -656,7 +656,7 @@ class ContestResult(models.Model):
     original_owner = models.ForeignKey(User, editable=False, blank=True, null=True, related_name='ContestResultOriginalOwner')
     
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s: %s, %s" % (self.contest_event.name, self.band_name, self.results_position)
     
     def save(self):
@@ -770,7 +770,7 @@ class ContestWeblink(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='ContestWeblinkLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='ContestWeblinkOwner')
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s %s" % (self.name, self.contest.name, self.website)
     
     @property
@@ -801,7 +801,7 @@ class ContestGroupWeblink(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='ContestGroupWeblinkLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='ContestGroupWeblinkOwner')
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s %s" % (self.name, self.contest_group.name, self.website)
     
     @property
@@ -832,7 +832,7 @@ class ContestEventWeblink(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='ContestEventWeblinkLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='ContestEventWeblinkOwner')
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s %s" % (self.name, self.contest_event.name, self.website)
     
     @property
@@ -873,7 +873,7 @@ class ContestAchievementAward(models.Model):
     year_of_award = models.CharField(max_length=255)
     award = models.CharField(max_length=30)
     
-    def __unicode__(self):
+    def __str__(self):
         return "[%s]%s in %s" % (self.award, self.band.name, self.year_of_award)
     
     class Meta:
@@ -893,7 +893,7 @@ class ContestProgrammeCover(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='ContestProgrammeCoverLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='ContestProgrammeCoverOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         if self.contest_group:
             lContest = self.contest_group.name
         else:
@@ -929,7 +929,7 @@ class ContestProgrammePage(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='ContestProgrammePageLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='ContestProgrammePageOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return "Programme Page"
     
     def save(self):
@@ -953,7 +953,7 @@ class ContestTestPiece(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='ContestTestPieceLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='ContestTestPieceOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s %s" % (self.contest_event.contest.name, self.contest_event.date_of_event, self.test_piece.name)
     
     def save(self):
@@ -980,7 +980,7 @@ class ContestTalkPage(models.Model):
         self.last_modified = datetime.now()
         super(ContestTalkPage, self).save()
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % self.object_link.name
     
     def get_absolute_url(self):
@@ -1002,7 +1002,7 @@ class GroupTalkPage(models.Model):
         self.last_modified = datetime.now()
         super(GroupTalkPage, self).save()
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % self.object_link.name
     
     def get_absolute_url(self):
@@ -1026,7 +1026,7 @@ class ResultPiecePerformance(models.Model):
         self.last_modified = datetime.now()
         super(ResultPiecePerformance, self).save()
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s - %s - %d - %s" % (self.result.contest_event.name, self.result.band_name, self.ordering, self.piece.name)
     
     def get_absolute_url(self):

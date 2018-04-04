@@ -23,7 +23,7 @@ class BandMergeRequest(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='BandMergeLastChangedBy',blank=True,null=True)
     owner = models.ForeignKey(User, editable=True, related_name='BandMergeOwner',blank=True,null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s->%s" % (self.source_band.name, self.destination_band.name)
     
     def save(self):
@@ -46,7 +46,7 @@ class PersonMergeRequest(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='PersonMergeLastChangedBy',blank=True,null=True)
     owner = models.ForeignKey(User, editable=True, related_name='PersonMergeOwner',blank=True,null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s->%s" % (self.source_person.name, self.destination_person.name)
     
     def save(self):
@@ -70,7 +70,7 @@ class VenueMergeRequest(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='VenueMergeLastChangedBy',blank=True,null=True)
     owner = models.ForeignKey(User, editable=True, related_name='VenueMergeOwner',blank=True,null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s->%s" % (self.source_venue.name, self.destination_venue.name)
     
     def save(self):
@@ -92,7 +92,7 @@ class PieceMergeRequest(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='PieceMergeLastChangedBy',blank=True,null=True)
     owner = models.ForeignKey(User, editable=True, related_name='PieceMergeOwner',blank=True,null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s->%s" % (self.source_piece.name, self.destination_piece.name)
     
     def save(self):

@@ -70,7 +70,7 @@ class Band(models.Model):
     owner = models.ForeignKey(User, editable=False, related_name='BandOwner')
     objects = geomodels.GeoManager()
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % self.name
     
     @property
@@ -280,7 +280,7 @@ class PreviousBandName(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, blank=True, null=True, related_name='PreviousBandNameLastChangedBy')
     owner = models.ForeignKey(User, editable=False, blank=True, null=True, related_name='PreviousBandNameOwner')
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s -> %s" % (self.old_name, self.band.name)
     
     def save(self):
@@ -334,7 +334,7 @@ class BandRelationship(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='BandRelationshipLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='BandRelationshipOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s ->[%s]-> %s" % (self.left_band.name, self.relationship, self.right_band.name)
     
     
@@ -353,7 +353,7 @@ class BandTalkPage(models.Model):
         self.last_modified = datetime.now()
         super(BandTalkPage, self).save()
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % self.object_link.name
     
     def get_absolute_url(self):

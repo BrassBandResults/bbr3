@@ -23,5 +23,5 @@ class AuditEntry(models.Model):
     useragent = models.CharField(max_length=1024, blank=True, null=True)
     address = models.CharField(max_length=16, blank=True, null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return self.subject

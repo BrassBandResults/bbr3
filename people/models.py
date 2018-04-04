@@ -36,7 +36,7 @@ class Person(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='PersonLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='PersonOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         lSuffix = ""
         if self.bandname:
             lSuffix = " (%s)" % self.bandname
@@ -180,7 +180,7 @@ class PersonRelation(models.Model):
     reverse_relation = models.CharField(max_length=20, blank=True, null=True) 
     owner = models.ForeignKey(User, editable=False, related_name='PersonRelationOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s --(%s)--> %s" % (self.source_person.name, self.relation, self.relation_person.name)
     
     def save(self):
@@ -200,7 +200,7 @@ class PersonAlias(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='PersonAliasLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='PersonAliasOwner')
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s (%s)" % (self.name, self.person.name)
     
     def save(self):
@@ -245,7 +245,7 @@ class ClassifiedPerson(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='ClassifiedPersonLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='ClassifiedPersonOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % self.person.name
     
     def get_absolute_url(self):

@@ -3,7 +3,7 @@
 from django.contrib import admin
 
 class BbrAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'created', 'last_modified')
+    list_display = ('__str__', 'created', 'last_modified')
     buttons = []
     
     def save_model(self, request, obj, form, change):

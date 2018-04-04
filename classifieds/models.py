@@ -33,7 +33,7 @@ class PlayerPosition(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='PlayerPositionLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='PlayerPositionOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return " %s" % (self.name)
     
     def save(self, force_insert=False, force_update=False, using=None):

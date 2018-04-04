@@ -36,7 +36,7 @@ class TestPiece(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='TestPieceLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='TestPieceOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         lName =  self.name
         if self.year:
             return "%s (%s)" % (lName, self.year)
@@ -90,7 +90,7 @@ class TestPieceAlias(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='TestPieceAliasLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='TestPieceAliasOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s: %s" % (self.name, self.piece.name)
     
     def get_absolute_url(self):
@@ -126,7 +126,7 @@ class DownloadStore(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='DownloadStoreLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='DownloadStoreOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.name)
     
     def save(self):
@@ -154,7 +154,7 @@ class DownloadAlbum(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='DownloadAlbumLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='DownloadAlbumOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.title)
     
     def save(self):
@@ -177,7 +177,7 @@ class DownloadTrack(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='DownloadTrackLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='DownloadTrackOwner')
     
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.title)
     
     @property

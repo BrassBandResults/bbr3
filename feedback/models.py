@@ -32,7 +32,7 @@ class SiteFeedback(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='FeedbackLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='FeedbackOwner')
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s (%s)" % (self.url, self.status)
     
     def save(self, pAuditText=None):
@@ -61,7 +61,7 @@ class ClarificationRequest(models.Model):
     comment = models.TextField()
     hidden = models.BooleanField(default=False)
         
-    def __unicode__(self):
+    def __str__(self):
         return "%d - %s" % (self.id, self.comment[:50])
     
     def save(self):

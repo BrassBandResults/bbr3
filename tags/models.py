@@ -19,7 +19,7 @@ class ContestTag(models.Model):
     lastChangedBy = models.ForeignKey(User, editable=False, related_name='ContestTagLastChangedBy')
     owner = models.ForeignKey(User, editable=False, related_name='ContestTagOwner')
         
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.name)
     
     def save(self):
