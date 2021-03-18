@@ -13,7 +13,7 @@ kombu==3.0.33
 numpy==1.14.0
 oauthlib==2.0.4
 olefile==0.44
-Pillow==4.2.1
+Pillow==8.1.1
 postgis==1.0.3
 psycopg2==2.7.1
 pytz==2017.2
