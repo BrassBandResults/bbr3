@@ -7,7 +7,7 @@ chardet==3.0.4
 confusable-homoglyphs==3.0.0
 Django==1.11.6
 django-celery==3.1.17
-django-registration==2.4.1
+django-registration==3.1.2
 idna==2.6
 kombu==3.0.33
 numpy==1.14.0
